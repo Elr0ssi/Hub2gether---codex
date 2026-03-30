@@ -107,21 +107,71 @@
     border-radius: 26px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    background: #f3f6f5;
+    background: linear-gradient(160deg,#f7faf8 0%,#eef5f2 100%);
+    position: relative;
   }
-  .dashboard-image {
-    display: block;
-    width: 100%;
-    height: auto;
+  .dashboard-image-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 42%);
+    mix-blend-mode: soft-light;
   }
-  .dashboard-fallback {
-    min-height: 320px;
-    place-content: center;
-    text-align: center;
-    color: var(--grey-600);
-    gap: 6px;
-    font-weight: 600;
+  .showcase {
+    position: relative;
+    z-index: 1;
+    background: #f8fafb;
+    border: 1px solid #dce3ec;
+    border-radius: 20px;
+    overflow: hidden;
   }
+  .showcase-nav {
+    background: #ffffffcc;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid #e6ecf2;
+  }
+  .showcase-brand { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: #556173; display: flex; align-items: center; gap: 10px; }
+  .showcase-brand .dot { width: 12px; height: 12px; border-radius: 999px; background: #72e2bd; }
+  .showcase-menu { display: flex; gap: 26px; color: #98a5b3; font-weight: 700; }
+  .showcase-menu .active { color: #72e2bd; border-bottom: 3px solid #72e2bd; padding-bottom: 4px; }
+  .showcase-cta { background: linear-gradient(180deg,#5f6777 0%,#404857 100%); color: #fff; border: none; border-radius: 999px; padding: 10px 24px; font-weight: 700; }
+  .showcase-body { padding: 24px; background: #f3f5f7; }
+  .showcase-heading { font-family: var(--font-display); color: #0c1e3b; font-size: clamp(28px,4vw,52px); font-weight: 800; margin-bottom: 8px; }
+  .showcase-sub { color: #738196; font-size: clamp(14px,1.6vw,23px); font-weight: 600; margin-bottom: 20px; }
+  .showcase-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; }
+  .sc-card {
+    background: #fff;
+    border: 1px solid #eef2f6;
+    border-radius: 18px;
+    box-shadow: 0 4px 18px rgba(15,46,34,.06);
+    padding: 16px;
+  }
+  .sc-match-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
+  .sc-badge { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: .08em; color: #50717b; background: #dff6ee; padding: 7px 12px; border-radius: 999px; margin-bottom: 10px; }
+  .sc-title { font-family: var(--font-display); font-size: clamp(28px,2.2vw,44px); line-height: 1.05; margin-bottom: 8px; color: #11213f; }
+  .sc-players { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; color: #8490a3; font-weight: 600; font-size: 13px; }
+  .sc-players .avatar { width: 30px; height: 30px; border-radius: 999px; background: #d5dde8; border: 2px solid #fff; margin-left: -8px; }
+  .sc-players .avatar:first-child { margin-left: 0; }
+  .sc-mini-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin-bottom: 10px; }
+  .sc-mini { background: #f5f7fa; border: 1px solid #ebf0f5; border-radius: 14px; padding: 10px; }
+  .sc-mini small { display:block; color:#a6b1c0; font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sc-mini strong { font-size: clamp(19px,1.5vw,28px); color: #1d2a43; }
+  .sc-btn { width: 100%; border: none; border-radius: 999px; background: #5fd9b2; color: #0e2a2d; font-weight: 800; padding: 12px; }
+  .sc-image-card { border-radius: 16px; overflow: hidden; border: 1px solid #eaf0f6; }
+  .sc-image-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+  .sc-image-foot { padding: 10px; font-weight: 700; color: #25324a; }
+  .sc-performance .big { font-family: var(--font-display); font-size: clamp(52px,4vw,72px); color: #0d1f3f; font-weight: 800; line-height: .95; }
+  .sc-performance .bars { margin-top: 14px; height: 76px; display:flex; gap:6px; align-items:flex-end; }
+  .sc-performance .bars span { flex: 1; background: #dce2ea; border-radius: 10px 10px 0 0; }
+  .sc-performance .bars span:nth-child(5), .sc-performance .bars span:nth-child(6), .sc-performance .bars span:nth-child(7) { background: #65dbb7; }
+  .showcase-bottom { margin-top: 14px; display: grid; grid-template-columns: 1fr 1.25fr .75fr; gap: 14px; }
+  .sc-dark { background: #06153a; color: #fff; }
+  .sc-dark .sc-btn { margin-top: 10px; }
 
   .mockup-window { background: #f6f7f6; border-radius: var(--radius-xl); border: 0.5px solid rgba(15,46,34,.12); box-shadow: var(--shadow-lg); overflow: hidden; }
   .mockup-bar { background: var(--grey-50); padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid var(--border); }
@@ -414,7 +464,11 @@
     .steps-row { grid-template-columns: 1fr 1fr; }
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
-    .hub-grid, .enterprise-interactive { grid-template-columns:1fr; }
+    .showcase-menu { display: none; }
+    .showcase-nav { gap: 10px; }
+    .showcase-brand { font-size: 20px; }
+    .showcase-body { padding: 14px; }
+    .showcase-grid, .showcase-bottom, .sc-match-layout, .sc-mini-grid, .hub-grid, .enterprise-interactive { grid-template-columns:1fr; }
     .hub-kpis, .enterprise-metrics { grid-template-columns:1fr; }
     .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
     .logos-row { gap: 28px; }
@@ -442,11 +496,80 @@
   <div class="hero-social-proof"><div class="avatars"><span style="background:#1E5EFF">JD</span><span style="background:#1DB87E">MS</span><span style="background:#FF6B35">AT</span><span style="background:#8B5CF6">LC</span><span style="background:#F5C842;color:#333">+</span></div><p class="social-text"><strong>+2 400 collaborateurs</strong> actifs sur la plateforme</p></div>
   <div class="hero-mockup reveal-zoom">
     <div class="dashboard-image-wrap">
-      <img class="dashboard-image" src="assets/dashboard1vitrine.png" alt="Aperçu dashboard Hub2gether" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
-      <div class="dashboard-fallback" style="display:none;">
-        <strong>Ajoutez votre image:</strong>
-        <span>assets/dashboard1vitrine.png</span>
-      </div>
+      <article class="showcase" aria-label="Vitrine dashboard Hub2gether">
+        <div class="showcase-nav">
+          <div class="showcase-brand"><span class="dot"></span>Hub2gether</div>
+          <div class="showcase-menu">
+            <span class="active">Vitrine</span>
+            <span>Fonctionnalités</span>
+            <span>Communauté</span>
+            <span>Tarifs</span>
+          </div>
+          <button class="showcase-cta">Commencer</button>
+        </div>
+        <div class="showcase-body">
+          <h3 class="showcase-heading">Présentation du Projet</h3>
+          <p class="showcase-sub">Hub2gether Core • Le hub social et sportif haute performance</p>
+          <div class="showcase-grid">
+            <section class="sc-card">
+              <div class="sc-match-layout">
+                <div>
+                  <span class="sc-badge">MATCHMAKING EN DIRECT</span>
+                  <h4 class="sc-title">Match de Padel<br/>aujourd'hui</h4>
+                  <div class="sc-players">
+                    <span class="avatar"></span><span class="avatar"></span><span class="avatar"></span>
+                    <span>Rejoint par Alex et Sarah</span>
+                  </div>
+                  <div class="sc-mini-grid">
+                    <div class="sc-mini"><small>Niveau</small><strong>Compétitif (4.5)</strong></div>
+                    <div class="sc-mini"><small>Places restantes</small><strong style="color:#3bc399">1 Place</strong></div>
+                  </div>
+                  <button class="sc-btn">Réserver ma place</button>
+                </div>
+                <div class="sc-image-card">
+                  <img src="assets/dashboard1vitrine.png" alt="Terrain de padel Hub2gether"/>
+                  <div class="sc-image-foot">Green Arena Hub • 18:00 · Paris</div>
+                </div>
+              </div>
+            </section>
+            <section class="sc-card sc-performance">
+              <h4 style="font-size:30px;font-family:var(--font-display);">Performance</h4>
+              <div class="big">8.4<small style="font-size:.42em;color:#8390a4;">/10</small></div>
+              <p style="font-size:11px;color:#93a0b1;font-weight:700;letter-spacing:.08em;margin:6px 0 10px;">NOTE GLOBALE DU JOUEUR</p>
+              <p style="font-size:13px;font-weight:700;">Taux de victoire <span style="float:right;">72%</span></p>
+              <div style="height:8px;background:#ecf1f6;border-radius:999px;margin:6px 0 12px;"><span style="display:block;width:72%;height:100%;background:#5fd9b2;border-radius:999px;"></span></div>
+              <p style="font-size:13px;font-weight:700;">Endurance <span style="float:right;">90%</span></p>
+              <div style="height:8px;background:#ecf1f6;border-radius:999px;margin-top:6px;"><span style="display:block;width:90%;height:100%;background:#121c39;border-radius:999px;"></span></div>
+              <div class="bars"><span style="height:32%"></span><span style="height:45%"></span><span style="height:58%"></span><span style="height:52%"></span><span style="height:66%"></span><span style="height:82%"></span><span style="height:60%"></span></div>
+            </section>
+          </div>
+          <div class="showcase-bottom">
+            <section class="sc-card">
+              <h4 style="font-size:31px;font-family:var(--font-display);margin-bottom:10px;">Padel Masters Paris</h4>
+              <p style="color:#59c9a7;font-weight:700;font-size:11px;letter-spacing:.08em;">GROUPE ACTIF</p>
+              <div style="margin-top:12px;background:#f2f6f8;border-radius:16px;padding:12px;font-size:12px;color:#637287;">Qui est chaud pour un petit set à 18h ?</div>
+              <div style="margin-top:8px;background:#e8f7f2;border-radius:16px;padding:12px;font-size:12px;color:#2c445a;font-weight:700;">Padel du vendredi soir • Besoin de 2 joueurs</div>
+            </section>
+            <section class="sc-card">
+              <h4 style="font-size:34px;font-family:var(--font-display);margin-bottom:8px;">TOP JOUEURS</h4>
+              <div style="display:grid;gap:8px;">
+                <div style="display:flex;justify-content:space-between;background:#eefaf6;border:1px solid #d8f1e8;border-radius:999px;padding:10px 14px;font-weight:700;"><span>01 Marc-Antoine D.</span><span>2,450 pts</span></div>
+                <div style="display:flex;justify-content:space-between;padding:10px 14px;color:#2c3d58;font-weight:700;"><span>02 Thomas R.</span><span>2,120 pts</span></div>
+                <div style="display:flex;justify-content:space-between;padding:10px 14px;color:#2c3d58;font-weight:700;"><span>03 Léa V.</span><span>1,980 pts</span></div>
+              </div>
+            </section>
+            <section class="sc-card sc-dark">
+              <p style="font-size:11px;letter-spacing:.1em;color:#94a1c0;">SOLDE</p>
+              <p style="font-family:var(--font-display);font-size:52px;font-weight:800;line-height:1.1;">420.00€</p>
+              <div style="margin:10px 0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:10px;">
+                <p style="font-size:10px;color:#62d9b8;font-weight:700;">ON VOUS DOIT</p>
+                <p style="font-family:var(--font-display);font-size:40px;font-weight:700;">85.00€</p>
+              </div>
+              <button class="sc-btn">RÉGLER MES DETTES</button>
+            </section>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
