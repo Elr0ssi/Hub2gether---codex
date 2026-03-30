@@ -359,6 +359,46 @@
   .enterprise-bars span { display:block; border-radius:8px 8px 4px 4px; background:#cbeedc; height:32px; }
   .enterprise-bars span:nth-child(3), .enterprise-bars span:nth-child(5) { background:#7FE3BF; }
 
+  .enterprise-preview-content {
+    transition: opacity .22s ease;
+  }
+  .slide-out-up {
+    animation: previewOut .26s ease forwards;
+  }
+  .slide-in-up {
+    animation: previewIn .3s ease forwards;
+  }
+  @keyframes previewOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-18px); }
+  }
+  @keyframes previewIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .enterprise-visual-wrap {
+    margin-top: 18px;
+    border: 1px solid #dbe9e2;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #f6faf8;
+  }
+  .enterprise-visual {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .enterprise-visual-fallback {
+    min-height: 180px;
+    display: none;
+    place-content: center;
+    text-align: center;
+    color: #61706b;
+    font-weight: 600;
+    gap: 6px;
+  }
+
+
 
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
@@ -420,27 +460,23 @@
 <section id="entreprises" style="background:var(--grey-50)"><div class="section-inner"><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Cliquez sur les modules à gauche pour voir l'interface de droite s'adapter en direct.</p>
   <div class="enterprise-interactive reveal-right">
     <div class="enterprise-menu">
-      <button class="enterprise-item active" data-title="Tableau de bord RH" data-text="Suivez l'engagement, les taux de participation et les tendances d'activité par équipe." data-m1="73%" data-m1l="Participation" data-m2="42" data-m2l="Matchs" data-m3="+8%" data-m3l="Progression">📊 Tableau de bord RH</button>
-      <button class="enterprise-item" data-title="Tournois & compétitions" data-text="Créez vos brackets, automatisez les rounds et animez les finales inter-entreprises." data-m1="16" data-m1l="Tournois" data-m2="248" data-m2l="Joueurs" data-m3="4" data-m3l="Saisons">🏆 Tournois & compétitions</button>
-      <button class="enterprise-item" data-title="Paiements sans friction" data-text="Collecte automatique des quotes-parts, remboursements suivis et subventions RH." data-m1="€12k" data-m1l="Collectés" data-m2="98%" data-m2l="Paiements OK" data-m3="0" data-m3l="Relance manuelle">💳 Paiements sans friction</button>
-      <button class="enterprise-item" data-title="Partenaires exclusifs" data-text="Accédez aux terrains, salles et événements partenaires avec tarifs négociés." data-m1="32" data-m1l="Partenaires" data-m2="-18%" data-m2l="Coût moyen" data-m3="7" data-m3l="Villes">🤝 Partenaires exclusifs</button>
+      <button class="enterprise-item active" data-title="Tableau de bord RH" data-text="Suivez l'engagement, les taux de participation et les tendances d'activité par équipe." data-m1="73%" data-m1l="Participation" data-m2="42" data-m2l="Matchs" data-m3="+8%" data-m3l="Progression" data-image="assets/entreprise-rh.png">📊 Tableau de bord RH</button>
+      <button class="enterprise-item" data-title="Tournois & compétitions" data-text="Créez vos brackets, automatisez les rounds et animez les finales inter-entreprises." data-m1="16" data-m1l="Tournois" data-m2="248" data-m2l="Joueurs" data-m3="4" data-m3l="Saisons" data-image="assets/entreprise-tournois.png">🏆 Tournois & compétitions</button>
+      <button class="enterprise-item" data-title="Paiements sans friction" data-text="Collecte automatique des quotes-parts, remboursements suivis et subventions RH." data-m1="€12k" data-m1l="Collectés" data-m2="98%" data-m2l="Paiements OK" data-m3="0" data-m3l="Relance manuelle" data-image="assets/entreprise-paiements.png">💳 Paiements sans friction</button>
+      <button class="enterprise-item" data-title="Partenaires exclusifs" data-text="Accédez aux terrains, salles et événements partenaires avec tarifs négociés." data-m1="32" data-m1l="Partenaires" data-m2="-18%" data-m2l="Coût moyen" data-m3="7" data-m3l="Villes" data-image="assets/entreprise-partenaires.png">🤝 Partenaires exclusifs</button>
     </div>
     <div class="enterprise-preview">
-      <h4 id="enterprise-title">Tableau de bord RH</h4>
-      <p id="enterprise-text">Suivez l'engagement, les taux de participation et les tendances d'activité par équipe.</p>
-      <div class="enterprise-metrics">
-        <div><small id="enterprise-m1l">Participation</small><strong id="enterprise-m1">73%</strong></div>
-        <div><small id="enterprise-m2l">Matchs</small><strong id="enterprise-m2">42</strong></div>
-        <div><small id="enterprise-m3l">Progression</small><strong id="enterprise-m3">+8%</strong></div>
-      </div>
-      <div class="enterprise-chart">
-        <svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
-          <defs><linearGradient id="eg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7FE3BF" stop-opacity=".35"/><stop offset="100%" stop-color="#7FE3BF" stop-opacity="0"/></linearGradient></defs>
-          <path d="M0,95 C80,70 120,85 180,55 C250,25 320,75 390,45 C470,12 520,30 600,20 L600,120 L0,120Z" fill="url(#eg)"/>
-          <path d="M0,95 C80,70 120,85 180,55 C250,25 320,75 390,45 C470,12 520,30 600,20" stroke="#0F2E22" stroke-width="3" fill="none"/>
-        </svg>
-        <div class="enterprise-bars">
-          <span style="height:28px"></span><span style="height:42px"></span><span style="height:56px"></span><span style="height:40px"></span><span style="height:64px"></span><span style="height:36px"></span>
+      <div class="enterprise-preview-content" id="enterprise-preview-content">
+        <h4 id="enterprise-title">Tableau de bord RH</h4>
+        <p id="enterprise-text">Suivez l'engagement, les taux de participation et les tendances d'activité par équipe.</p>
+        <div class="enterprise-metrics">
+          <div><small id="enterprise-m1l">Participation</small><strong id="enterprise-m1">73%</strong></div>
+          <div><small id="enterprise-m2l">Matchs</small><strong id="enterprise-m2">42</strong></div>
+          <div><small id="enterprise-m3l">Progression</small><strong id="enterprise-m3">+8%</strong></div>
+        </div>
+        <div class="enterprise-visual-wrap">
+          <img id="enterprise-image" class="enterprise-visual" src="assets/entreprise-rh.png" alt="Dashboard entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
+          <div class="enterprise-visual-fallback" id="enterprise-visual-fallback"><strong>Ajoutez un visuel PNG</strong><span id="enterprise-image-path">assets/entreprise-rh.png</span></div>
         </div>
       </div>
     </div>
@@ -560,21 +596,42 @@
     m2: document.getElementById('enterprise-m2'),
     m2l: document.getElementById('enterprise-m2l'),
     m3: document.getElementById('enterprise-m3'),
-    m3l: document.getElementById('enterprise-m3l')
+    m3l: document.getElementById('enterprise-m3l'),
+    image: document.getElementById('enterprise-image'),
+    imagePath: document.getElementById('enterprise-image-path'),
+    preview: document.getElementById('enterprise-preview-content'),
+    imageFallback: document.getElementById('enterprise-visual-fallback')
   };
 
   enterpriseItems.forEach(item => {
     item.addEventListener('click', () => {
       enterpriseItems.forEach(btn => btn.classList.remove('active'));
       item.classList.add('active');
-      enterpriseBindings.title.textContent = item.dataset.title;
-      enterpriseBindings.text.textContent = item.dataset.text;
-      enterpriseBindings.m1.textContent = item.dataset.m1;
-      enterpriseBindings.m1l.textContent = item.dataset.m1l;
-      enterpriseBindings.m2.textContent = item.dataset.m2;
-      enterpriseBindings.m2l.textContent = item.dataset.m2l;
-      enterpriseBindings.m3.textContent = item.dataset.m3;
-      enterpriseBindings.m3l.textContent = item.dataset.m3l;
+
+      const applyContent = () => {
+        enterpriseBindings.title.textContent = item.dataset.title;
+        enterpriseBindings.text.textContent = item.dataset.text;
+        enterpriseBindings.m1.textContent = item.dataset.m1;
+        enterpriseBindings.m1l.textContent = item.dataset.m1l;
+        enterpriseBindings.m2.textContent = item.dataset.m2;
+        enterpriseBindings.m2l.textContent = item.dataset.m2l;
+        enterpriseBindings.m3.textContent = item.dataset.m3;
+        enterpriseBindings.m3l.textContent = item.dataset.m3l;
+
+        const imageSrc = item.dataset.image || 'assets/entreprise-rh.png';
+        enterpriseBindings.image.style.display = 'block';
+        enterpriseBindings.imageFallback.style.display = 'none';
+        enterpriseBindings.image.src = imageSrc;
+        enterpriseBindings.imagePath.textContent = imageSrc;
+      };
+
+      enterpriseBindings.preview.classList.remove('slide-in-up');
+      enterpriseBindings.preview.classList.add('slide-out-up');
+      setTimeout(() => {
+        applyContent();
+        enterpriseBindings.preview.classList.remove('slide-out-up');
+        enterpriseBindings.preview.classList.add('slide-in-up');
+      }, 230);
     });
   });
 
