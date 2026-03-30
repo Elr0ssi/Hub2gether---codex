@@ -17,10 +17,10 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        primary: "#63E6BE",
+        primary: "#63E6BE", // Fresh light green from reference
         "primary-dark": "#4fd1a9",
         secondary: "#5C6B73",
-        background: "#F8FAFB",
+        background: "#F8FAFB", // Very light bluish-grey/white background from ref
         surface: "#FFFFFF",
         "surface-variant": "#F1F5F9",
         "on-surface": "#1E293B",
@@ -61,6 +61,7 @@ tailwind.config = {
 </style>
 </head>
 <body class="font-body text-on-surface antialiased">
+<!-- TopNavBar -->
 <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
 <div class="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
 <div class="text-2xl font-black tracking-tight text-slate-800 font-headline flex items-center gap-2">
@@ -83,11 +84,14 @@ tailwind.config = {
 </div>
 </nav>
 <main class="max-w-7xl mx-auto px-8 py-10">
+<!-- Header Section -->
 <header class="mb-10">
 <h1 class="font-headline text-4xl font-extrabold text-slate-900 tracking-tight mb-2">Présentation du Projet</h1>
 <p class="text-slate-500 text-lg font-medium">Hub2gether Core • Le hub social et sportif haute performance</p>
 </header>
+<!-- Main Grid Content -->
 <div class="asymmetric-grid">
+<!-- 1. Hero Widget: Matchmaking (Span 8) -->
 <div class="col-span-12 lg:col-span-8 bg-white rounded-3xl p-8 shadow-card border border-slate-50 relative overflow-hidden group">
 <div class="relative z-10 flex flex-col md:flex-row gap-10 items-center">
 <div class="w-full md:w-1/2">
@@ -95,8 +99,8 @@ tailwind.config = {
 <h2 class="font-headline text-3xl font-extrabold mb-4 leading-tight text-slate-900">Match de Padel aujourd'hui</h2>
 <div class="flex items-center gap-4 mb-8">
 <div class="flex -space-x-2">
-<div class="w-10 h-10 rounded-full border-2 border-white bg-slate-300"></div>
-<div class="w-10 h-10 rounded-full border-2 border-white bg-slate-400"></div>
+<img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoJMS-RD2meJ0wM5-eOnIIrNLGCzxgT6GkkXcZsvU_m0Yq8Rl--XqGF22XoFHSKz-J6GD63RXNIXpeFTzGNDGxBZ9gwi7VFANGqbf4fMROlpdXoWGq7cBlc3AQtDzkeM6a7H8HF7owKIvfVIxlNZhLEWnZUCfYWTH-oSZ9hkaGJy4Lp2aGLf022J37MsLdWH1hYGygR6KBUQx28-IoJuDthGbK5eKFUnR6dOHprnEMSdDO94dvjx98-aT9wed18UYxRyj0UWKgMCOZ"/>
+<img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmtfwHmnYeOW5V9ZM66MwHi0K9tpsOAGdDjzSe1CCytspUxwN_n2-cFIo9t7ZQZoGbgT6rkSGsweCvEDuHEV7zmmE7LYcly9h96wOYgvWcLfiVi9s7X4xLC038xVB4KYqDlr2ymcC8xNmuhdXaeDCVdJMjpmBB3OlI1yQa0LQ32O7XVTQdExBl3_JjQ5hHRx4lNm2go1gK_F4-EpK3k1bNk4i25lYx_mTUMW4BOpZwgnSQ08K5X1Olyf6nhnSC020nXUax5oqU23jo"/>
 <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500 shadow-sm">+1</div>
 </div>
 <span class="text-sm text-slate-500 font-medium">Rejoint par Alex et Sarah</span>
@@ -113,10 +117,10 @@ tailwind.config = {
 </div>
 <button class="w-full py-4 bg-primary text-slate-900 rounded-2xl font-bold hover:shadow-lg hover:shadow-primary/30 transition-all flex items-center justify-center gap-2">
 <span class="material-symbols-outlined">sports_tennis</span> Réserver ma place
-</button>
+          </button>
 </div>
 <div class="w-full md:w-1/2 rounded-3xl overflow-hidden border border-slate-100 transform rotate-1 group-hover:rotate-0 transition-transform duration-500 shadow-xl hover:shadow-2xl transition-shadow">
-<div class="w-full h-64 object-cover bg-slate-200"></div>
+<img class="w-full h-64 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNCpyI-0Pt-QdloQy7wf5Q1wQBDvhSPUIJ8k5vPh794bxDkjz0Q2J2kF9_D_jih-pcJd5iB5JkrT9BOmf4csKXIHPfQHNgEpDxOyyVygmLZMvfWQVH-FC8h8d4gAHPyXY_BKgQjvRTYD0hgFBSVPkTrV20LBbbgDoKcXFr05C56jJsqCpsD1_8LmOGtOwJuYu0agZSDqChij--BFFJWlVDz4cJK-urc9BitAyfBqFPWAjtpGj2q69amQu3QTCcGzHQra5v1D-Z-lrc"/>
 <div class="p-5 bg-white border-t border-slate-50">
 <div class="flex justify-between items-center">
 <div>
@@ -131,6 +135,7 @@ tailwind.config = {
 </div>
 </div>
 </div>
+<!-- 2. Performance Widget: Profils (Span 4) -->
 <div class="col-span-12 lg:col-span-4 bg-white rounded-3xl p-8 shadow-card border border-slate-50 flex flex-col">
 <div class="flex justify-between items-start mb-8">
 <h3 class="font-headline text-lg font-bold text-slate-800">Performance</h3>
@@ -143,8 +148,142 @@ tailwind.config = {
 </div>
 <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2">NOTE GLOBALE DU JOUEUR</p>
 </div>
+<div class="space-y-6 flex-grow">
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<p class="text-sm font-bold text-slate-700">Taux de victoire</p>
+<span class="text-sm font-black text-slate-900">72%</span>
+</div>
+<div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 72%"></div>
 </div>
 </div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<p class="text-sm font-bold text-slate-700">Endurance</p>
+<span class="text-sm font-black text-slate-900">90%</span>
+</div>
+<div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-slate-900 rounded-full transition-all duration-1000" style="width: 90%"></div>
+</div>
+</div>
+</div>
+<div class="h-20 w-full flex items-end gap-1.5 mt-8 px-1">
+<div class="flex-1 bg-slate-100 h-1/3 rounded-t-lg"></div>
+<div class="flex-1 bg-slate-100 h-1/2 rounded-t-lg"></div>
+<div class="flex-1 bg-slate-200 h-3/4 rounded-t-lg"></div>
+<div class="flex-1 bg-slate-200 h-2/3 rounded-t-lg"></div>
+<div class="flex-1 bg-primary/50 h-5/6 rounded-t-lg"></div>
+<div class="flex-1 bg-primary h-full rounded-t-lg"></div>
+<div class="flex-1 bg-primary/70 h-4/5 rounded-t-lg"></div>
+</div>
+</div>
+<!-- 3. Community Widget: Groupes (Span 4) -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 bg-white rounded-3xl p-8 shadow-card border border-slate-50 flex flex-col">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-dark">forum</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-900">Padel Masters Paris</h3>
+<p class="text-[10px] text-primary-dark font-bold uppercase tracking-wider">GROUPE ACTIF</p>
+</div>
+</div>
+<div class="flex-grow space-y-4 bg-slate-50 p-5 rounded-2xl mb-6">
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 flex-shrink-0"></div>
+<div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[90%] border border-slate-100">
+<p class="text-xs text-slate-700 leading-relaxed">Qui est chaud pour un petit set à 18h ?</p>
+</div>
+</div>
+<div class="bg-primary/5 border border-primary/20 p-4 rounded-2xl">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-primary-dark tracking-widest uppercase">CARTE DU MATCH</span>
+<span class="material-symbols-outlined text-[14px] text-primary-dark">open_in_new</span>
+</div>
+<p class="text-xs font-bold text-slate-900">Padel du vendredi soir</p>
+<p class="text-[10px] text-slate-500 font-medium">Besoin de 2 joueurs • Niveau 4+</p>
+</div>
+<div class="flex gap-3 flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-[10px] font-bold flex-shrink-0">ME</div>
+<div class="bg-slate-900 text-white p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[90%]">
+<p class="text-xs leading-relaxed">J'en suis ! J'amène des balles neuves.</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-slate-100 rounded-full px-5 py-3">
+<input class="bg-transparent border-none focus:ring-0 text-xs w-full text-slate-500 placeholder-slate-400" placeholder="Écrivez un message..." type="text"/>
+<span class="material-symbols-outlined text-lg text-slate-400 hover:text-primary transition-colors cursor-pointer">send</span>
+</div>
+</div>
+<!-- 4. Leaderboard Widget: Classement (Span 5) -->
+<div class="col-span-12 md:col-span-6 lg:col-span-5 bg-white rounded-3xl p-8 shadow-card border border-slate-50">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline text-lg font-bold text-slate-900">TOP JOUEURS</h3>
+<span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Saison #04</span>
+</div>
+<div class="space-y-4">
+<!-- Rank 1 -->
+<div class="flex items-center gap-4 p-4 bg-primary/5 rounded-2xl border border-primary/10">
+<div class="w-8 h-8 font-black text-primary-dark italic text-xl flex items-center justify-center">01</div>
+<img class="w-11 h-11 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ7GcGse3G5X074HSwY7OM9h04x5iDKK8ErNJ5OrUEvnshZX0raIlHL9-CXOo56zXyjhZQvc1k5anbdXvRLuwWVKUkDysvnIXbfC7Nqozz6AxxEzDBMfCU3iY8WUYZgt_7uX_HPhsOcBEXGZ7tcPqoSmwBYXm3gSOpAHxJ71qe96bngTHmSTVCXKpY8_VHrQkVPPPLG65_BmFPTSUxFr_kKSvPoUyboRzcJNg1ZChdstFsMw2BYSwsox2d8ueltkMxlquBQCVt_m-y"/>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-900">Marc-Antoine D.</p>
+<p class="text-[10px] text-slate-500 font-medium">2,450 points</p>
+</div>
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-slate-900 text-lg" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center gap-4 p-4 hover:bg-slate-50 transition-colors rounded-2xl border border-transparent">
+<div class="w-8 h-8 font-bold text-slate-300 italic text-xl flex items-center justify-center">02</div>
+<img class="w-11 h-11 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJs0o_AVcDLK8eKQrsd_VmYbLv_KL0FkanXvyUpTanXxCgfM6OIsLzkiTL-nI4Qwz3e-Fk9iuGpbwAXq120VqRgulh5giqVBfG8UTxUhEVvzvX24BeOFL02MaFk0x3_pzrcEcsO9vSf_CgsofsWN-cqtvsvbyRDAtQi7y2M2lSdu_lIaIpsfp5lmUMD9sbcKtYnj_6t7nxz5B97vCeZK2RXwspha9iFCSCOwsVHqZmqNLIm5bfXpii4W1DPe3V5EGmFDEgVQERHn0A"/>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-900">Thomas R.</p>
+<p class="text-[10px] text-slate-500 font-medium">2,120 points</p>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-4 p-4 hover:bg-slate-50 transition-colors rounded-2xl border border-transparent">
+<div class="w-8 h-8 font-bold text-slate-300 italic text-xl flex items-center justify-center">03</div>
+<img class="w-11 h-11 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwyVXm8yhNqP2oLUHztbgEfGUKF3znj69QNMq9e7o_zc_GQxP5sziXvPnEsqTcU7ajaxy-xGVYTvIDI5NhjxWZnN_9FO9dAaxnW9i9RKGBnhvqYhP6QduT21Vev_R937liY8z6bzfnVee7YS6yFsrTsmoqellCWauv2YUbaE4mehiz1SFzXduj49I6uzm-Ou9sDyWaZR8C5J1blqFE2-zZdnHn-wznu3ZeeIkLBvo2jqSjDm6XrTEXqtRnQhHqbn68vTKNlJrv1ECF"/>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-900">Léa V.</p>
+<p class="text-[10px] text-slate-500 font-medium">1,980 points</p>
+</div>
+</div>
+</div>
+</div>
+<!-- 5. Balance Widget: Paiement (Span 3) -->
+<div class="col-span-12 lg:col-span-3 bg-slate-900 text-white rounded-3xl p-8 shadow-soft flex flex-col">
+<div class="mb-auto">
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40 mb-2">SOLDE</p>
+<h3 class="text-4xl font-headline font-black mb-10 tracking-tight">420.00€</h3>
+<div class="p-5 bg-white/5 rounded-2xl border border-white/10 mb-4">
+<p class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">ON VOUS DOIT</p>
+<p class="text-2xl font-headline font-extrabold text-white">85.00€</p>
+</div>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-white/30 mb-4">DÉPENSES RÉCENTES</p>
+<div class="space-y-3 mb-8">
+<div class="flex justify-between items-center text-xs">
+<span class="text-white/60 font-medium">Location de terrain #92</span>
+<span class="font-bold">-12.50€</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-white/60 font-medium">Location d'équipement</span>
+<span class="font-bold">-5.00€</span>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-slate-900 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all">
+          RÉGLER MES DETTES
+        </button>
+</div>
+</div>
+</div>
+<!-- Footer Text -->
 <footer class="mt-16 text-center border-t border-slate-100 pt-10">
 <p class="text-slate-400 text-[10px] font-bold tracking-widest uppercase">CONÇU POUR HUB2GETHER © 2024 • BOOSTER LES COMMUNAUTÉS SPORTIVES</p>
 </footer>
