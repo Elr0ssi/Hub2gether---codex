@@ -67,9 +67,16 @@
   .btn-primary { font-family: var(--font-body); font-size: 14px; font-weight: 500; color: white; background: var(--black); border: none; cursor: pointer; padding: 10px 20px; border-radius: var(--radius-sm); transition: transform .15s, box-shadow .15s; }
   .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
 
-  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 40px 80px; position: relative; overflow: hidden; }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 40px 80px; position: relative; overflow: hidden; --mx:50%; --my:35%; }
   .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(30,94,255,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 30% at 80% 60%, rgba(29,184,126,0.06) 0%, transparent 60%), radial-gradient(ellipse 40% 30% at 20% 70%, rgba(255,107,53,0.05) 0%, transparent 60%); }
   .hero-grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 80%); }
+  .hero-spotlight {
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background: radial-gradient(360px circle at var(--mx) var(--my), rgba(127,227,191,.28), rgba(127,227,191,0) 65%);
+    mix-blend-mode: multiply;
+    transition: background-position .12s linear;
+  }
+
   .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: white; border: 0.5px solid var(--border); border-radius: 100px; padding: 6px 16px 6px 8px; font-size: 13px; font-weight: 500; color: var(--grey-600); margin-bottom: 32px; position: relative; z-index: 1; box-shadow: var(--shadow-sm); animation: fadeUp .6s ease both; }
   .hero-badge .pip { background: var(--green); color: white; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 100px; }
   .hero-title { font-family: var(--font-display); font-size: clamp(52px, 7vw, 96px); font-weight: 800; line-height: 1.0; letter-spacing: -2.5px; max-width: 900px; position: relative; z-index: 1; animation: fadeUp .6s .1s ease both; }
@@ -259,7 +266,7 @@
   .hub-dashboard { background:#f7f9f8; border:1px solid #d4dbd8; border-radius:30px; padding:0; overflow:hidden; }
   .hub-topnav { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border-bottom:1px solid #dce3df; background:white; }
   .hub-topnav .tabs { display:flex; gap:8px; }
-  .hub-tab { font-size:12px; font-weight:700; padding:8px 14px; border-radius:999px; background:#eef2ef; color:#546272; }
+  .hub-tab { font-size:12px; font-weight:700; padding:8px 14px; border-radius:999px; background:#eef2ef; color:#546272; border:1px solid transparent; cursor:pointer; }
   .hub-tab.active { background:var(--blue-light); color:var(--black); }
   .hub-user { font-size:13px; font-weight:700; color:var(--black); }
   .hub-body { padding:14px; display:grid; gap:12px; }
@@ -274,12 +281,17 @@
   .hub-grid { display:grid; grid-template-columns:1.6fr .9fr; gap:12px; }
   .hub-panel { background:white; border:1px solid #dce3df; border-radius:16px; padding:12px; }
   .hub-kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
-  .hub-kpi { background:#f3f5f4; border-radius:12px; padding:10px; }
+  .hub-kpi { background:#f3f5f4; border-radius:12px; padding:10px; border:1px solid transparent; cursor:pointer; transition:.2s; }
+  .hub-kpi:hover, .hub-kpi.active { border-color:#b7ddd0; background:#eef8f3; }
   .hub-kpi strong { font-size:28px; font-family:var(--font-display); }
   .hub-bars { margin-top:10px; display:flex; align-items:flex-end; gap:8px; height:90px; }
   .hub-bars span { flex:1; border-radius:10px 10px 0 0; background:#c8eadb; }
   .hub-bars span:nth-child(4), .hub-bars span:nth-child(6){ background:#7FE3BF; }
   .hub-side .badge { display:flex; justify-content:space-between; font-size:12px; margin-top:8px; }
+  .hub-view { display:none; }
+  .hub-view.active { display:block; animation: fadeUp .35s ease; }
+  .hub-mini-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
+  .hub-mini-cards .card { background:#f3f5f4; border-radius:10px; padding:9px; font-size:11px; text-align:left; }
 
   .enterprise-interactive { margin-top: 46px; display:grid; grid-template-columns: 320px 1fr; gap:22px; align-items:stretch; }
   .enterprise-menu { background:white; border:1px solid var(--border); border-radius:20px; padding:10px; display:grid; gap:8px; }
@@ -329,7 +341,7 @@
 </nav>
 
 <section class="hero">
-  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-spotlight"></div>
   <div class="hero-badge"><span class="pip">Nouveau</span>La plateforme sport B2B qui connecte vos équipes</div>
   <h1 class="hero-title">Le sport en entreprise,<br><em>enfin centralisé.</em></h1>
   <p class="hero-sub">Tournois, matchmaking, classements inter-entreprises, paiements automatisés — tout en un seul endroit pour vos collaborateurs.</p>
@@ -340,10 +352,10 @@
       <div class="hub-topnav">
         <div class="nav-logo" style="font-size:16px;"><span class="brand-mark" aria-hidden="true" style="font-size:26px;">H<span>2</span></span>Hub2gether</div>
         <div class="tabs">
-          <span class="hub-tab">Matchmaking</span>
-          <span class="hub-tab">Groupes</span>
-          <span class="hub-tab active">Profils</span>
-          <span class="hub-tab">Classement</span>
+          <button class="hub-tab" data-view="matchmaking">Matchmaking</button>
+          <button class="hub-tab" data-view="groupes">Groupes</button>
+          <button class="hub-tab active" data-view="profils">Profils</button>
+          <button class="hub-tab" data-view="paiement">Paiement</button>
         </div>
         <div class="hub-user">Alex Rivers · PRO</div>
       </div>
@@ -359,17 +371,43 @@
         </div>
         <div class="hub-grid">
           <div class="hub-panel">
-            <h4 style="font-size:18px">Tableau de bord de performance</h4>
-            <div class="hub-kpis">
-              <div class="hub-kpi"><small>Victoires</small><strong class="counter" data-target="45">0</strong></div>
-              <div class="hub-kpi"><small>Ratio</small><strong class="counter" data-target="75" data-suffix="%">0%</strong></div>
-              <div class="hub-kpi"><small>Calories</small><strong class="counter" data-target="12" data-suffix=".4k">0.0k</strong></div>
+            <div class="hub-view" data-panel="matchmaking">
+              <h4 style="font-size:18px">Matchs recommandés</h4>
+              <div class="hub-mini-cards">
+                <div class="card">Padel Doubles<br><strong>18h30</strong></div>
+                <div class="card">Football 5v5<br><strong>Vendredi</strong></div>
+                <div class="card">Running Club<br><strong>7h45</strong></div>
+              </div>
             </div>
-            <div class="hub-bars"><span style="height:45%"></span><span style="height:60%"></span><span style="height:40%"></span><span style="height:72%"></span><span style="height:55%"></span><span style="height:86%"></span><span style="height:20%"></span></div>
+            <div class="hub-view" data-panel="groupes">
+              <h4 style="font-size:18px">Groupes actifs</h4>
+              <div class="hub-mini-cards">
+                <div class="card">Designers United<br><strong>18 membres</strong></div>
+                <div class="card">Padel Club Lyon<br><strong>12 membres</strong></div>
+                <div class="card">Hub2gether Runners<br><strong>31 membres</strong></div>
+              </div>
+            </div>
+            <div class="hub-view active" data-panel="profils">
+              <h4 style="font-size:18px">Tableau de bord de performance</h4>
+              <div class="hub-kpis">
+                <button class="hub-kpi active"><small>Victoires</small><strong class="counter" data-target="45">0</strong></button>
+                <button class="hub-kpi"><small>Ratio</small><strong class="counter" data-target="75" data-suffix="%">0%</strong></button>
+                <button class="hub-kpi"><small>Calories</small><strong class="counter" data-target="12" data-suffix=".4k">0.0k</strong></button>
+              </div>
+              <div class="hub-bars"><span style="height:45%"></span><span style="height:60%"></span><span style="height:40%"></span><span style="height:72%"></span><span style="height:55%"></span><span style="height:86%"></span><span style="height:20%"></span></div>
+            </div>
+            <div class="hub-view" data-panel="paiement">
+              <h4 style="font-size:18px">Centre de paiement</h4>
+              <div class="hub-mini-cards">
+                <div class="card">À percevoir<br><strong>€ 1 240</strong></div>
+                <div class="card">Payés<br><strong>92%</strong></div>
+                <div class="card">Litiges<br><strong>1 en cours</strong></div>
+              </div>
+            </div>
           </div>
           <div class="hub-side" style="display:grid;gap:12px;">
-            <div class="hub-panel"><h4 style="font-size:18px">Communauté</h4><div class="badge"><span>Designers United</span><span style="color:#7FE3BF">High</span></div><div class="badge"><span>Lyon Padel Club</span><span style="color:#95a8bd">Med</span></div></div>
-            <div class="hub-panel"><h4 style="font-size:18px">Note Fair-Play</h4><p style="margin-top:8px;font-weight:700">⭐⭐⭐⭐⭐ 4.8 / 5</p></div>
+            <div class="hub-panel"><h4 style="font-size:18px">Communauté</h4><div class="badge"><span>Designers United</span><span style="color:#7FE3BF">High</span></div><div class="badge"><span>Lyon Padel Club</span><span style="color:#95a8bd">Med</span></div><div class="badge"><span>Badges gagnés</span><span>12</span></div></div>
+            <div class="hub-panel"><h4 style="font-size:18px">Note Fair-Play</h4><p style="margin-top:8px;font-weight:700">⭐⭐⭐⭐⭐ 4.8 / 5</p><p style="font-size:12px;margin-top:8px;">Prochain match: Jeudi 19h · Terrain Bellecour</p></div>
           </div>
         </div>
       </div>
@@ -507,6 +545,34 @@
       enterpriseBindings.m2l.textContent = item.dataset.m2l;
       enterpriseBindings.m3.textContent = item.dataset.m3;
       enterpriseBindings.m3l.textContent = item.dataset.m3l;
+    });
+  });
+
+
+  const hero = document.querySelector('.hero');
+  hero.addEventListener('mousemove', (e) => {
+    const r = hero.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top) / r.height) * 100;
+    hero.style.setProperty('--mx', `${x}%`);
+    hero.style.setProperty('--my', `${y}%`);
+  });
+
+  const hubTabs = document.querySelectorAll('.hub-tab');
+  const hubViews = document.querySelectorAll('.hub-view');
+  hubTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      hubTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const view = tab.dataset.view;
+      hubViews.forEach(v => v.classList.toggle('active', v.dataset.panel === view));
+    });
+  });
+
+  document.querySelectorAll('.hub-kpi').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.hub-kpi').forEach(k => k.classList.remove('active'));
+      btn.classList.add('active');
     });
   });
 
