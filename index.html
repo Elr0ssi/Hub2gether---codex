@@ -57,6 +57,19 @@
   }
   .brand-mark span { color: var(--blue); margin-left:2px; }
   .footer-logo .brand-mark { font-size: 30px; vertical-align: middle; }
+  .brand-logo-img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    border-radius: 8px;
+    display: inline-block;
+    margin-right: 6px;
+    background: #eef2ef;
+    padding: 3px;
+  }
+  .brand-logo-img.small { width: 28px; height: 28px; border-radius: 6px; }
+  .brand-logo-img.footer { width: 30px; height: 30px; }
+
 
   .nav-links { display: flex; align-items: center; gap: 32px; }
   .nav-links a { font-size: 14px; font-weight: 400; color: var(--grey-600); text-decoration: none; transition: color .2s; }
@@ -335,7 +348,7 @@
 </head>
 <body>
 <nav>
-  <div class="nav-logo"><span class="brand-mark" aria-hidden="true">H<span>2</span></span>Hub2gether</div>
+  <div class="nav-logo"><img class="brand-logo-img" src="assets/logo-hub2gether.png" alt="Logo Hub2gether" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"/><span class="brand-mark" aria-hidden="true" style="display:none;">H<span>2</span></span>Hub2gether</div>
   <div class="nav-links">
     <a href="#market">Le marché</a><a href="#entreprises">Pour les entreprises</a><a href="#joueurs">Pour les joueurs</a><a href="#fonctionnalites">Fonctionnalités</a><a href="#how">Comment ça marche</a>
   </div>
@@ -352,7 +365,7 @@
   <div class="hero-mockup reveal-zoom">
     <div class="hub-dashboard">
       <div class="hub-topnav">
-        <div class="nav-logo" style="font-size:16px;"><span class="brand-mark" aria-hidden="true" style="font-size:26px;">H<span>2</span></span>Hub2gether</div>
+        <div class="nav-logo" style="font-size:16px;"><img class="brand-logo-img small" src="assets/logo-hub2gether.png" alt="Logo Hub2gether" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"/><span class="brand-mark" aria-hidden="true" style="font-size:26px; display:none;">H<span>2</span></span>Hub2gether</div>
         <div class="tabs">
           <button class="hub-tab" data-view="matchmaking">Matchmaking</button>
           <button class="hub-tab" data-view="groupes">Groupes</button>
@@ -473,7 +486,7 @@
 <section id="how" style="background:var(--grey-50)"><div class="section-inner" style="text-align:center"><div class="section-tag" style="margin:0 auto 20px"><div class="tag-dot"></div>Comment ça marche</div><h2 class="section-title" style="margin:0 auto">Opérationnel en <em>moins d'une heure.</em></h2><p class="section-desc" style="margin:20px auto 0">Pas d'intégration complexe. Vos collaborateurs créent leur compte et commencent à jouer.</p><div class="steps-row reveal"><div class="step-item"><div class="step-num-wrap">1</div><div class="step-name">L'entreprise s'inscrit</div><div class="step-desc">Créez votre espace entreprise.</div></div><div class="step-item"><div class="step-num-wrap">2</div><div class="step-name">Les collaborateurs rejoignent</div><div class="step-desc">Un lien suffit.</div></div><div class="step-item"><div class="step-num-wrap">3</div><div class="step-name">Jouez & compétissez</div><div class="step-desc">Matchs et tournois.</div></div><div class="step-item"><div class="step-num-wrap">4</div><div class="step-name">Suivez les résultats</div><div class="step-desc">ROI et stats en temps réel.</div></div></div></div></section>
 
 <section class="cta-section"><p style="font-size:13px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.15em;margin-bottom:24px">Prêt à lancer le sport dans votre entreprise ?</p><h2 class="cta-title">Rejoignez les entreprises qui <em>gagnent</em> sur tous les terrains.</h2><p class="cta-sub">Démo gratuite, onboarding accompagné, premier tournoi organisé avec vous.</p><div class="cta-buttons"><button class="btn-cta">Demander une démo →</button><button class="btn-cta-outline">Voir les tarifs</button></div></section>
-<footer><div class="footer-inner"><div class="footer-logo"><span class="brand-mark" aria-hidden="true">H<span>2</span></span> Hub2gether</div><div class="footer-links"><a href="#">Produit</a><a href="#tarifs">Tarifs</a><a href="#">À propos</a><a href="#">Blog</a><a href="#">Contact</a></div><div class="footer-copy">© 2026 Hub2gether. Tous droits réservés.</div></div></footer>
+<footer><div class="footer-inner"><div class="footer-logo"><img class="brand-logo-img footer" src="assets/logo-hub2gether.png" alt="Logo Hub2gether" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"/><span class="brand-mark" aria-hidden="true" style="display:none;">H<span>2</span></span> Hub2gether</div><div class="footer-links"><a href="#">Produit</a><a href="#tarifs">Tarifs</a><a href="#">À propos</a><a href="#">Blog</a><a href="#">Contact</a></div><div class="footer-copy">© 2026 Hub2gether. Tous droits réservés.</div></div></footer>
 
 <script>
   const observer = new IntersectionObserver((entries) => {
