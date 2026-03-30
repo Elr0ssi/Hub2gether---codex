@@ -256,6 +256,8 @@
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
+  .counter.rolling { animation: rollCounter .45s ease-in-out; }
+  @keyframes rollCounter { from { filter: blur(4px); transform: translateY(8px);} to { filter: blur(0); transform: translateY(0);} }
 
   
   .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity .7s ease, transform .7s ease; }
@@ -263,35 +265,35 @@
   .reveal-zoom { opacity: 0; transform: scale(.94); transition: opacity .7s ease, transform .7s ease; }
   .reveal-left.visible, .reveal-right.visible, .reveal-zoom.visible { opacity: 1; transform: none; }
 
-  .hub-dashboard { background:#f7f9f8; border:1px solid #d4dbd8; border-radius:30px; padding:0; overflow:hidden; }
-  .hub-topnav { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border-bottom:1px solid #dce3df; background:white; }
+  .hub-dashboard { background:#f8fafb; border:8px solid #9ca7b5; border-radius:34px; padding:0; overflow:hidden; width:min(920px,100%); height:430px; margin:0 auto; box-shadow:0 20px 45px rgba(15,46,34,.12); }
+  .hub-topnav { display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-bottom:1px solid #dce3df; background:white; }
   .hub-topnav .tabs { display:flex; gap:8px; }
   .hub-tab { font-size:12px; font-weight:700; padding:8px 14px; border-radius:999px; background:#eef2ef; color:#546272; border:1px solid transparent; cursor:pointer; }
   .hub-tab.active { background:var(--blue-light); color:var(--black); }
   .hub-user { font-size:13px; font-weight:700; color:var(--black); }
-  .hub-body { padding:14px; display:grid; gap:12px; }
-  .hub-profile { background:white; border:1px solid #dce3df; border-radius:16px; padding:14px; display:grid; grid-template-columns:80px 1fr auto; gap:12px; align-items:center; }
-  .hub-avatar { width:80px; height:80px; border-radius:14px; background:linear-gradient(135deg,#d8b28a,#7e5639); }
-  .hub-profile h4 { font-size:18px; font-family:var(--font-display); }
-  .hub-profile p { font-size:12px; color:#5d6b79; }
+  .hub-body { padding:12px; display:grid; gap:10px; height:calc(100% - 54px); overflow:hidden; }
+  .hub-profile { background:white; border:1px solid #dce3df; border-radius:16px; padding:10px; display:grid; grid-template-columns:64px 1fr auto; gap:10px; align-items:center; }
+  .hub-avatar { width:64px; height:64px; border-radius:12px; background:linear-gradient(135deg,#d8b28a,#7e5639); }
+  .hub-profile h4 { font-size:16px; font-family:var(--font-display); }
+  .hub-profile p { font-size:11px; color:#5d6b79; }
   .hub-profile .chip { font-size:11px; padding:4px 10px; border-radius:999px; background:#eef2ef; display:inline-block; margin-top:6px; }
-  .hub-actions button { display:block; border:none; border-radius:999px; padding:9px 16px; font-weight:700; margin-bottom:8px; }
+  .hub-actions button { display:block; border:none; border-radius:999px; padding:7px 14px; font-weight:700; margin-bottom:6px; font-size:12px; }
   .hub-actions .primary { background:var(--blue); color:var(--black); }
   .hub-actions .secondary { background:#eef2ef; color:var(--black); }
-  .hub-grid { display:grid; grid-template-columns:1.6fr .9fr; gap:12px; }
-  .hub-panel { background:white; border:1px solid #dce3df; border-radius:16px; padding:12px; }
+  .hub-grid { display:grid; grid-template-columns:1.5fr .9fr; gap:10px; min-height:0; }
+  .hub-panel { background:white; border:1px solid #dce3df; border-radius:16px; padding:10px; }
   .hub-kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
   .hub-kpi { background:#f3f5f4; border-radius:12px; padding:10px; border:1px solid transparent; cursor:pointer; transition:.2s; }
   .hub-kpi:hover, .hub-kpi.active { border-color:#b7ddd0; background:#eef8f3; }
-  .hub-kpi strong { font-size:28px; font-family:var(--font-display); }
-  .hub-bars { margin-top:10px; display:flex; align-items:flex-end; gap:8px; height:90px; }
+  .hub-kpi strong { font-size:22px; font-family:var(--font-display); display:block; }
+  .hub-bars { margin-top:8px; display:flex; align-items:flex-end; gap:6px; height:72px; }
   .hub-bars span { flex:1; border-radius:10px 10px 0 0; background:#c8eadb; }
   .hub-bars span:nth-child(4), .hub-bars span:nth-child(6){ background:#7FE3BF; }
   .hub-side .badge { display:flex; justify-content:space-between; font-size:12px; margin-top:8px; }
   .hub-view { display:none; }
   .hub-view.active { display:block; animation: fadeUp .35s ease; }
   .hub-mini-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
-  .hub-mini-cards .card { background:#f3f5f4; border-radius:10px; padding:9px; font-size:11px; text-align:left; }
+  .hub-mini-cards .card { background:#f3f5f4; border-radius:10px; padding:8px; font-size:10px; text-align:left; }
 
   .enterprise-interactive { margin-top: 46px; display:grid; grid-template-columns: 320px 1fr; gap:22px; align-items:stretch; }
   .enterprise-menu { background:white; border:1px solid var(--border); border-radius:20px; padding:10px; display:grid; gap:8px; }
@@ -394,7 +396,7 @@
                 <button class="hub-kpi"><small>Ratio</small><strong class="counter" data-target="75" data-suffix="%">0%</strong></button>
                 <button class="hub-kpi"><small>Calories</small><strong class="counter" data-target="12" data-suffix=".4k">0.0k</strong></button>
               </div>
-              <div class="hub-bars"><span style="height:45%"></span><span style="height:60%"></span><span style="height:40%"></span><span style="height:72%"></span><span style="height:55%"></span><span style="height:86%"></span><span style="height:20%"></span></div>
+              <div class="hub-bars"><span style="height:45%"></span><span style="height:60%"></span><span style="height:40%"></span><span style="height:72%"></span><span style="height:55%"></span><span style="height:86%"></span><span style="height:20%"></span></div><div class="hub-mini-cards" style="margin-top:8px;"><div class="card">Top joueur<br><strong>Marc-Antoine</strong></div><div class="card">Solde<br><strong>420€</strong></div><div class="card">Tournoi<br><strong>Saison #4</strong></div></div>
             </div>
             <div class="hub-view" data-panel="paiement">
               <h4 style="font-size:18px">Centre de paiement</h4>
@@ -508,6 +510,7 @@
         const eased = 1 - Math.pow(1 - p, 3);
         const value = Math.round(startValue + (target - startValue) * eased);
         el.textContent = `${prefix}${value}${suffix}`;
+        if (!el.classList.contains("rolling")) { el.classList.add("rolling"); setTimeout(() => el.classList.remove("rolling"), 460); }
         if (p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
