@@ -107,20 +107,122 @@
     border-radius: 26px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    background: #f3f6f5;
+    background: linear-gradient(160deg,#f7faf8 0%,#eef5f2 100%);
+    position: relative;
   }
-  .dashboard-image {
-    display: block;
-    width: 100%;
-    height: auto;
+  .dashboard-image-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 42%);
+    mix-blend-mode: soft-light;
   }
-  .dashboard-fallback {
-    min-height: 320px;
-    place-content: center;
+  .hero-dashboard {
+    position: relative;
+    z-index: 1;
+    padding: 14px;
+    background: linear-gradient(180deg, #e3ebe7 0%, #d6dfdc 100%);
+  }
+  .hero-dashboard-shell {
+    border: 1px solid rgba(15,46,34,.15);
+    border-radius: 20px;
+    background: #f8fbfa;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+  }
+  .hero-dashboard-topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(15,46,34,.09);
+    background: rgba(255,255,255,.8);
+  }
+  .hero-dashboard-dots { display: flex; gap: 6px; }
+  .hero-dashboard-dots span { width: 9px; height: 9px; border-radius: 50%; background: #c8d3ce; }
+  .hero-dashboard-dots span:nth-child(1) { background: #ff8a7a; }
+  .hero-dashboard-dots span:nth-child(2) { background: #f6c768; }
+  .hero-dashboard-dots span:nth-child(3) { background: #56d49c; }
+  .hero-dashboard-url {
+    flex: 1;
+    border-radius: 8px;
+    border: 1px solid rgba(15,46,34,.08);
+    background: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    color: #6f7d77;
     text-align: center;
-    color: var(--grey-600);
-    gap: 6px;
-    font-weight: 600;
+  }
+  .hero-dashboard-body { display: grid; grid-template-columns: 220px 1fr; min-height: 390px; }
+  .hero-dashboard-side {
+    border-right: 1px solid rgba(15,46,34,.08);
+    background: #f1f5f3;
+    padding: 14px 12px;
+  }
+  .hero-side-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #5f6c66;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .hero-side-item.active {
+    background: #fff;
+    color: var(--black);
+    box-shadow: var(--shadow-sm);
+  }
+  .hero-dashboard-main { padding: 16px; background: linear-gradient(180deg,#fbfdfc 0%,#f6faf8 100%); }
+  .hero-main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .hero-main-title { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
+  .hero-main-sub { font-size: 12px; color: var(--grey-400); margin-top: 2px; }
+  .hero-pill {
+    border-radius: 999px;
+    background: var(--blue-light);
+    color: #16956a;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .hero-kpis { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; margin-bottom: 12px; }
+  .hero-kpi {
+    border: 1px solid rgba(15,46,34,.08);
+    border-radius: 12px;
+    background: #fff;
+    padding: 10px;
+  }
+  .hero-kpi small { display: block; font-size: 10px; color: var(--grey-400); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+  .hero-kpi strong { font-family: var(--font-display); font-size: 22px; line-height: 1; }
+  .hero-kpi span { font-size: 11px; color: #159a6c; }
+  .hero-grid-panels { display: grid; grid-template-columns: 1.5fr 1fr; gap: 10px; }
+  .hero-panel {
+    border: 1px solid rgba(15,46,34,.08);
+    border-radius: 12px;
+    background: #fff;
+    padding: 12px;
+  }
+  .hero-panel h4 { font-size: 13px; margin-bottom: 10px; }
+  .hero-bars { height: 120px; display: flex; align-items: end; gap: 8px; }
+  .hero-bars span { flex: 1; border-radius: 8px 8px 3px 3px; background: #c4ebd9; }
+  .hero-bars span:nth-child(2), .hero-bars span:nth-child(5) { background: #7FE3BF; }
+  .hero-list { display: grid; gap: 8px; }
+  .hero-list-item {
+    background: #f5f9f7;
+    border-radius: 10px;
+    border: 1px solid rgba(15,46,34,.06);
+    padding: 8px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
   }
 
   .mockup-window { background: #f6f7f6; border-radius: var(--radius-xl); border: 0.5px solid rgba(15,46,34,.12); box-shadow: var(--shadow-lg); overflow: hidden; }
@@ -414,7 +516,9 @@
     .steps-row { grid-template-columns: 1fr 1fr; }
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
-    .hub-grid, .enterprise-interactive { grid-template-columns:1fr; }
+    .hero-dashboard-body { grid-template-columns: 1fr; min-height: 0; }
+    .hero-dashboard-side { display: none; }
+    .hero-kpis, .hero-grid-panels, .hub-grid, .enterprise-interactive { grid-template-columns:1fr; }
     .hub-kpis, .enterprise-metrics { grid-template-columns:1fr; }
     .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
     .logos-row { gap: 28px; }
@@ -442,10 +546,53 @@
   <div class="hero-social-proof"><div class="avatars"><span style="background:#1E5EFF">JD</span><span style="background:#1DB87E">MS</span><span style="background:#FF6B35">AT</span><span style="background:#8B5CF6">LC</span><span style="background:#F5C842;color:#333">+</span></div><p class="social-text"><strong>+2 400 collaborateurs</strong> actifs sur la plateforme</p></div>
   <div class="hero-mockup reveal-zoom">
     <div class="dashboard-image-wrap">
-      <img class="dashboard-image" src="assets/dashboard1vitrine.png" alt="Aperçu dashboard Hub2gether" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
-      <div class="dashboard-fallback" style="display:none;">
-        <strong>Ajoutez votre image:</strong>
-        <span>assets/dashboard1vitrine.png</span>
+      <div class="hero-dashboard" aria-label="Aperçu HTML du dashboard vitrine Hub2gether">
+        <div class="hero-dashboard-shell">
+          <div class="hero-dashboard-topbar">
+            <div class="hero-dashboard-dots"><span></span><span></span><span></span></div>
+            <div class="hero-dashboard-url">app.hub2gether.com/dashboard/rh-global</div>
+          </div>
+          <div class="hero-dashboard-body">
+            <aside class="hero-dashboard-side">
+              <div class="hero-side-item active">🏢 Vue entreprise</div>
+              <div class="hero-side-item">📅 Calendrier matchs</div>
+              <div class="hero-side-item">🏆 Classements</div>
+              <div class="hero-side-item">💳 Finance sport</div>
+              <div class="hero-side-item">📈 ROI RH</div>
+            </aside>
+            <div class="hero-dashboard-main">
+              <div class="hero-main-header">
+                <div>
+                  <div class="hero-main-title">Dashboard RH — Q1 2026</div>
+                  <div class="hero-main-sub">Engagement sportif multi-sites • Données en temps réel</div>
+                </div>
+                <div class="hero-pill">+14.2% ce mois-ci</div>
+              </div>
+              <div class="hero-kpis">
+                <div class="hero-kpi"><small>Participation</small><strong>78%</strong><span>+7 pts</span></div>
+                <div class="hero-kpi"><small>Matchs actifs</small><strong>324</strong><span>+42</span></div>
+                <div class="hero-kpi"><small>Équipes</small><strong>59</strong><span>+5</span></div>
+                <div class="hero-kpi"><small>NPS interne</small><strong>71</strong><span>+6</span></div>
+              </div>
+              <div class="hero-grid-panels">
+                <section class="hero-panel">
+                  <h4>Activité hebdomadaire</h4>
+                  <div class="hero-bars">
+                    <span style="height:38%"></span><span style="height:60%"></span><span style="height:44%"></span><span style="height:75%"></span><span style="height:83%"></span><span style="height:57%"></span>
+                  </div>
+                </section>
+                <section class="hero-panel">
+                  <h4>Événements du jour</h4>
+                  <div class="hero-list">
+                    <div class="hero-list-item"><span>Padel Inter-sites</span><strong>18:30</strong></div>
+                    <div class="hero-list-item"><span>Running Club HQ</span><strong>12:15</strong></div>
+                    <div class="hero-list-item"><span>Finale 3v3 Basket</span><strong>19:00</strong></div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
