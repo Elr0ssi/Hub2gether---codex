@@ -1,30 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SportLink — Le sport en entreprise, réinventé</title>
+<title>Hub2gether — Le sport en entreprise, réinventé</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black: #0A0A0F;
+    --black: #0F2E22;
     --white: #FAFAF8;
     --grey-50: #F5F5F2;
     --grey-100: #E8E8E4;
     --grey-200: #C8C8C2;
     --grey-400: #8A8A82;
     --grey-600: #4A4A44;
-    --blue: #1E5EFF;
-    --blue-light: #EEF3FF;
-    --blue-mid: #4B7BFF;
+    --blue: #7FE3BF;
+    --blue-light: #E8FAF3;
+    --blue-mid: #7FE3BF;
     --green: #1DB87E;
     --green-light: #E8FAF3;
     --orange: #FF6B35;
     --orange-light: #FFF0EB;
-    --yellow: #F5C842;
+    --yellow: #FFEC6D;
     --border: rgba(0,0,0,0.08);
     --shadow-sm: 0 1px 4px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.06);
     --shadow-md: 0 4px 24px rgba(0,0,0,0.08), 0 0 0 0.5px rgba(0,0,0,0.06);
@@ -41,7 +41,7 @@
 
   body {
     font-family: var(--font-body);
-    background: var(--white);
+    background: #f2f4f3;
     color: var(--black);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -49,7 +49,15 @@
 
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px; background: rgba(250,250,248,0.85); backdrop-filter: blur(16px); border-bottom: 0.5px solid var(--border); transition: background .3s; }
   .nav-logo { font-family: var(--font-display); font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--black); display: flex; align-items: center; gap: 8px; }
-  .nav-logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+  .nav-logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); display:none; }
+  .brand-mark {
+    display:inline-flex; align-items:flex-end; justify-content:center;
+    font-family: var(--font-display); font-size: 34px; font-weight: 800; line-height: .8;
+    letter-spacing:-2px; color: var(--black); margin-right: 4px;
+  }
+  .brand-mark span { color: var(--blue); margin-left:2px; }
+  .footer-logo .brand-mark { font-size: 30px; vertical-align: middle; }
+
   .nav-links { display: flex; align-items: center; gap: 32px; }
   .nav-links a { font-size: 14px; font-weight: 400; color: var(--grey-600); text-decoration: none; transition: color .2s; }
   .nav-links a:hover { color: var(--black); }
@@ -77,7 +85,7 @@
   .social-text { font-size: 13px; color: var(--grey-400); }
 
   .hero-mockup { position: relative; z-index: 1; margin-top: 80px; width: 100%; max-width: 900px; animation: fadeUp .7s .5s ease both; }
-  .mockup-window { background: white; border-radius: var(--radius-xl); border: 0.5px solid var(--border); box-shadow: var(--shadow-lg); overflow: hidden; }
+  .mockup-window { background: #f6f7f6; border-radius: var(--radius-xl); border: 0.5px solid rgba(15,46,34,.12); box-shadow: var(--shadow-lg); overflow: hidden; }
   .mockup-bar { background: var(--grey-50); padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid var(--border); }
   .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
   .mockup-url { flex: 1; background: white; border-radius: 6px; border: 0.5px solid var(--border); font-size: 12px; color: var(--grey-400); padding: 4px 12px; margin: 0 12px; text-align: center; }
@@ -93,7 +101,7 @@
   .mockup-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
   .mockup-sub { font-size: 12px; color: var(--grey-400); margin-top: 2px; }
   .mockup-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
-  .mkpi { background: var(--grey-50); border-radius: 10px; border: 0.5px solid var(--border); padding: 12px 14px; }
+  .mkpi { background: #eef2ef; border-radius: 10px; border: 0.5px solid rgba(15,46,34,.10); padding: 12px 14px; }
   .mkpi-label { font-size: 10px; color: var(--grey-400); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
   .mkpi-val { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
   .mkpi-delta { font-size: 11px; color: var(--green); margin-top: 2px; }
@@ -269,7 +277,7 @@
 </head>
 <body>
 <nav>
-  <div class="nav-logo"><div class="dot"></div>SportLink</div>
+  <div class="nav-logo"><span class="brand-mark" aria-hidden="true">H<span>2</span></span>Hub2gether</div>
   <div class="nav-links">
     <a href="#market">Le marché</a><a href="#entreprises">Pour les entreprises</a><a href="#joueurs">Pour les joueurs</a><a href="#fonctionnalites">Fonctionnalités</a><a href="#how">Comment ça marche</a>
   </div>
@@ -284,19 +292,19 @@
   <div class="hero-actions"><button class="btn-xl">Commencer gratuitement <span>→</span></button><button class="btn-xl-outline">Voir la démo</button></div>
   <div class="hero-social-proof"><div class="avatars"><span style="background:#1E5EFF">JD</span><span style="background:#1DB87E">MS</span><span style="background:#FF6B35">AT</span><span style="background:#8B5CF6">LC</span><span style="background:#F5C842;color:#333">+</span></div><p class="social-text"><strong>+2 400 collaborateurs</strong> actifs sur la plateforme</p></div>
   <div class="hero-mockup reveal">
-    <div class="mockup-window"><div class="mockup-bar"><div class="mockup-dot" style="background:#FF5F57"></div><div class="mockup-dot" style="background:#FEBC2E"></div><div class="mockup-dot" style="background:#28C840"></div><div class="mockup-url">app.sportlink.io/dashboard</div></div>
+    <div class="mockup-window"><div class="mockup-bar"><div class="mockup-dot" style="background:#FF5F57"></div><div class="mockup-dot" style="background:#FEBC2E"></div><div class="mockup-dot" style="background:#28C840"></div><div class="mockup-url">app.hub2gether.io/dashboard</div></div>
     <div class="mockup-body"><div class="mockup-sidebar"><div class="sidebar-section"><div class="sidebar-label">Principal</div><div class="sidebar-item active">📊 Dashboard</div><div class="sidebar-item">⚽ Mes matchs <span class="sidebar-stat">3</span></div><div class="sidebar-item">🏆 Tournois</div><div class="sidebar-item">👥 Mon équipe</div></div></div>
-      <div class="mockup-main"><div class="mockup-header"><div><div class="mockup-title">Bonjour, Sarah 👋</div><div class="mockup-sub">Lundi 31 mars — Acme Corp</div></div><div style="display:flex;gap:8px"><div class="match-badge badge-blue">Niveau 12</div><div class="match-badge badge-green">🥉 #3 Classement</div></div></div>
-      <div class="mockup-kpis"><div class="mkpi"><div class="mkpi-label">Participation</div><div class="mkpi-val" style="color:var(--blue)">73%</div><div class="mkpi-delta">↑ +8% ce mois</div></div><div class="mkpi"><div class="mkpi-label">Matchs joués</div><div class="mkpi-val" style="color:var(--green)">42</div><div class="mkpi-delta">↑ +5 cette semaine</div></div><div class="mkpi"><div class="mkpi-label">Taux de victoire</div><div class="mkpi-val" style="color:var(--orange)">76%</div><div class="mkpi-delta">Saison en cours</div></div></div>
+      <div class="mockup-main"><div class="mockup-header"><div><div class="mockup-title">Bonjour, Alex 👋</div><div class="mockup-sub">Lundi 31 mars — Hub2gether Lyon</div></div><div style="display:flex;gap:8px"><div class="match-badge badge-blue">Niveau 12</div><div class="match-badge badge-green">🥉 #3 Classement</div></div></div>
+      <div class="mockup-kpis"><div class="mkpi"><div class="mkpi-label">Participation</div><div class="mkpi-val" style="color:var(--blue)"><span class="counter" data-target="73" data-suffix="%">0%</span></div><div class="mkpi-delta">↑ +8% ce mois</div></div><div class="mkpi"><div class="mkpi-label">Matchs joués</div><div class="mkpi-val" style="color:var(--green)"><span class="counter" data-target="42">0</span></div><div class="mkpi-delta">↑ +5 cette semaine</div></div><div class="mkpi"><div class="mkpi-label">Taux de victoire</div><div class="mkpi-val" style="color:var(--orange)"><span class="counter" data-target="76" data-suffix="%">0%</span></div><div class="mkpi-delta">Saison en cours</div></div></div>
       <div class="mockup-matches"><div class="match-card"><div class="match-avatar" style="background:var(--blue)">JD</div><div class="match-info"><div class="match-name">Padel Doubles</div><div class="match-detail">Aujourd'hui 18h30 · UrbanPadel Paris</div></div><div class="match-badge badge-blue">€12.50</div></div><div class="match-card"><div class="match-avatar" style="background:var(--orange)">MS</div><div class="match-info"><div class="match-name">Basketball 3v3</div><div class="match-detail">Demain 12h · HQ Gym · Gratuit</div></div><div class="match-badge badge-green">Inscrit</div></div></div>
       </div></div></div>
   </div>
 </section>
 
-<div class="logos-section"><p class="logos-label">Des équipes de ces entreprises utilisent déjà SportLink</p><div class="logos-row"><span class="logo-item">Capgemini</span><span class="logo-item">BNP Paribas</span><span class="logo-item">Decathlon</span><span class="logo-item">Veolia</span><span class="logo-item">LVMH</span><span class="logo-item">Société Générale</span></div></div>
+<div class="logos-section"><p class="logos-label">Des équipes de ces entreprises utilisent déjà Hub2gether</p><div class="logos-row"><span class="logo-item">Capgemini</span><span class="logo-item">BNP Paribas</span><span class="logo-item">Decathlon</span><span class="logo-item">Veolia</span><span class="logo-item">LVMH</span><span class="logo-item">Société Générale</span></div></div>
 
-<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(245,200,66,0.12);color:var(--yellow)"><div class="tag-dot" style="background:var(--yellow)"></div>Le marché</div><h2 class="section-title" style="color:white">Un marché de <em>plusieurs milliards</em> encore inexploré.</h2><p class="section-desc">Le sport en entreprise est un levier RH majeur — mais aucun outil ne le gère vraiment. SportLink comble ce vide.</p>
-  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num">80<span>%</span></div><div class="stat-desc">des salariés français souhaitent pratiquer une activité sportive dans le cadre du travail.</div></div><div class="stat-card"><div class="stat-num">€2<span>Md</span></div><div class="stat-desc">dépensés chaque année par les entreprises françaises en sport et bien-être salarié.</div></div><div class="stat-card"><div class="stat-num">-26<span>%</span></div><div class="stat-desc">d'absentéisme dans les entreprises qui proposent une pratique sportive régulière.</div></div></div>
+<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(245,200,66,0.12);color:var(--yellow)"><div class="tag-dot" style="background:var(--yellow)"></div>Le marché</div><h2 class="section-title" style="color:white">Un marché de <em>plusieurs milliards</em> encore inexploré.</h2><p class="section-desc">Le sport en entreprise est un levier RH majeur — mais aucun outil ne le gère vraiment. Hub2gether comble ce vide.</p>
+  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num counter" data-target="80" data-prefix="" data-suffix="%">0%</div><div class="stat-desc">des salariés français souhaitent pratiquer une activité sportive dans le cadre du travail.</div></div><div class="stat-card"><div class="stat-num counter" data-target="2" data-prefix="€" data-suffix="Md">€0Md</div><div class="stat-desc">dépensés chaque année par les entreprises françaises en sport et bien-être salarié.</div></div><div class="stat-card"><div class="stat-num counter" data-target="26" data-prefix="-" data-suffix="%">-0%</div><div class="stat-desc">d'absentéisme dans les entreprises qui proposent une pratique sportive régulière.</div></div></div>
   <div class="market-quote reveal"><p>Le sport en entreprise <em>réduit le turn-over, booste l'engagement</em> et améliore la marque employeur.</p><cite>— Analyse du marché du bien-être au travail, France 2024</cite></div></div></section>
 
 <section id="entreprises" style="background:var(--grey-50)"><div class="section-inner"><div class="section-tag"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc">Fini les emails, les tableurs et les relances WhatsApp.</p>
@@ -305,8 +313,8 @@
 
 <section id="joueurs"><div class="section-inner"><div class="split reveal"><div><div class="section-tag"><div class="tag-dot"></div>Matchmaking</div><h2 class="section-title">Trouvez des partenaires de jeu <em>en 30 secondes.</em></h2><p class="section-desc">Filtrez par sport, niveau, disponibilité ou entreprise.</p></div><div><div class="feat-card"><div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div><div class="feat-card-body"><div class="match-list"><div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · Aujourd'hui 18h30</div></div><div class="player-meta"><div class="player-price">€12.50</div><div class="player-place">UrbanPadel Paris</div></div></div><div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · Demain 12h</div></div><div class="player-meta"><div class="player-price" style="color:var(--green)">Gratuit</div><div class="player-place">HQ Gym</div></div></div></div><button class="join-btn">Rejoindre le match ↗</button></div></div></div></div></div></section>
 
-<section style="background:var(--grey-50)"><div class="section-inner"><div class="split reverse reveal"><div><div class="section-tag"><div class="tag-dot"></div>Profil & Classement</div><h2 class="section-title">Votre profil sportif, <em>vos stats, votre progression.</em></h2><p class="section-desc">Historique de matchs, niveau et classement individuel/entreprise.</p></div><div style="display:flex;flex-direction:column;gap:16px"><div class="profile-card"><div class="profile-top"><div class="profile-pic">SM</div><div><div class="profile-name">Sarah Miller</div><div class="profile-role">Product Designer @ TechHub</div><div class="profile-level">Niveau 12 · Saison 3</div></div></div><div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)">42</div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)">76%</div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div><div class="profile-chart"><div class="chart-label">Performance curve — 6 derniers mois</div><div class="mini-chart"><svg viewBox="0 0 300 72" preserveAspectRatio="none"><path d="M0,60 C30,55 50,45 80,40 C110,35 120,42 150,32 C180,22 210,28 240,15 C265,5 280,8 300,12" fill="none" stroke="#1E5EFF" stroke-width="2"/></svg></div><div class="sport-tags"><span class="sport-tag">🎾 Tennis</span><span class="sport-tag">⚽ Football</span><span class="sport-tag">🏃 Running</span></div></div></div>
-<div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:16px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts">2 480</div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">Moi</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">TechHub</div></div></div><div class="lb-pts">2 315</div><div class="lb-matches">124</div></div></div></div></div></div></div></section>
+<section style="background:var(--grey-50)"><div class="section-inner"><div class="split reverse reveal"><div><div class="section-tag"><div class="tag-dot"></div>Profil & Classement</div><h2 class="section-title">Votre profil sportif, <em>vos stats, votre progression.</em></h2><p class="section-desc">Historique de matchs, niveau et classement individuel/entreprise.</p></div><div style="display:flex;flex-direction:column;gap:16px"><div class="profile-card"><div class="profile-top"><div class="profile-pic">SM</div><div><div class="profile-name">Sarah Miller</div><div class="profile-role">Product Designer @ Hub2gether</div><div class="profile-level">Niveau 12 · Saison 3</div></div></div><div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)"><span class="counter" data-target="42">0</span></div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)"><span class="counter" data-target="76" data-suffix="%">0%</span></div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div><div class="profile-chart"><div class="chart-label">Performance curve — 6 derniers mois</div><div class="mini-chart"><svg viewBox="0 0 300 72" preserveAspectRatio="none"><path d="M0,60 C30,55 50,45 80,40 C110,35 120,42 150,32 C180,22 210,28 240,15 C265,5 280,8 300,12" fill="none" stroke="var(--blue)" stroke-width="2"/></svg></div><div class="sport-tags"><span class="sport-tag">🎾 Tennis</span><span class="sport-tag">⚽ Football</span><span class="sport-tag">🏃 Running</span></div></div></div>
+<div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:16px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts">2 480</div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">Moi</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">Hub2gether</div></div></div><div class="lb-pts">2 315</div><div class="lb-matches">124</div></div></div></div></div></div></div></section>
 
 <section><div class="section-inner"><div class="split reveal"><div><div class="section-tag" style="background:var(--green-light);color:var(--green)"><div class="tag-dot" style="background:var(--green)"></div>Finance</div><h2 class="section-title">Fini les relances. Les paiements se font <em>automatiquement.</em></h2><p class="section-desc">Chaque joueur paie sa quote-part sans échange d'informations sensibles.</p></div><div><div class="expense-card"><div class="expense-header"><div class="expense-title">Expense Tracker</div><div class="expense-event">Match Padel · 12 Juin</div></div><div class="expense-total"><div class="expense-icon">💳</div><div><div class="expense-amount">€60.00</div><div class="expense-by">Payé par David King</div></div></div><div class="expense-list"><div class="expense-row"><div class="expense-avatar">MS</div><div class="expense-name">Marc S.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-paid">PAYÉ</span></div><div class="expense-row"><div class="expense-avatar">JL</div><div class="expense-name">Julia L.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-pending">EN ATTENTE</span></div><div class="expense-row"><div class="expense-avatar you">Moi</div><div class="expense-name">Vous</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-reimburse">REMBOURSER</span></div></div></div></div></div></div></section>
 
@@ -333,7 +341,7 @@
 <section id="how" style="background:var(--grey-50)"><div class="section-inner" style="text-align:center"><div class="section-tag" style="margin:0 auto 20px"><div class="tag-dot"></div>Comment ça marche</div><h2 class="section-title" style="margin:0 auto">Opérationnel en <em>moins d'une heure.</em></h2><p class="section-desc" style="margin:20px auto 0">Pas d'intégration complexe. Vos collaborateurs créent leur compte et commencent à jouer.</p><div class="steps-row reveal"><div class="step-item"><div class="step-num-wrap">1</div><div class="step-name">L'entreprise s'inscrit</div><div class="step-desc">Créez votre espace entreprise.</div></div><div class="step-item"><div class="step-num-wrap">2</div><div class="step-name">Les collaborateurs rejoignent</div><div class="step-desc">Un lien suffit.</div></div><div class="step-item"><div class="step-num-wrap">3</div><div class="step-name">Jouez & compétissez</div><div class="step-desc">Matchs et tournois.</div></div><div class="step-item"><div class="step-num-wrap">4</div><div class="step-name">Suivez les résultats</div><div class="step-desc">ROI et stats en temps réel.</div></div></div></div></section>
 
 <section class="cta-section"><p style="font-size:13px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.15em;margin-bottom:24px">Prêt à lancer le sport dans votre entreprise ?</p><h2 class="cta-title">Rejoignez les entreprises qui <em>gagnent</em> sur tous les terrains.</h2><p class="cta-sub">Démo gratuite, onboarding accompagné, premier tournoi organisé avec vous.</p><div class="cta-buttons"><button class="btn-cta">Demander une démo →</button><button class="btn-cta-outline">Voir les tarifs</button></div></section>
-<footer><div class="footer-inner"><div class="footer-logo">SportLink</div><div class="footer-links"><a href="#">Produit</a><a href="#tarifs">Tarifs</a><a href="#">À propos</a><a href="#">Blog</a><a href="#">Contact</a></div><div class="footer-copy">© 2026 SportLink. Tous droits réservés.</div></div></footer>
+<footer><div class="footer-inner"><div class="footer-logo"><span class="brand-mark" aria-hidden="true">H<span>2</span></span> Hub2gether</div><div class="footer-links"><a href="#">Produit</a><a href="#tarifs">Tarifs</a><a href="#">À propos</a><a href="#">Blog</a><a href="#">Contact</a></div><div class="footer-copy">© 2026 Hub2gether. Tous droits réservés.</div></div></footer>
 
 <script>
   const observer = new IntersectionObserver((entries) => {
@@ -349,6 +357,31 @@
       tab.classList.add('active');
     });
   });
+
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      if (el.dataset.done === '1') return;
+      const target = Number(el.dataset.target || 0);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1300;
+      const start = performance.now();
+      const step = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const value = Math.round(target * eased);
+        el.textContent = `${prefix}${value}${suffix}`;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+      el.dataset.done = '1';
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
 
   const pricingSection = document.querySelector('.pricing-scroll-section');
   const stickyWrap = document.querySelector('.pricing-sticky-wrap');
