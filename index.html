@@ -269,8 +269,8 @@
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
-  .counter.rolling { animation: rollCounter .45s ease-in-out; }
-  @keyframes rollCounter { from { filter: blur(4px); transform: translateY(8px);} to { filter: blur(0); transform: translateY(0);} }
+  .counter.rolling { animation: rollCounter .28s ease-out; }
+  @keyframes rollCounter { from { opacity: .55; transform: translateY(3px);} to { opacity: 1; transform: translateY(0);} }
 
   
   .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity .7s ease, transform .7s ease; }
@@ -518,13 +518,17 @@
       const startValue = Number(el.dataset.start || 0);
       const duration = 1300;
       const start = performance.now();
+      el.classList.add("rolling");
       const step = (now) => {
         const p = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - p, 3);
         const value = Math.round(startValue + (target - startValue) * eased);
         el.textContent = `${prefix}${value}${suffix}`;
-        if (!el.classList.contains("rolling")) { el.classList.add("rolling"); setTimeout(() => el.classList.remove("rolling"), 460); }
-        if (p < 1) requestAnimationFrame(step);
+        if (p < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.classList.remove("rolling");
+        }
       };
       requestAnimationFrame(step);
       el.dataset.done = '1';
