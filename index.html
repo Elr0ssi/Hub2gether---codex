@@ -250,6 +250,48 @@
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
+  
+  .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal-zoom { opacity: 0; transform: scale(.94); transition: opacity .7s ease, transform .7s ease; }
+  .reveal-left.visible, .reveal-right.visible, .reveal-zoom.visible { opacity: 1; transform: none; }
+
+  .hub-dashboard { background:#f7f9f8; border:1px solid #d4dbd8; border-radius:30px; padding:0; overflow:hidden; }
+  .hub-topnav { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border-bottom:1px solid #dce3df; background:white; }
+  .hub-topnav .tabs { display:flex; gap:8px; }
+  .hub-tab { font-size:12px; font-weight:700; padding:8px 14px; border-radius:999px; background:#eef2ef; color:#546272; }
+  .hub-tab.active { background:var(--blue-light); color:var(--black); }
+  .hub-user { font-size:13px; font-weight:700; color:var(--black); }
+  .hub-body { padding:14px; display:grid; gap:12px; }
+  .hub-profile { background:white; border:1px solid #dce3df; border-radius:16px; padding:14px; display:grid; grid-template-columns:80px 1fr auto; gap:12px; align-items:center; }
+  .hub-avatar { width:80px; height:80px; border-radius:14px; background:linear-gradient(135deg,#d8b28a,#7e5639); }
+  .hub-profile h4 { font-size:18px; font-family:var(--font-display); }
+  .hub-profile p { font-size:12px; color:#5d6b79; }
+  .hub-profile .chip { font-size:11px; padding:4px 10px; border-radius:999px; background:#eef2ef; display:inline-block; margin-top:6px; }
+  .hub-actions button { display:block; border:none; border-radius:999px; padding:9px 16px; font-weight:700; margin-bottom:8px; }
+  .hub-actions .primary { background:var(--blue); color:var(--black); }
+  .hub-actions .secondary { background:#eef2ef; color:var(--black); }
+  .hub-grid { display:grid; grid-template-columns:1.6fr .9fr; gap:12px; }
+  .hub-panel { background:white; border:1px solid #dce3df; border-radius:16px; padding:12px; }
+  .hub-kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
+  .hub-kpi { background:#f3f5f4; border-radius:12px; padding:10px; }
+  .hub-kpi strong { font-size:28px; font-family:var(--font-display); }
+  .hub-bars { margin-top:10px; display:flex; align-items:flex-end; gap:8px; height:90px; }
+  .hub-bars span { flex:1; border-radius:10px 10px 0 0; background:#c8eadb; }
+  .hub-bars span:nth-child(4), .hub-bars span:nth-child(6){ background:#7FE3BF; }
+  .hub-side .badge { display:flex; justify-content:space-between; font-size:12px; margin-top:8px; }
+
+  .enterprise-interactive { margin-top: 46px; display:grid; grid-template-columns: 320px 1fr; gap:22px; align-items:stretch; }
+  .enterprise-menu { background:white; border:1px solid var(--border); border-radius:20px; padding:10px; display:grid; gap:8px; }
+  .enterprise-item { border:none; text-align:left; padding:14px; border-radius:12px; background:#f5f7f6; font-family:var(--font-body); cursor:pointer; font-size:14px; color:#4c5b55; }
+  .enterprise-item.active { background:var(--blue-light); color:var(--black); font-weight:700; }
+  .enterprise-preview { background:white; border:1px solid var(--border); border-radius:20px; padding:22px; box-shadow:var(--shadow-sm); }
+  .enterprise-preview h4 { font-family:var(--font-display); font-size:24px; margin-bottom:8px; }
+  .enterprise-preview p { margin-bottom:14px; }
+  .enterprise-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .enterprise-metrics div { background:#f4f6f5; border-radius:12px; padding:12px; }
+  .enterprise-metrics strong { font-size:24px; font-family:var(--font-display); }
+
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
@@ -264,6 +306,8 @@
     .steps-row { grid-template-columns: 1fr 1fr; }
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
+    .hub-grid, .enterprise-interactive { grid-template-columns:1fr; }
+    .hub-kpis, .enterprise-metrics { grid-template-columns:1fr; }
     .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
     .logos-row { gap: 28px; }
     .pricing-scroll-section { min-height: auto; padding: 80px 20px; }
@@ -291,13 +335,45 @@
   <p class="hero-sub">Tournois, matchmaking, classements inter-entreprises, paiements automatisés — tout en un seul endroit pour vos collaborateurs.</p>
   <div class="hero-actions"><button class="btn-xl">Commencer gratuitement <span>→</span></button><button class="btn-xl-outline">Voir la démo</button></div>
   <div class="hero-social-proof"><div class="avatars"><span style="background:#1E5EFF">JD</span><span style="background:#1DB87E">MS</span><span style="background:#FF6B35">AT</span><span style="background:#8B5CF6">LC</span><span style="background:#F5C842;color:#333">+</span></div><p class="social-text"><strong>+2 400 collaborateurs</strong> actifs sur la plateforme</p></div>
-  <div class="hero-mockup reveal">
-    <div class="mockup-window"><div class="mockup-bar"><div class="mockup-dot" style="background:#FF5F57"></div><div class="mockup-dot" style="background:#FEBC2E"></div><div class="mockup-dot" style="background:#28C840"></div><div class="mockup-url">app.hub2gether.io/dashboard</div></div>
-    <div class="mockup-body"><div class="mockup-sidebar"><div class="sidebar-section"><div class="sidebar-label">Principal</div><div class="sidebar-item active">📊 Dashboard</div><div class="sidebar-item">⚽ Mes matchs <span class="sidebar-stat">3</span></div><div class="sidebar-item">🏆 Tournois</div><div class="sidebar-item">👥 Mon équipe</div></div></div>
-      <div class="mockup-main"><div class="mockup-header"><div><div class="mockup-title">Bonjour, Alex 👋</div><div class="mockup-sub">Lundi 31 mars — Hub2gether Lyon</div></div><div style="display:flex;gap:8px"><div class="match-badge badge-blue">Niveau 12</div><div class="match-badge badge-green">🥉 #3 Classement</div></div></div>
-      <div class="mockup-kpis"><div class="mkpi"><div class="mkpi-label">Participation</div><div class="mkpi-val" style="color:var(--blue)"><span class="counter" data-target="73" data-suffix="%">0%</span></div><div class="mkpi-delta">↑ +8% ce mois</div></div><div class="mkpi"><div class="mkpi-label">Matchs joués</div><div class="mkpi-val" style="color:var(--green)"><span class="counter" data-target="42">0</span></div><div class="mkpi-delta">↑ +5 cette semaine</div></div><div class="mkpi"><div class="mkpi-label">Taux de victoire</div><div class="mkpi-val" style="color:var(--orange)"><span class="counter" data-target="76" data-suffix="%">0%</span></div><div class="mkpi-delta">Saison en cours</div></div></div>
-      <div class="mockup-matches"><div class="match-card"><div class="match-avatar" style="background:var(--blue)">JD</div><div class="match-info"><div class="match-name">Padel Doubles</div><div class="match-detail">Aujourd'hui 18h30 · UrbanPadel Paris</div></div><div class="match-badge badge-blue">€12.50</div></div><div class="match-card"><div class="match-avatar" style="background:var(--orange)">MS</div><div class="match-info"><div class="match-name">Basketball 3v3</div><div class="match-detail">Demain 12h · HQ Gym · Gratuit</div></div><div class="match-badge badge-green">Inscrit</div></div></div>
-      </div></div></div>
+  <div class="hero-mockup reveal-zoom">
+    <div class="hub-dashboard">
+      <div class="hub-topnav">
+        <div class="nav-logo" style="font-size:16px;"><span class="brand-mark" aria-hidden="true" style="font-size:26px;">H<span>2</span></span>Hub2gether</div>
+        <div class="tabs">
+          <span class="hub-tab">Matchmaking</span>
+          <span class="hub-tab">Groupes</span>
+          <span class="hub-tab active">Profils</span>
+          <span class="hub-tab">Classement</span>
+        </div>
+        <div class="hub-user">Alex Rivers · PRO</div>
+      </div>
+      <div class="hub-body">
+        <div class="hub-profile">
+          <div class="hub-avatar"></div>
+          <div>
+            <h4>Alex Rivers</h4>
+            <p>Product Design Department • Hub2gether Lyon</p>
+            <span class="chip">🎾 Tennis</span> <span class="chip">⚽ Soccer</span> <span class="chip">🏓 Padel</span>
+          </div>
+          <div class="hub-actions"><button class="primary">Défier Alex</button><button class="secondary">Message</button></div>
+        </div>
+        <div class="hub-grid">
+          <div class="hub-panel">
+            <h4 style="font-size:18px">Tableau de bord de performance</h4>
+            <div class="hub-kpis">
+              <div class="hub-kpi"><small>Victoires</small><strong class="counter" data-target="45">0</strong></div>
+              <div class="hub-kpi"><small>Ratio</small><strong class="counter" data-target="75" data-suffix="%">0%</strong></div>
+              <div class="hub-kpi"><small>Calories</small><strong class="counter" data-target="12" data-suffix=".4k">0.0k</strong></div>
+            </div>
+            <div class="hub-bars"><span style="height:45%"></span><span style="height:60%"></span><span style="height:40%"></span><span style="height:72%"></span><span style="height:55%"></span><span style="height:86%"></span><span style="height:20%"></span></div>
+          </div>
+          <div class="hub-side" style="display:grid;gap:12px;">
+            <div class="hub-panel"><h4 style="font-size:18px">Communauté</h4><div class="badge"><span>Designers United</span><span style="color:#7FE3BF">High</span></div><div class="badge"><span>Lyon Padel Club</span><span style="color:#95a8bd">Med</span></div></div>
+            <div class="hub-panel"><h4 style="font-size:18px">Note Fair-Play</h4><p style="margin-top:8px;font-weight:700">⭐⭐⭐⭐⭐ 4.8 / 5</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -307,8 +383,24 @@
   <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num counter" data-target="80" data-prefix="" data-suffix="%">0%</div><div class="stat-desc">des salariés français souhaitent pratiquer une activité sportive dans le cadre du travail.</div></div><div class="stat-card"><div class="stat-num counter" data-target="2" data-prefix="€" data-suffix="Md">€0Md</div><div class="stat-desc">dépensés chaque année par les entreprises françaises en sport et bien-être salarié.</div></div><div class="stat-card"><div class="stat-num counter" data-target="26" data-prefix="-" data-suffix="%">-0%</div><div class="stat-desc">d'absentéisme dans les entreprises qui proposent une pratique sportive régulière.</div></div></div>
   <div class="market-quote reveal"><p>Le sport en entreprise <em>réduit le turn-over, booste l'engagement</em> et améliore la marque employeur.</p><cite>— Analyse du marché du bien-être au travail, France 2024</cite></div></div></section>
 
-<section id="entreprises" style="background:var(--grey-50)"><div class="section-inner"><div class="section-tag"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc">Fini les emails, les tableurs et les relances WhatsApp.</p>
-  <div class="features-grid reveal" id="fonctionnalites"><div class="feature-tile"><div class="feature-tile-icon icon-blue">📊</div><div class="feature-tile-name">Tableau de bord RH</div><div class="feature-tile-desc">Suivez le taux de participation et l'engagement.</div></div><div class="feature-tile"><div class="feature-tile-icon icon-green">🏆</div><div class="feature-tile-name">Tournois & compétitions</div><div class="feature-tile-desc">Compétitions intra/inter-entreprises automatisées.</div></div><div class="feature-tile"><div class="feature-tile-icon icon-orange">💳</div><div class="feature-tile-name">Paiements sans friction</div><div class="feature-tile-desc">Quote-part automatique, plus de relances.</div></div><div class="feature-tile"><div class="feature-tile-icon icon-yellow">🤝</div><div class="feature-tile-name">Partenaires exclusifs</div><div class="feature-tile-desc">Tarifs négociés terrains/salles/équipements.</div></div><div class="feature-tile"><div class="feature-tile-icon icon-blue">👥</div><div class="feature-tile-name">Gestion des équipes</div><div class="feature-tile-desc">Invites, rosters, résultats — tout centralisé.</div></div><div class="feature-tile"><div class="feature-tile-icon icon-green">📈</div><div class="feature-tile-name">ROI mesurable</div><div class="feature-tile-desc">Impact sur absentéisme, satisfaction, turnover.</div></div></div>
+<section id="entreprises" style="background:var(--grey-50)"><div class="section-inner"><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Cliquez sur les modules à gauche pour voir l'interface de droite s'adapter en direct.</p>
+  <div class="enterprise-interactive reveal-right">
+    <div class="enterprise-menu">
+      <button class="enterprise-item active" data-title="Tableau de bord RH" data-text="Suivez l'engagement, les taux de participation et les tendances d'activité par équipe." data-m1="73%" data-m1l="Participation" data-m2="42" data-m2l="Matchs" data-m3="+8%" data-m3l="Progression">📊 Tableau de bord RH</button>
+      <button class="enterprise-item" data-title="Tournois & compétitions" data-text="Créez vos brackets, automatisez les rounds et animez les finales inter-entreprises." data-m1="16" data-m1l="Tournois" data-m2="248" data-m2l="Joueurs" data-m3="4" data-m3l="Saisons">🏆 Tournois & compétitions</button>
+      <button class="enterprise-item" data-title="Paiements sans friction" data-text="Collecte automatique des quotes-parts, remboursements suivis et subventions RH." data-m1="€12k" data-m1l="Collectés" data-m2="98%" data-m2l="Paiements OK" data-m3="0" data-m3l="Relance manuelle">💳 Paiements sans friction</button>
+      <button class="enterprise-item" data-title="Partenaires exclusifs" data-text="Accédez aux terrains, salles et événements partenaires avec tarifs négociés." data-m1="32" data-m1l="Partenaires" data-m2="-18%" data-m2l="Coût moyen" data-m3="7" data-m3l="Villes">🤝 Partenaires exclusifs</button>
+    </div>
+    <div class="enterprise-preview">
+      <h4 id="enterprise-title">Tableau de bord RH</h4>
+      <p id="enterprise-text">Suivez l'engagement, les taux de participation et les tendances d'activité par équipe.</p>
+      <div class="enterprise-metrics">
+        <div><small id="enterprise-m1l">Participation</small><strong id="enterprise-m1">73%</strong></div>
+        <div><small id="enterprise-m2l">Matchs</small><strong id="enterprise-m2">42</strong></div>
+        <div><small id="enterprise-m3l">Progression</small><strong id="enterprise-m3">+8%</strong></div>
+      </div>
+    </div>
+  </div>
 </div></section>
 
 <section id="joueurs"><div class="section-inner"><div class="split reveal"><div><div class="section-tag"><div class="tag-dot"></div>Matchmaking</div><h2 class="section-title">Trouvez des partenaires de jeu <em>en 30 secondes.</em></h2><p class="section-desc">Filtrez par sport, niveau, disponibilité ou entreprise.</p></div><div><div class="feat-card"><div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div><div class="feat-card-body"><div class="match-list"><div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · Aujourd'hui 18h30</div></div><div class="player-meta"><div class="player-price">€12.50</div><div class="player-place">UrbanPadel Paris</div></div></div><div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · Demain 12h</div></div><div class="player-meta"><div class="player-price" style="color:var(--green)">Gratuit</div><div class="player-place">HQ Gym</div></div></div></div><button class="join-btn">Rejoindre le match ↗</button></div></div></div></div></div></section>
@@ -349,7 +441,7 @@
       if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom').forEach(el => observer.observe(el));
 
   document.querySelectorAll('.lb-tab').forEach(tab => {
     tab.addEventListener('click', () => {
@@ -361,27 +453,62 @@
 
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
       const el = entry.target;
+      if (!entry.isIntersecting) {
+        el.dataset.done = '0';
+        return;
+      }
       if (el.dataset.done === '1') return;
       const target = Number(el.dataset.target || 0);
       const prefix = el.dataset.prefix || '';
       const suffix = el.dataset.suffix || '';
+      const startValue = Number(el.dataset.start || 0);
       const duration = 1300;
       const start = performance.now();
       const step = (now) => {
         const p = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - p, 3);
-        const value = Math.round(target * eased);
+        const value = Math.round(startValue + (target - startValue) * eased);
         el.textContent = `${prefix}${value}${suffix}`;
         if (p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
       el.dataset.done = '1';
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.35 });
 
-  document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+  document.querySelectorAll('.counter').forEach(el => {
+    el.dataset.done = '0';
+    counterObserver.observe(el);
+  });
+
+
+  const enterpriseItems = document.querySelectorAll('.enterprise-item');
+  const enterpriseBindings = {
+    title: document.getElementById('enterprise-title'),
+    text: document.getElementById('enterprise-text'),
+    m1: document.getElementById('enterprise-m1'),
+    m1l: document.getElementById('enterprise-m1l'),
+    m2: document.getElementById('enterprise-m2'),
+    m2l: document.getElementById('enterprise-m2l'),
+    m3: document.getElementById('enterprise-m3'),
+    m3l: document.getElementById('enterprise-m3l')
+  };
+
+  enterpriseItems.forEach(item => {
+    item.addEventListener('click', () => {
+      enterpriseItems.forEach(btn => btn.classList.remove('active'));
+      item.classList.add('active');
+      enterpriseBindings.title.textContent = item.dataset.title;
+      enterpriseBindings.text.textContent = item.dataset.text;
+      enterpriseBindings.m1.textContent = item.dataset.m1;
+      enterpriseBindings.m1l.textContent = item.dataset.m1l;
+      enterpriseBindings.m2.textContent = item.dataset.m2;
+      enterpriseBindings.m2l.textContent = item.dataset.m2l;
+      enterpriseBindings.m3.textContent = item.dataset.m3;
+      enterpriseBindings.m3l.textContent = item.dataset.m3l;
+    });
+  });
 
   const pricingSection = document.querySelector('.pricing-scroll-section');
   const stickyWrap = document.querySelector('.pricing-sticky-wrap');
