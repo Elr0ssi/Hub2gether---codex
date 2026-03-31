@@ -381,12 +381,13 @@
 
   .enterprise-interactive { margin-top: 46px; display:grid; grid-template-columns: 1fr minmax(420px, 1.25fr); gap:34px; align-items:stretch; }
   .enterprise-menu { display:grid; gap:14px; }
-  .enterprise-item { border:none; text-align:left; padding:18px 20px; border-radius:18px; background:transparent; font-family:var(--font-body); cursor:pointer; transition: background .34s cubic-bezier(.22,.61,.36,1), box-shadow .34s cubic-bezier(.22,.61,.36,1), transform .34s cubic-bezier(.22,.61,.36,1); }
+  .enterprise-item { border:none; text-align:left; padding:16px 18px; border-radius:18px; background:transparent; font-family:var(--font-body); cursor:pointer; transition: background .34s cubic-bezier(.22,.61,.36,1), box-shadow .34s cubic-bezier(.22,.61,.36,1), transform .34s cubic-bezier(.22,.61,.36,1); }
   .enterprise-item:hover { transform: translateX(4px); }
   .enterprise-item-header { display:flex; align-items:flex-start; gap:14px; }
   .enterprise-icon { width:32px; height:32px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; color:#70767f; background:#e2e3e7; transition: transform .34s cubic-bezier(.22,.61,.36,1), background .3s ease, color .3s ease; }
-  .enterprise-copy strong { display:block; font-size:clamp(24px,2.35vw,43px); line-height:1; font-family:var(--font-display); letter-spacing:-.03em; color:var(--black); }
-  .enterprise-copy span { display:block; margin-top:8px; font-size:15px; color:#5f656d; max-height:0; opacity:0; overflow:hidden; transform: translateY(8px); transition: max-height .34s ease, opacity .3s ease, transform .34s ease; }
+  .enterprise-copy strong { display:block; font-size:clamp(19px,1.65vw,29px); line-height:1.12; font-family:var(--font-display); letter-spacing:-.02em; color:var(--black); font-weight:700; }
+  .enterprise-copy strong em { font-style:normal; color:#63d4af; }
+  .enterprise-copy span { display:block; margin-top:8px; font-size:14px; color:#5f656d; max-height:0; opacity:0; overflow:hidden; transform: translateY(8px); transition: max-height .34s ease, opacity .3s ease, transform .34s ease; }
   .enterprise-item.active { background:white; box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04); transform: translateX(0) scale(1.01); }
   .enterprise-item.active .enterprise-icon { background:var(--black); color:white; transform: scale(1.08); }
   .enterprise-item.active .enterprise-copy span { max-height:100px; opacity:1; transform: translateY(0); }
@@ -402,22 +403,11 @@
     from { opacity: 0; transform: translateY(36px) scale(.94); filter: blur(4px); }
     to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
   }
-  .enterprise-visual-wrap { border: 1px solid #dbe9e2; border-radius: 18px; overflow: hidden; background: #f3f5f4; min-height: 520px; display:flex; align-items:center; justify-content:center; }
-  .enterprise-visual {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .enterprise-visual-fallback {
-    min-height: 180px;
-    display: none;
-    place-content: center;
-    text-align: center;
-    color: #61706b;
-    font-weight: 600;
-    gap: 6px;
-  }
+  .enterprise-preview-pane { border: 1px solid #dbe9e2; border-radius: 18px; overflow: hidden; background: #f3f5f4; min-height: 520px; padding: 14px; }
+  .enterprise-preview-pane .feat-card,
+  .enterprise-preview-pane .profile-card,
+  .enterprise-preview-pane .expense-card { box-shadow:none; border-radius:18px; }
+  .enterprise-preview-pane .profile-card { margin-bottom:10px; }
 
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
@@ -479,32 +469,53 @@
 <section id="entreprises" style="background:var(--grey-50)"><div class="section-inner"><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Cliquez sur les modules à gauche pour voir l'interface de droite s'adapter en direct.</p>
   <div class="enterprise-interactive reveal-right">
     <div class="enterprise-menu">
-      <button class="enterprise-item active" data-title="Obtenez des données précises sur les dépenses" data-text="Suivez en temps réel les dépenses sportives de vos équipes, par service et par période." data-image="assets/dashboard1vitrine.png">
-        <span class="enterprise-item-header"><span class="enterprise-icon">🗄️</span><span class="enterprise-copy"><strong>Obtenez des données précises sur les dépenses</strong><span>Suivez en temps réel les dépenses sportives de vos équipes, par service et par période.</span></span></span>
+      <button class="enterprise-item active" data-preview="preview-matchmaking">
+        <span class="enterprise-item-header"><span class="enterprise-icon">🎯</span><span class="enterprise-copy"><strong>Trouvez des partenaires <em>en 30 secondes.</em></strong><span>Filtrez par sport, niveau, disponibilité ou entreprise.</span></span></span>
       </button>
-      <button class="enterprise-item" data-title="Connectez-vous instantanément à plus de 200 applications" data-text="Synchronisez votre flux de travail de réunion grâce à plus de 200 intégrations Credo." data-image="assets/dashboard1vitrine.png">
-        <span class="enterprise-item-header"><span class="enterprise-icon">🔗</span><span class="enterprise-copy"><strong>Connectez-vous instantanément à plus de 200 applications</strong><span>Synchronisez votre flux de travail de réunion grâce à plus de 200 intégrations Credo.</span></span></span>
+      <button class="enterprise-item" data-preview="preview-profil">
+        <span class="enterprise-item-header"><span class="enterprise-icon">📈</span><span class="enterprise-copy"><strong>Votre profil sportif, <em>vos stats, votre progression.</em></strong><span>Historique de matchs, niveau et classement individuel/entreprise.</span></span></span>
       </button>
-      <button class="enterprise-item" data-title="Utilisé par des gens comme vous" data-text="Visualisez l'adoption de la plateforme dans vos équipes et identifiez les ambassadeurs internes." data-image="assets/dashboard1vitrine.png">
-        <span class="enterprise-item-header"><span class="enterprise-icon">👤</span><span class="enterprise-copy"><strong>Utilisé par des gens comme vous</strong><span>Visualisez l'adoption de la plateforme dans vos équipes et identifiez les ambassadeurs internes.</span></span></span>
-      </button>
-      <button class="enterprise-item" data-title="Historique de vos transactions" data-text="Accédez à un historique complet de toutes les transactions et exports financiers." data-image="assets/dashboard1vitrine.png">
-        <span class="enterprise-item-header"><span class="enterprise-icon">🕒</span><span class="enterprise-copy"><strong>Historique de vos transactions</strong><span>Accédez à un historique complet de toutes les transactions et exports financiers.</span></span></span>
-      </button>
-      <button class="enterprise-item" data-title="Soyez notifié instantanément" data-text="Recevez des alertes claires dès qu'un mouvement financier ou une action importante est détectée." data-image="assets/dashboard1vitrine.png">
-        <span class="enterprise-item-header"><span class="enterprise-icon">🔔</span><span class="enterprise-copy"><strong>Soyez notifié instantanément</strong><span>Recevez des alertes claires dès qu'un mouvement financier ou une action importante est détectée.</span></span></span>
+      <button class="enterprise-item" data-preview="preview-finance">
+        <span class="enterprise-item-header"><span class="enterprise-icon">💳</span><span class="enterprise-copy"><strong>Fini les relances, paiements <em>automatiques.</em></strong><span>Chaque joueur paie sa quote-part sans échange d'informations sensibles.</span></span></span>
       </button>
     </div>
     <div class="enterprise-preview">
       <div class="enterprise-preview-content" id="enterprise-preview-content">
-        <div class="enterprise-visual-wrap">
-          <img id="enterprise-image" class="enterprise-visual" src="assets/dashboard1vitrine.png" alt="Interface entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
-          <div class="enterprise-visual-fallback" id="enterprise-visual-fallback"><strong>Ajoutez un visuel PNG</strong><span id="enterprise-image-path">assets/dashboard1vitrine.png</span></div>
-        </div>
+        <div class="enterprise-preview-pane" id="enterprise-preview-pane"></div>
       </div>
     </div>
   </div>
 </div></section>
+
+<template id="preview-matchmaking">
+  <div class="feat-card">
+    <div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div>
+    <div class="feat-card-body">
+      <div class="match-list">
+        <div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · Aujourd'hui 18h30</div></div><div class="player-meta"><div class="player-price">€12.50</div><div class="player-place">UrbanPadel Paris</div></div></div>
+        <div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · Demain 12h</div></div><div class="player-meta"><div class="player-price" style="color:var(--green)">Gratuit</div><div class="player-place">HQ Gym</div></div></div>
+      </div>
+      <button class="join-btn">Rejoindre le match ↗</button>
+    </div>
+  </div>
+</template>
+
+<template id="preview-profil">
+  <div>
+    <div class="profile-card">
+      <div class="profile-top"><div class="profile-pic">SM</div><div><div class="profile-name">Sarah Miller</div><div class="profile-role">Product Designer @ Hub2gether</div><div class="profile-level">Niveau 12 · Saison 3</div></div></div>
+      <div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)">42</div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)">76%</div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div>
+      <div class="profile-chart"><div class="chart-label">Performance curve — 6 derniers mois</div><div class="mini-chart"><svg viewBox="0 0 300 72" preserveAspectRatio="none"><path d="M0,60 C30,55 50,45 80,40 C110,35 120,42 150,32 C180,22 210,28 240,15 C265,5 280,8 300,12" fill="none" stroke="var(--blue)" stroke-width="2"/></svg></div><div class="sport-tags"><span class="sport-tag">🎾 Tennis</span><span class="sport-tag">⚽ Football</span><span class="sport-tag">🏃 Running</span></div></div>
+    </div>
+    <div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:16px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts">2 480</div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">Moi</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">Hub2gether</div></div></div><div class="lb-pts">2 315</div><div class="lb-matches">124</div></div></div></div></div>
+  </div>
+</template>
+
+<template id="preview-finance">
+  <div class="expense-card">
+    <div class="expense-header"><div class="expense-title">Expense Tracker</div><div class="expense-event">Match Padel · 12 Juin</div></div><div class="expense-total"><div class="expense-icon">💳</div><div><div class="expense-amount">€60.00</div><div class="expense-by">Payé par David King</div></div></div><div class="expense-list"><div class="expense-row"><div class="expense-avatar">MS</div><div class="expense-name">Marc S.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-paid">PAYÉ</span></div><div class="expense-row"><div class="expense-avatar">JL</div><div class="expense-name">Julia L.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-pending">EN ATTENTE</span></div><div class="expense-row"><div class="expense-avatar you">Moi</div><div class="expense-name">Vous</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-reimburse">REMBOURSER</span></div></div>
+  </div>
+</template>
 
 <section id="joueurs"><div class="section-inner"><div class="split reveal"><div><div class="section-tag"><div class="tag-dot"></div>Matchmaking</div><h2 class="section-title">Trouvez des partenaires de jeu <em>en 30 secondes.</em></h2><p class="section-desc">Filtrez par sport, niveau, disponibilité ou entreprise.</p></div><div><div class="feat-card"><div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div><div class="feat-card-body"><div class="match-list"><div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · Aujourd'hui 18h30</div></div><div class="player-meta"><div class="player-price">€12.50</div><div class="player-place">UrbanPadel Paris</div></div></div><div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · Demain 12h</div></div><div class="player-meta"><div class="player-price" style="color:var(--green)">Gratuit</div><div class="player-place">HQ Gym</div></div></div></div><button class="join-btn">Rejoindre le match ↗</button></div></div></div></div></div></section>
 
@@ -612,10 +623,8 @@
 
   const enterpriseItems = document.querySelectorAll('.enterprise-item');
   const enterpriseBindings = {
-    image: document.getElementById('enterprise-image'),
-    imagePath: document.getElementById('enterprise-image-path'),
+    pane: document.getElementById('enterprise-preview-pane'),
     preview: document.getElementById('enterprise-preview-content'),
-    imageFallback: document.getElementById('enterprise-visual-fallback')
   };
 
   enterpriseItems.forEach(item => {
@@ -624,11 +633,11 @@
       item.classList.add('active');
 
       const applyContent = () => {
-        const imageSrc = item.dataset.image || 'assets/dashboard1vitrine.png';
-        enterpriseBindings.image.style.display = 'block';
-        enterpriseBindings.imageFallback.style.display = 'none';
-        enterpriseBindings.image.src = imageSrc;
-        enterpriseBindings.imagePath.textContent = imageSrc;
+        const templateId = item.dataset.preview || 'preview-matchmaking';
+        const source = document.getElementById(templateId);
+        if (!source) return;
+        enterpriseBindings.pane.innerHTML = '';
+        enterpriseBindings.pane.appendChild(source.content.cloneNode(true));
       };
 
       enterpriseBindings.preview.classList.remove('slide-in-up');
@@ -640,6 +649,10 @@
       }, 230);
     });
   });
+  const defaultTemplate = document.getElementById('preview-matchmaking');
+  if (defaultTemplate) {
+    enterpriseBindings.pane.appendChild(defaultTemplate.content.cloneNode(true));
+  }
 
 
   const hero = document.querySelector('.hero');
