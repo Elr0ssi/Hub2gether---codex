@@ -387,10 +387,11 @@
   .enterprise-icon { width:32px; height:32px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; color:#70767f; background:#e2e3e7; transition: transform .34s cubic-bezier(.22,.61,.36,1), background .3s ease, color .3s ease; }
   .enterprise-copy strong { display:block; font-size:clamp(19px,1.65vw,29px); line-height:1.12; font-family:var(--font-display); letter-spacing:-.02em; color:var(--black); font-weight:700; }
   .enterprise-copy strong em { font-style:normal; color:#63d4af; }
-  .enterprise-copy span { display:block; margin-top:8px; font-size:14px; color:#5f656d; max-height:0; opacity:0; overflow:hidden; transform: translateY(8px); transition: max-height .34s ease, opacity .3s ease, transform .34s ease; }
-  .enterprise-item.active { background:white; box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04); transform: translateX(0) scale(1.01); }
+  .enterprise-copy span { display:block; margin-top:8px; font-size:14px; color:#5f656d; opacity:1; transform:none; }
+  .enterprise-item { min-height: 132px; }
+  .enterprise-item.active { background:white; box-shadow: 0 14px 34px rgba(31,177,129,0.14), 0 0 0 1px rgba(31,177,129,0.34); transform: translateX(0) scale(1.01); }
   .enterprise-item.active .enterprise-icon { background:var(--black); color:white; transform: scale(1.08); }
-  .enterprise-item.active .enterprise-copy span { max-height:100px; opacity:1; transform: translateY(0); }
+  .enterprise-item.active .enterprise-copy span { opacity:1; }
   .enterprise-preview { background:transparent; border:none; border-radius:28px; padding:0; box-shadow:none; overflow:visible; }
   .enterprise-preview-content { transition: opacity .22s ease; }
   .slide-out-up { animation: previewOut .3s cubic-bezier(.4,0,.2,1) forwards; }
@@ -515,7 +516,7 @@
       <div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)"><span class="roulette-amount" data-amount="42">42</span></div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)"><span class="roulette-amount" data-amount="76" data-suffix="%">76%</span></div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div>
       <div class="profile-chart"><div class="chart-label">Performance curve — 6 derniers mois</div><div class="mini-chart"><svg viewBox="0 0 300 72" preserveAspectRatio="none"><path d="M0,60 C30,55 50,45 80,40 C110,35 120,42 150,32 C180,22 210,28 240,15 C265,5 280,8 300,12" fill="none" stroke="var(--blue)" stroke-width="2"/></svg></div><div class="sport-tags"><span class="sport-tag">🎾 Tennis</span><span class="sport-tag">⚽ Football</span><span class="sport-tag">🏃 Running</span></div></div>
     </div>
-    <div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:16px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts"><span class="roulette-amount" data-amount="2480">2 480</span></div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">Moi</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">Hub2gether</div></div></div><div class="lb-pts"><span class="roulette-amount" data-amount="2315">2 315</span></div><div class="lb-matches">124</div></div></div></div></div>
+    <div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active" data-mode="players">Joueurs</button><button class="lb-tab" data-mode="companies">Entreprises</button></div></div><div class="feat-card-body" style="padding:16px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-rows" data-leaderboard></div></div></div>
   </div>
 </template>
 
@@ -584,11 +585,41 @@
   });
 
 
+  const leaderboardData = {
+    players: [
+      { rank: '01', name: 'Thomas R.', sub: 'Google', pts: 2480, matches: 156, avatar: 'TR', color: '#1E5EFF', rankClass: 'gold', rowClass: '' },
+      { rank: '02', name: 'Sarah M.', sub: 'Hub2gether', pts: 2315, matches: 124, avatar: 'Moi', color: '#8B5CF6', rankClass: 'silver', rowClass: 'you' }
+    ],
+    companies: [
+      { rank: '01', name: 'Google', sub: 'Entreprise', pts: 12540, matches: 642, avatar: 'G', color: '#1E5EFF', rankClass: 'gold', rowClass: '' },
+      { rank: '02', name: 'Hub2gether', sub: 'Entreprise', pts: 11230, matches: 598, avatar: 'H2', color: '#7FE3BF', rankClass: 'silver', rowClass: 'you' }
+    ]
+  };
+
+  const renderLeaderboard = (scope, mode = 'players') => {
+    const rowsTarget = scope.querySelector('[data-leaderboard]');
+    if (!rowsTarget) return;
+    const rows = leaderboardData[mode] || leaderboardData.players;
+    rowsTarget.innerHTML = rows.map((row) => `
+      <div class="lb-row ${row.rowClass}">
+        <div class="lb-rank ${row.rankClass}">${row.rank}</div>
+        <div class="lb-player"><div class="lb-avatar" style="background:${row.color}">${row.avatar}</div><div><div class="lb-name">${row.name}</div><div class="lb-company">${row.sub}</div></div></div>
+        <div class="lb-pts"><span class="roulette-amount" data-amount="${row.pts}">${row.pts.toLocaleString('fr-FR')}</span></div>
+        <div class="lb-matches">${row.matches}</div>
+      </div>
+    `).join('');
+  };
+
   document.addEventListener('click', (event) => {
     const tab = event.target.closest('.lb-tab');
     if (!tab) return;
     tab.closest('.lb-tabs').querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
+    const pane = tab.closest('.enterprise-preview-pane');
+    if (pane) {
+      renderLeaderboard(pane, tab.dataset.mode || 'players');
+      animateRouletteAmounts(pane);
+    }
   });
 
 
@@ -669,6 +700,7 @@
         if (!source) return;
         enterpriseBindings.pane.innerHTML = '';
         enterpriseBindings.pane.appendChild(source.content.cloneNode(true));
+        renderLeaderboard(enterpriseBindings.pane, 'players');
         animateRouletteAmounts(enterpriseBindings.pane);
       };
 
@@ -684,6 +716,7 @@
   const defaultTemplate = document.getElementById('preview-matchmaking');
   if (defaultTemplate) {
     enterpriseBindings.pane.appendChild(defaultTemplate.content.cloneNode(true));
+    renderLeaderboard(enterpriseBindings.pane, 'players');
     animateRouletteAmounts(enterpriseBindings.pane);
   }
 
@@ -693,6 +726,20 @@
     row.parentElement.querySelectorAll('.match-row, .expense-row').forEach((item) => item.classList.remove('active'));
     row.classList.add('active');
   });
+
+  const enterpriseZone = document.querySelector('.enterprise-interactive');
+  let scrollLock = false;
+  enterpriseZone?.addEventListener('wheel', (event) => {
+    if (scrollLock) return;
+    const direction = event.deltaY > 0 ? 1 : -1;
+    const currentIndex = Array.from(enterpriseItems).findIndex((item) => item.classList.contains('active'));
+    const nextIndex = Math.min(Math.max(currentIndex + direction, 0), enterpriseItems.length - 1);
+    if (nextIndex === currentIndex) return;
+    event.preventDefault();
+    scrollLock = true;
+    enterpriseItems[nextIndex].click();
+    setTimeout(() => { scrollLock = false; }, 360);
+  }, { passive: false });
 
 
   const hero = document.querySelector('.hero');
