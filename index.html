@@ -157,7 +157,45 @@
   .logos-section { padding: 48px 40px; border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
   .logos-label { text-align: center; font-size: 13px; color: var(--grey-400); margin-bottom: 32px; }
   .logos-row { display: flex; align-items: center; justify-content: center; gap: 56px; flex-wrap: wrap; }
-  .logo-item { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--grey-200); }
+  .logo-item {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--grey-200);
+    position: relative;
+    cursor: default;
+    transition: color .2s, transform .2s;
+  }
+  .logo-item::after {
+    content: attr(data-users);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translate(-50%, -6px);
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--grey-600);
+    background: white;
+    border: 0.5px solid var(--border);
+    border-radius: 999px;
+    padding: 4px 10px;
+    box-shadow: var(--shadow-sm);
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .logo-item:hover,
+  .logo-item:focus-visible {
+    color: var(--black);
+    transform: translateY(-2px);
+  }
+  .logo-item:hover::after,
+  .logo-item:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 
   section { padding: 120px 40px; }
   .section-inner { max-width: 1100px; margin: 0 auto; }
@@ -398,8 +436,6 @@
     gap: 6px;
   }
 
-
-
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
@@ -430,7 +466,7 @@
 <body>
 <nav>
   <div class="nav-logo"><img class="brand-logo-img" src="assets/logo-hub2gether.png" alt="Logo Hub2gether" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"/><span class="brand-mark" aria-hidden="true" style="display:none;">H<span>2</span></span>Hub2gether</div>
-    <div class="nav-cta"><button class="btn-ghost">Connexion</button><button class="btn-primary">Essayer la démo</button></div>
+    <div class="nav-cta"><button class="btn-ghost">Connexion</button><button class="btn-primary" data-open-demo>Essayer la démo</button></div>
 </nav>
 
 <section class="hero">
@@ -438,7 +474,7 @@
   <div class="hero-badge"><span class="pip">Nouveau</span>La plateforme sport B2B qui connecte vos équipes</div>
   <h1 class="hero-title">Le sport en entreprise,<br><em>enfin centralisé.</em></h1>
   <p class="hero-sub">Tournois, matchmaking, classements inter-entreprises, paiements automatisés — tout en un seul endroit pour vos collaborateurs.</p>
-  <div class="hero-actions"><button class="btn-xl">Commencer gratuitement <span>→</span></button><button class="btn-xl-outline">Voir la démo</button></div>
+  <div class="hero-actions"><button class="btn-xl">Commencer gratuitement <span>→</span></button><button class="btn-xl-outline" data-open-demo>Voir la démo</button></div>
   <div class="hero-social-proof"><div class="avatars"><span style="background:#1E5EFF">JD</span><span style="background:#1DB87E">MS</span><span style="background:#FF6B35">AT</span><span style="background:#8B5CF6">LC</span><span style="background:#F5C842;color:#333">+</span></div><p class="social-text"><strong>+2 400 collaborateurs</strong> actifs sur la plateforme</p></div>
   <div class="hero-mockup reveal-zoom">
     <div class="dashboard-image-wrap">
@@ -451,7 +487,7 @@
   </div>
 </section>
 
-<div class="logos-section"><p class="logos-label">Des équipes de ces entreprises utilisent déjà Hub2gether</p><div class="logos-row"><span class="logo-item">Capgemini</span><span class="logo-item">BNP Paribas</span><span class="logo-item">Decathlon</span><span class="logo-item">Veolia</span><span class="logo-item">LVMH</span><span class="logo-item">Société Générale</span></div></div>
+<div class="logos-section"><p class="logos-label">Des équipes de ces entreprises utilisent déjà Hub2gether</p><div class="logos-row"><span class="logo-item" tabindex="0" data-users="1 250 utilisateurs">Capgemini</span><span class="logo-item" tabindex="0" data-users="980 utilisateurs">BNP Paribas</span><span class="logo-item" tabindex="0" data-users="760 utilisateurs">Decathlon</span><span class="logo-item" tabindex="0" data-users="640 utilisateurs">Veolia</span><span class="logo-item" tabindex="0" data-users="420 utilisateurs">LVMH</span><span class="logo-item" tabindex="0" data-users="890 utilisateurs">Société Générale</span></div></div>
 
 <section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(245,200,66,0.12);color:var(--yellow)"><div class="tag-dot" style="background:var(--yellow)"></div>Le marché</div><h2 class="section-title" style="color:white">Un marché de <em>plusieurs milliards</em> encore inexploré.</h2><p class="section-desc">Le sport en entreprise est un levier RH majeur — mais aucun outil ne le gère vraiment. Hub2gether comble ce vide.</p>
   <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num counter" data-target="80" data-prefix="" data-suffix="%">0%</div><div class="stat-desc">des salariés français souhaitent pratiquer une activité sportive dans le cadre du travail.</div></div><div class="stat-card"><div class="stat-num counter" data-target="2" data-prefix="€" data-suffix="Md">€0Md</div><div class="stat-desc">dépensés chaque année par les entreprises françaises en sport et bien-être salarié.</div></div><div class="stat-card"><div class="stat-num counter" data-target="26" data-prefix="-" data-suffix="%">-0%</div><div class="stat-desc">d'absentéisme dans les entreprises qui proposent une pratique sportive régulière.</div></div></div>
@@ -697,6 +733,14 @@
   updatePricingScroll();
   window.addEventListener('scroll', updatePricingScroll, { passive: true });
   window.addEventListener('resize', updatePricingScroll);
+
+  const demoOpeners = document.querySelectorAll('[data-open-demo]');
+
+  demoOpeners.forEach((button) => {
+    button.addEventListener('click', () => {
+      window.location.href = 'demo.html';
+    });
+  });
 </script>
 </body>
 </html>
