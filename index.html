@@ -391,7 +391,7 @@
   .enterprise-item.active { background:white; box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04); transform: translateX(0) scale(1.01); }
   .enterprise-item.active .enterprise-icon { background:var(--black); color:white; transform: scale(1.08); }
   .enterprise-item.active .enterprise-copy span { max-height:100px; opacity:1; transform: translateY(0); }
-  .enterprise-preview { background:white; border:1px solid var(--border); border-radius:28px; padding:20px; box-shadow:var(--shadow-sm); overflow:hidden; }
+  .enterprise-preview { background:transparent; border:none; border-radius:28px; padding:0; box-shadow:none; overflow:visible; }
   .enterprise-preview-content { transition: opacity .22s ease; }
   .slide-out-up { animation: previewOut .3s cubic-bezier(.4,0,.2,1) forwards; }
   .slide-in-up { animation: previewIn .38s cubic-bezier(.22,.61,.36,1) forwards; }
@@ -403,10 +403,14 @@
     from { opacity: 0; transform: translateY(36px) scale(.94); filter: blur(4px); }
     to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
   }
-  .enterprise-preview-pane { border: 1px solid #dbe9e2; border-radius: 18px; overflow: hidden; background: #f3f5f4; min-height: 520px; padding: 14px; }
+  .enterprise-preview-pane { border: none; border-radius: 18px; overflow: visible; background: transparent; min-height: 520px; padding: 6px; }
   .enterprise-preview-pane .feat-card,
   .enterprise-preview-pane .profile-card,
-  .enterprise-preview-pane .expense-card { box-shadow:none; border-radius:18px; }
+  .enterprise-preview-pane .expense-card {
+    box-shadow: 0 16px 36px rgba(15,46,34,.1), 0 2px 8px rgba(15,46,34,.05);
+    border-radius:18px;
+    background:white;
+  }
   .enterprise-preview-pane .profile-card { margin-bottom:10px; }
   .enterprise-preview-pane .match-row,
   .enterprise-preview-pane .expense-row { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; cursor:pointer; }
