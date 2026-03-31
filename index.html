@@ -379,51 +379,34 @@
   .hub-mini-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
   .hub-mini-cards .card { background:#f3f5f4; border-radius:10px; padding:8px; font-size:10px; text-align:left; }
 
-  .enterprise-interactive { margin-top: 46px; display:grid; grid-template-columns: 320px 1fr; gap:22px; align-items:stretch; }
-  .enterprise-menu { background:white; border:1px solid var(--border); border-radius:20px; padding:10px; display:grid; gap:8px; }
-  .enterprise-item { border:none; text-align:left; padding:14px; border-radius:12px; background:#f5f7f6; font-family:var(--font-body); cursor:pointer; font-size:14px; color:#4c5b55; }
-  .enterprise-item.active { background:var(--blue-light); color:var(--black); font-weight:700; }
-  .enterprise-preview { background:white; border:1px solid var(--border); border-radius:20px; padding:22px; box-shadow:var(--shadow-sm); }
-  
-  .enterprise-preview h4 { font-family:var(--font-display); font-size:38px; margin-bottom:10px; line-height:1; letter-spacing:-.03em; }
-  .enterprise-preview p { margin-bottom:18px; font-size:23px; max-width:840px; }
-  .enterprise-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
-  .enterprise-metrics div { background:linear-gradient(180deg,#f4faf7,#eef7f3); border-radius:14px; padding:16px; border:1px solid #d5e8df; }
-  .enterprise-metrics small { display:block; color:#5d6b79; font-size:14px; margin-bottom:4px; }
-  .enterprise-metrics strong { font-size:42px; font-family:var(--font-display); line-height:1; }
-  .enterprise-chart { margin-top:18px; background:#f6faf8; border:1px solid #dbe9e2; border-radius:16px; padding:14px; }
-  .enterprise-chart svg { width:100%; height:120px; }
-  .enterprise-bars { margin-top:12px; display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
-  .enterprise-bars span { display:block; border-radius:8px 8px 4px 4px; background:#cbeedc; height:32px; }
-  .enterprise-bars span:nth-child(3), .enterprise-bars span:nth-child(5) { background:#7FE3BF; }
-
-  .enterprise-preview-content {
-    transition: opacity .22s ease;
-  }
-  .slide-out-up {
-    animation: previewOut .26s ease forwards;
-  }
-  .slide-in-up {
-    animation: previewIn .3s ease forwards;
-  }
+  .enterprise-interactive { margin-top: 46px; display:grid; grid-template-columns: 1fr minmax(420px, 1.25fr); gap:34px; align-items:stretch; }
+  .enterprise-menu { display:grid; gap:14px; }
+  .enterprise-item { border:none; text-align:left; padding:18px 20px; border-radius:18px; background:transparent; font-family:var(--font-body); cursor:pointer; transition: background .34s cubic-bezier(.22,.61,.36,1), box-shadow .34s cubic-bezier(.22,.61,.36,1), transform .34s cubic-bezier(.22,.61,.36,1); }
+  .enterprise-item:hover { transform: translateX(4px); }
+  .enterprise-item-header { display:flex; align-items:flex-start; gap:14px; }
+  .enterprise-icon { width:32px; height:32px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; color:#70767f; background:#e2e3e7; transition: transform .34s cubic-bezier(.22,.61,.36,1), background .3s ease, color .3s ease; }
+  .enterprise-copy strong { display:block; font-size:clamp(24px,2.35vw,43px); line-height:1; font-family:var(--font-display); letter-spacing:-.03em; color:var(--black); }
+  .enterprise-copy span { display:block; margin-top:8px; font-size:15px; color:#5f656d; max-height:0; opacity:0; overflow:hidden; transform: translateY(8px); transition: max-height .34s ease, opacity .3s ease, transform .34s ease; }
+  .enterprise-item.active { background:white; box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04); transform: translateX(0) scale(1.01); }
+  .enterprise-item.active .enterprise-icon { background:var(--black); color:white; transform: scale(1.08); }
+  .enterprise-item.active .enterprise-copy span { max-height:100px; opacity:1; transform: translateY(0); }
+  .enterprise-preview { background:white; border:1px solid var(--border); border-radius:28px; padding:20px; box-shadow:var(--shadow-sm); overflow:hidden; }
+  .enterprise-preview-content { transition: opacity .22s ease; }
+  .slide-out-up { animation: previewOut .3s cubic-bezier(.4,0,.2,1) forwards; }
+  .slide-in-up { animation: previewIn .38s cubic-bezier(.22,.61,.36,1) forwards; }
   @keyframes previewOut {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(-18px); }
+    from { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+    to { opacity: 0; transform: translateY(-34px) scale(.96); filter: blur(3px); }
   }
   @keyframes previewIn {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(36px) scale(.94); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
   }
-  .enterprise-visual-wrap {
-    margin-top: 18px;
-    border: 1px solid #dbe9e2;
-    border-radius: 16px;
-    overflow: hidden;
-    background: #f6faf8;
-  }
+  .enterprise-visual-wrap { border: 1px solid #dbe9e2; border-radius: 18px; overflow: hidden; background: #f3f5f4; min-height: 520px; display:flex; align-items:center; justify-content:center; }
   .enterprise-visual {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
   .enterprise-visual-fallback {
@@ -451,7 +434,7 @@
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
     .hub-grid, .enterprise-interactive { grid-template-columns:1fr; }
-    .hub-kpis, .enterprise-metrics { grid-template-columns:1fr; }
+    .hub-kpis { grid-template-columns:1fr; }
     .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
     .logos-row { gap: 28px; }
     .pricing-scroll-section { min-height: auto; padding: 80px 20px; }
@@ -496,23 +479,27 @@
 <section id="entreprises" style="background:var(--grey-50)"><div class="section-inner"><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Cliquez sur les modules à gauche pour voir l'interface de droite s'adapter en direct.</p>
   <div class="enterprise-interactive reveal-right">
     <div class="enterprise-menu">
-      <button class="enterprise-item active" data-title="Tableau de bord RH" data-text="Suivez l'engagement, les taux de participation et les tendances d'activité par équipe." data-m1="73%" data-m1l="Participation" data-m2="42" data-m2l="Matchs" data-m3="+8%" data-m3l="Progression" data-image="assets/entreprise-rh.png">📊 Tableau de bord RH</button>
-      <button class="enterprise-item" data-title="Tournois & compétitions" data-text="Créez vos brackets, automatisez les rounds et animez les finales inter-entreprises." data-m1="16" data-m1l="Tournois" data-m2="248" data-m2l="Joueurs" data-m3="4" data-m3l="Saisons" data-image="assets/entreprise-tournois.png">🏆 Tournois & compétitions</button>
-      <button class="enterprise-item" data-title="Paiements sans friction" data-text="Collecte automatique des quotes-parts, remboursements suivis et subventions RH." data-m1="€12k" data-m1l="Collectés" data-m2="98%" data-m2l="Paiements OK" data-m3="0" data-m3l="Relance manuelle" data-image="assets/entreprise-paiements.png">💳 Paiements sans friction</button>
-      <button class="enterprise-item" data-title="Partenaires exclusifs" data-text="Accédez aux terrains, salles et événements partenaires avec tarifs négociés." data-m1="32" data-m1l="Partenaires" data-m2="-18%" data-m2l="Coût moyen" data-m3="7" data-m3l="Villes" data-image="assets/entreprise-partenaires.png">🤝 Partenaires exclusifs</button>
+      <button class="enterprise-item active" data-title="Obtenez des données précises sur les dépenses" data-text="Suivez en temps réel les dépenses sportives de vos équipes, par service et par période." data-image="assets/dashboard1vitrine.png">
+        <span class="enterprise-item-header"><span class="enterprise-icon">🗄️</span><span class="enterprise-copy"><strong>Obtenez des données précises sur les dépenses</strong><span>Suivez en temps réel les dépenses sportives de vos équipes, par service et par période.</span></span></span>
+      </button>
+      <button class="enterprise-item" data-title="Connectez-vous instantanément à plus de 200 applications" data-text="Synchronisez votre flux de travail de réunion grâce à plus de 200 intégrations Credo." data-image="assets/dashboard1vitrine.png">
+        <span class="enterprise-item-header"><span class="enterprise-icon">🔗</span><span class="enterprise-copy"><strong>Connectez-vous instantanément à plus de 200 applications</strong><span>Synchronisez votre flux de travail de réunion grâce à plus de 200 intégrations Credo.</span></span></span>
+      </button>
+      <button class="enterprise-item" data-title="Utilisé par des gens comme vous" data-text="Visualisez l'adoption de la plateforme dans vos équipes et identifiez les ambassadeurs internes." data-image="assets/dashboard1vitrine.png">
+        <span class="enterprise-item-header"><span class="enterprise-icon">👤</span><span class="enterprise-copy"><strong>Utilisé par des gens comme vous</strong><span>Visualisez l'adoption de la plateforme dans vos équipes et identifiez les ambassadeurs internes.</span></span></span>
+      </button>
+      <button class="enterprise-item" data-title="Historique de vos transactions" data-text="Accédez à un historique complet de toutes les transactions et exports financiers." data-image="assets/dashboard1vitrine.png">
+        <span class="enterprise-item-header"><span class="enterprise-icon">🕒</span><span class="enterprise-copy"><strong>Historique de vos transactions</strong><span>Accédez à un historique complet de toutes les transactions et exports financiers.</span></span></span>
+      </button>
+      <button class="enterprise-item" data-title="Soyez notifié instantanément" data-text="Recevez des alertes claires dès qu'un mouvement financier ou une action importante est détectée." data-image="assets/dashboard1vitrine.png">
+        <span class="enterprise-item-header"><span class="enterprise-icon">🔔</span><span class="enterprise-copy"><strong>Soyez notifié instantanément</strong><span>Recevez des alertes claires dès qu'un mouvement financier ou une action importante est détectée.</span></span></span>
+      </button>
     </div>
     <div class="enterprise-preview">
       <div class="enterprise-preview-content" id="enterprise-preview-content">
-        <h4 id="enterprise-title">Tableau de bord RH</h4>
-        <p id="enterprise-text">Suivez l'engagement, les taux de participation et les tendances d'activité par équipe.</p>
-        <div class="enterprise-metrics">
-          <div><small id="enterprise-m1l">Participation</small><strong id="enterprise-m1">73%</strong></div>
-          <div><small id="enterprise-m2l">Matchs</small><strong id="enterprise-m2">42</strong></div>
-          <div><small id="enterprise-m3l">Progression</small><strong id="enterprise-m3">+8%</strong></div>
-        </div>
         <div class="enterprise-visual-wrap">
-          <img id="enterprise-image" class="enterprise-visual" src="assets/entreprise-rh.png" alt="Dashboard entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
-          <div class="enterprise-visual-fallback" id="enterprise-visual-fallback"><strong>Ajoutez un visuel PNG</strong><span id="enterprise-image-path">assets/entreprise-rh.png</span></div>
+          <img id="enterprise-image" class="enterprise-visual" src="assets/dashboard1vitrine.png" alt="Interface entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
+          <div class="enterprise-visual-fallback" id="enterprise-visual-fallback"><strong>Ajoutez un visuel PNG</strong><span id="enterprise-image-path">assets/dashboard1vitrine.png</span></div>
         </div>
       </div>
     </div>
@@ -625,14 +612,6 @@
 
   const enterpriseItems = document.querySelectorAll('.enterprise-item');
   const enterpriseBindings = {
-    title: document.getElementById('enterprise-title'),
-    text: document.getElementById('enterprise-text'),
-    m1: document.getElementById('enterprise-m1'),
-    m1l: document.getElementById('enterprise-m1l'),
-    m2: document.getElementById('enterprise-m2'),
-    m2l: document.getElementById('enterprise-m2l'),
-    m3: document.getElementById('enterprise-m3'),
-    m3l: document.getElementById('enterprise-m3l'),
     image: document.getElementById('enterprise-image'),
     imagePath: document.getElementById('enterprise-image-path'),
     preview: document.getElementById('enterprise-preview-content'),
@@ -645,16 +624,7 @@
       item.classList.add('active');
 
       const applyContent = () => {
-        enterpriseBindings.title.textContent = item.dataset.title;
-        enterpriseBindings.text.textContent = item.dataset.text;
-        enterpriseBindings.m1.textContent = item.dataset.m1;
-        enterpriseBindings.m1l.textContent = item.dataset.m1l;
-        enterpriseBindings.m2.textContent = item.dataset.m2;
-        enterpriseBindings.m2l.textContent = item.dataset.m2l;
-        enterpriseBindings.m3.textContent = item.dataset.m3;
-        enterpriseBindings.m3l.textContent = item.dataset.m3l;
-
-        const imageSrc = item.dataset.image || 'assets/entreprise-rh.png';
+        const imageSrc = item.dataset.image || 'assets/dashboard1vitrine.png';
         enterpriseBindings.image.style.display = 'block';
         enterpriseBindings.imageFallback.style.display = 'none';
         enterpriseBindings.image.src = imageSrc;
