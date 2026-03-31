@@ -381,7 +381,7 @@
 
   .enterprise-interactive { margin-top: 46px; display:grid; grid-template-columns: 1fr minmax(420px, 1.25fr); gap:34px; align-items:stretch; }
   .enterprise-menu { display:grid; gap:14px; }
-  .enterprise-item { border:none; text-align:left; padding:16px 18px; border-radius:18px; background:transparent; font-family:var(--font-body); cursor:pointer; transition: background .34s cubic-bezier(.22,.61,.36,1), box-shadow .34s cubic-bezier(.22,.61,.36,1), transform .34s cubic-bezier(.22,.61,.36,1); }
+  .enterprise-item { border:none; text-align:left; padding:16px 18px; border-radius:18px; background:white; font-family:var(--font-body); cursor:pointer; transition: background .34s cubic-bezier(.22,.61,.36,1), box-shadow .34s cubic-bezier(.22,.61,.36,1), transform .34s cubic-bezier(.22,.61,.36,1); }
   .enterprise-item:hover { transform: translateX(4px); }
   .enterprise-item-header { display:flex; align-items:flex-start; gap:14px; }
   .enterprise-icon { width:32px; height:32px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; color:#70767f; background:#e2e3e7; transition: transform .34s cubic-bezier(.22,.61,.36,1), background .3s ease, color .3s ease; }
@@ -408,6 +408,10 @@
   .enterprise-preview-pane .profile-card,
   .enterprise-preview-pane .expense-card { box-shadow:none; border-radius:18px; }
   .enterprise-preview-pane .profile-card { margin-bottom:10px; }
+  .enterprise-preview-pane .match-row,
+  .enterprise-preview-pane .expense-row { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; cursor:pointer; }
+  .enterprise-preview-pane .match-row.active,
+  .enterprise-preview-pane .expense-row.active { transform: translateX(3px); box-shadow: var(--shadow-sm); border-color:#b8dccc; }
 
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
@@ -492,7 +496,7 @@
     <div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div>
     <div class="feat-card-body">
       <div class="match-list">
-        <div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · Aujourd'hui 18h30</div></div><div class="player-meta"><div class="player-price">€12.50</div><div class="player-place">UrbanPadel Paris</div></div></div>
+        <div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · Aujourd'hui 18h30</div></div><div class="player-meta"><div class="player-price"><span class="roulette-amount" data-amount="12.50" data-prefix="€">€12.50</span></div><div class="player-place">UrbanPadel Paris</div></div></div>
         <div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · Demain 12h</div></div><div class="player-meta"><div class="player-price" style="color:var(--green)">Gratuit</div><div class="player-place">HQ Gym</div></div></div>
       </div>
       <button class="join-btn">Rejoindre le match ↗</button>
@@ -504,16 +508,16 @@
   <div>
     <div class="profile-card">
       <div class="profile-top"><div class="profile-pic">SM</div><div><div class="profile-name">Sarah Miller</div><div class="profile-role">Product Designer @ Hub2gether</div><div class="profile-level">Niveau 12 · Saison 3</div></div></div>
-      <div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)">42</div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)">76%</div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div>
+      <div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)"><span class="roulette-amount" data-amount="42">42</span></div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)"><span class="roulette-amount" data-amount="76" data-suffix="%">76%</span></div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div>
       <div class="profile-chart"><div class="chart-label">Performance curve — 6 derniers mois</div><div class="mini-chart"><svg viewBox="0 0 300 72" preserveAspectRatio="none"><path d="M0,60 C30,55 50,45 80,40 C110,35 120,42 150,32 C180,22 210,28 240,15 C265,5 280,8 300,12" fill="none" stroke="var(--blue)" stroke-width="2"/></svg></div><div class="sport-tags"><span class="sport-tag">🎾 Tennis</span><span class="sport-tag">⚽ Football</span><span class="sport-tag">🏃 Running</span></div></div>
     </div>
-    <div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:16px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts">2 480</div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">Moi</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">Hub2gether</div></div></div><div class="lb-pts">2 315</div><div class="lb-matches">124</div></div></div></div></div>
+    <div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:16px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts"><span class="roulette-amount" data-amount="2480">2 480</span></div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">Moi</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">Hub2gether</div></div></div><div class="lb-pts"><span class="roulette-amount" data-amount="2315">2 315</span></div><div class="lb-matches">124</div></div></div></div></div>
   </div>
 </template>
 
 <template id="preview-finance">
   <div class="expense-card">
-    <div class="expense-header"><div class="expense-title">Expense Tracker</div><div class="expense-event">Match Padel · 12 Juin</div></div><div class="expense-total"><div class="expense-icon">💳</div><div><div class="expense-amount">€60.00</div><div class="expense-by">Payé par David King</div></div></div><div class="expense-list"><div class="expense-row"><div class="expense-avatar">MS</div><div class="expense-name">Marc S.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-paid">PAYÉ</span></div><div class="expense-row"><div class="expense-avatar">JL</div><div class="expense-name">Julia L.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-pending">EN ATTENTE</span></div><div class="expense-row"><div class="expense-avatar you">Moi</div><div class="expense-name">Vous</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-reimburse">REMBOURSER</span></div></div>
+    <div class="expense-header"><div class="expense-title">Expense Tracker</div><div class="expense-event">Match Padel · 12 Juin</div></div><div class="expense-total"><div class="expense-icon">💳</div><div><div class="expense-amount"><span class="roulette-amount" data-amount="60.00" data-prefix="€">€60.00</span></div><div class="expense-by">Payé par David King</div></div></div><div class="expense-list"><div class="expense-row"><div class="expense-avatar">MS</div><div class="expense-name">Marc S.</div><div class="expense-amount-small"><span class="roulette-amount" data-amount="15.00" data-prefix="€">€15.00</span></div><span class="status-pill s-paid">PAYÉ</span></div><div class="expense-row"><div class="expense-avatar">JL</div><div class="expense-name">Julia L.</div><div class="expense-amount-small"><span class="roulette-amount" data-amount="15.00" data-prefix="€">€15.00</span></div><span class="status-pill s-pending">EN ATTENTE</span></div><div class="expense-row"><div class="expense-avatar you">Moi</div><div class="expense-name">Vous</div><div class="expense-amount-small"><span class="roulette-amount" data-amount="15.00" data-prefix="€">€15.00</span></div><span class="status-pill s-reimburse">REMBOURSER</span></div></div>
   </div>
 </template>
 
@@ -576,11 +580,11 @@
   });
 
 
-  document.querySelectorAll('.lb-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      tab.closest('.lb-tabs').querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
+  document.addEventListener('click', (event) => {
+    const tab = event.target.closest('.lb-tab');
+    if (!tab) return;
+    tab.closest('.lb-tabs').querySelectorAll('.lb-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
   });
 
 
@@ -622,6 +626,29 @@
 
 
   const enterpriseItems = document.querySelectorAll('.enterprise-item');
+  const animateRouletteAmounts = (scope) => {
+    scope.querySelectorAll('.roulette-amount').forEach((el) => {
+      const target = Number(el.dataset.amount || '0');
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const decimals = String(el.dataset.amount || '').includes('.') ? 2 : 0;
+      const duration = 700;
+      const start = performance.now();
+      const formatValue = (val) => {
+        const fixed = val.toFixed(decimals);
+        const withSpaces = fixed.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        return `${prefix}${withSpaces}${suffix}`;
+      };
+      const spin = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = formatValue(target * eased);
+        if (progress < 1) requestAnimationFrame(spin);
+      };
+      requestAnimationFrame(spin);
+    });
+  };
+
   const enterpriseBindings = {
     pane: document.getElementById('enterprise-preview-pane'),
     preview: document.getElementById('enterprise-preview-content'),
@@ -638,6 +665,7 @@
         if (!source) return;
         enterpriseBindings.pane.innerHTML = '';
         enterpriseBindings.pane.appendChild(source.content.cloneNode(true));
+        animateRouletteAmounts(enterpriseBindings.pane);
       };
 
       enterpriseBindings.preview.classList.remove('slide-in-up');
@@ -652,7 +680,15 @@
   const defaultTemplate = document.getElementById('preview-matchmaking');
   if (defaultTemplate) {
     enterpriseBindings.pane.appendChild(defaultTemplate.content.cloneNode(true));
+    animateRouletteAmounts(enterpriseBindings.pane);
   }
+
+  enterpriseBindings.pane.addEventListener('click', (event) => {
+    const row = event.target.closest('.match-row, .expense-row');
+    if (!row) return;
+    row.parentElement.querySelectorAll('.match-row, .expense-row').forEach((item) => item.classList.remove('active'));
+    row.classList.add('active');
+  });
 
 
   const hero = document.querySelector('.hero');
