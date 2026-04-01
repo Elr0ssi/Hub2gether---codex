@@ -501,13 +501,19 @@
   }
   .explore-carousel .preview-screen { width: 100%; height: 100%; display: grid; place-items: center; color: #456; font-weight: 700; background: linear-gradient(135deg, #fff, #f1faf5); }
   .explore-carousel .preview-screen img { width: 100%; height: 100%; object-fit: cover; display:block; }
-  .explore-carousel .preview-screen.widget { display:block; padding: 16px; overflow:auto; }
-  .explore-carousel .preview-screen.widget .feat-card,
-  .explore-carousel .preview-screen.widget .profile-card,
-  .explore-carousel .preview-screen.widget .expense-card { box-shadow:none; border:1px solid rgba(16,24,20,.12); }
-  .explore-carousel .preview-screen.widget .feat-card-body { padding: 14px; }
-  .explore-carousel .preview-screen.widget .profile-chart { margin-top: 10px; }
-  .explore-carousel .preview-screen.widget .lb-row { padding: 8px 0; }
+  .explore-carousel .preview-stack { position: relative; width: 100%; height: 100%; overflow: visible; }
+  .explore-carousel .preview-main-img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; border: 1px solid rgba(16,24,20,.08); }
+  .explore-carousel .preview-float-img {
+    position: absolute; right: -8%; bottom: -9%; width: 44%; aspect-ratio: 4 / 3; object-fit: cover;
+    border-radius: 16px; border: 1px solid rgba(255,255,255,.7);
+    box-shadow: 0 22px 46px rgba(10,18,14,.28), 0 0 0 1px rgba(16,24,20,.06);
+    animation: floatPeek 5.2s ease-in-out infinite;
+  }
+  .explore-carousel .pslide.active .preview-float-img { transform: translateY(0) rotate(-4deg); }
+  @keyframes floatPeek {
+    0%,100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-10px) rotate(-2deg); }
+  }
   .explore-carousel .preview-fallback { text-align:center; color:#4b5a53; font-weight:700; line-height:1.5; padding: 18px; }
   .explore-carousel .pslide-info .psi-num { font-size: 64px; font-weight: 900; line-height: .9; color: rgba(16,24,20,.12); margin: 0; font-family: var(--font-display); }
   .explore-carousel .psi-label { margin-top: 6px; font-size: 12px; text-transform: uppercase; color: var(--g2); font-weight: 800; letter-spacing: .1em; }
@@ -593,36 +599,36 @@
         <p class="prev-side-hint">↓ Scrollez pour naviguer</p>
         <div class="prev-nav-items" id="prevNav">
           <button class="pni on" data-pi="0"><span class="pni-num">01</span><span>Dashboard RH</span></button>
-          <button class="pni" data-pi="1"><span class="pni-num">02</span><span>Matchmaking</span></button>
-          <button class="pni" data-pi="2"><span class="pni-num">03</span><span>Profil</span></button>
-          <button class="pni" data-pi="3"><span class="pni-num">04</span><span>Paiements</span></button>
-          <button class="pni" data-pi="4"><span class="pni-num">05</span><span>Classements</span></button>
+          <button class="pni" data-pi="1"><span class="pni-num">02</span><span>Tournois</span></button>
+          <button class="pni" data-pi="2"><span class="pni-num">03</span><span>Paiements</span></button>
+          <button class="pni" data-pi="3"><span class="pni-num">04</span><span>Partenaires</span></button>
+          <button class="pni" data-pi="4"><span class="pni-num">05</span><span>Votre capture</span></button>
         </div>
         <div class="prev-prog"><div class="prev-prog-f" id="prevProgF"></div></div>
       </aside>
       <div class="prev-slides">
         <div class="prev-track" id="prevTrack">
           <article class="pslide active">
-            <div class="pslide-frame"><div class="preview-screen widget"><div class="hub-wrap" style="width:100%;height:100%;"><div class="hub-head"><div class="hub-company">Hub2gether RH</div><div class="hub-modes"><button class="hub-tab active">KPIs</button><button class="hub-tab">Engagement</button></div></div><div class="hub-grid"><div class="hub-panel"><strong style="font-size:28px;color:#1b4ef0;">+31%</strong><small>Participation</small><div class="hub-bars"><span style="height:35%"></span><span style="height:42%"></span><span style="height:51%"></span><span style="height:64%"></span><span style="height:58%"></span><span style="height:72%"></span></div></div><div class="hub-panel hub-side"><div class="badge"><span>Absentéisme</span><strong style="color:#3cca7e;">-24%</strong></div><div class="badge"><span>Actifs</span><strong>2 400+</strong></div></div></div></div></div></div>
-            <div class="pslide-info"><p class="psi-num">01</p><div class="psi-label">Dashboard RH</div><h3 class="psi-title">Pilotage en temps réel</h3><p class="psi-desc">KPIs engagement et activité entreprise dans un seul écran.</p></div>
+            <div class="pslide-frame"><div class="preview-screen"><div class="preview-stack"><img class="preview-main-img" src="assets/entreprise-rh.png" alt="Dashboard RH"/><img class="preview-float-img" src="assets/entreprise-tournois.png" alt="Aperçu tournois"/></div></div></div>
+            <div class="pslide-info"><p class="psi-num">01</p><div class="psi-label">Dashboard</div><h3 class="psi-title">Vue globale en temps réel</h3><p class="psi-desc">KPIs RH, engagement des salariés et activité équipe.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen widget"><div class="feat-card"><div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div><div class="feat-card-body"><div class="match-list"><div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · 18h30</div></div></div><div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · 12h</div></div></div></div><button class="join-btn">Rejoindre le match ↗</button></div></div></div></div>
-            <div class="pslide-info"><p class="psi-num">02</p><div class="psi-label">Matchmaking</div><h3 class="psi-title">Partenaires trouvés en 30s</h3><p class="psi-desc">Des matchs proposés selon le sport, le niveau et la dispo.</p></div>
+            <div class="pslide-frame"><div class="preview-screen"><div class="preview-stack"><img class="preview-main-img" src="assets/entreprise-tournois.png" alt="Tournois"/><img class="preview-float-img" src="assets/entreprise-rh.png" alt="Aperçu dashboard RH"/></div></div></div>
+            <div class="pslide-info"><p class="psi-num">02</p><div class="psi-label">Tournois</div><h3 class="psi-title">Compétitions inter-équipes</h3><p class="psi-desc">Brackets, rounds automatiques et finales en interne.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen widget"><div class="profile-card"><div class="profile-top"><div class="profile-pic">SM</div><div><div class="profile-name">Sarah Miller</div><div class="profile-role">Product Designer</div><div class="profile-level">Niveau 12 · Saison 3</div></div></div><div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)">42</div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)">76%</div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div></div></div></div>
-            <div class="pslide-info"><p class="psi-num">03</p><div class="psi-label">Profil</div><h3 class="psi-title">Progression des joueurs</h3><p class="psi-desc">Profil, stats et classement pour suivre la dynamique sportive.</p></div>
+            <div class="pslide-frame"><div class="preview-screen"><div class="preview-stack"><img class="preview-main-img" src="assets/entreprise-paiements.png" alt="Paiements"/><img class="preview-float-img" src="assets/entreprise-partenaires.png" alt="Aperçu partenaires"/></div></div></div>
+            <div class="pslide-info"><p class="psi-num">03</p><div class="psi-label">Paiements</div><h3 class="psi-title">Collecte sans friction</h3><p class="psi-desc">Quotes-parts, remboursements et suivi simplifié.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen widget"><div class="expense-card"><div class="expense-header"><div class="expense-title">Expense Tracker</div><div class="expense-event">Match Padel · 12 Juin</div></div><div class="expense-total"><div class="expense-icon">💳</div><div><div class="expense-amount">€60.00</div><div class="expense-by">Payé par David King</div></div></div><div class="expense-list"><div class="expense-row"><div class="expense-avatar">MS</div><div class="expense-name">Marc S.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-paid">PAYÉ</span></div><div class="expense-row"><div class="expense-avatar">JL</div><div class="expense-name">Julia L.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-pending">EN ATTENTE</span></div></div></div></div></div>
-            <div class="pslide-info"><p class="psi-num">04</p><div class="psi-label">Paiements</div><h3 class="psi-title">Collecte sans relance</h3><p class="psi-desc">Suivi automatique des quotes-parts et statuts de paiement.</p></div>
+            <div class="pslide-frame"><div class="preview-screen"><div class="preview-stack"><img class="preview-main-img" src="assets/entreprise-partenaires.png" alt="Partenaires"/><img class="preview-float-img" src="assets/entreprise-custom.png" alt="Aperçu capture"/></div></div></div>
+            <div class="pslide-info"><p class="psi-num">04</p><div class="psi-label">Partenaires</div><h3 class="psi-title">Réseau exclusif de terrains</h3><p class="psi-desc">Tarifs négociés et accès simplifié à vos infrastructures.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen widget"><div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:14px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts">2 480</div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">SM</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">Hub2gether</div></div></div><div class="lb-pts">2 315</div><div class="lb-matches">124</div></div></div></div></div></div>
-            <div class="pslide-info"><p class="psi-num">05</p><div class="psi-label">Classements</div><h3 class="psi-title">Challenge inter-équipes</h3><p class="psi-desc">Des rankings vivants pour stimuler la participation.</p></div>
+            <div class="pslide-frame"><div class="preview-screen"><div class="preview-stack"><img class="preview-main-img" src="assets/entreprise-custom.png" alt="Votre capture"/><img class="preview-float-img" src="assets/entreprise-paiements.png" alt="Aperçu paiements"/></div></div></div>
+            <div class="pslide-info"><p class="psi-num">05</p><div class="psi-label">Votre capture</div><h3 class="psi-title">Vos propres screenshots</h3><p class="psi-desc">Remplacez ce visuel par votre meilleur écran produit.</p></div>
           </article>
-        </div></div>
+        </div>
       </div>
     </div>
   </div>
