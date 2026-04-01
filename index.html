@@ -252,25 +252,28 @@
   .feat-card-sub { font-size: 12px; color: var(--grey-400); }
   .feat-card-body { padding: 20px 24px; }
 
-  .market-section { background: linear-gradient(140deg, #0f2e22 0%, #123829 58%, #184634 100%); position: relative; overflow: hidden; }
+  .market-section { background: linear-gradient(100deg, #062f24 0%, #053628 55%, #074233 100%); position: relative; overflow: hidden; }
   .market-section::before {
     content: "";
     position: absolute;
-    inset: -20% -10% auto;
-    height: 240px;
-    background: radial-gradient(circle at 50% 20%, rgba(127,227,191,0.26), rgba(127,227,191,0));
+    inset: 0;
+    background: radial-gradient(circle at 50% -10%, rgba(127,227,191,0.12), transparent 45%);
     pointer-events: none;
   }
   .market-section .section-inner { position: relative; z-index: 1; }
   .market-section .section-title { color: var(--white); }
   .market-section .section-title em { color: var(--yellow); }
   .market-section .section-desc { color: rgba(255,255,255,0.6); }
+  .market-section .section-inner { max-width: 1200px; text-align: center; }
+  .market-section .section-title { margin: 0 auto; max-width: 900px; font-size: clamp(40px, 4.8vw, 62px); }
+  .market-section .section-desc { margin: 20px auto 0; max-width: 860px; font-size: clamp(18px, 2.1vw, 30px); line-height: 1.45; color: rgba(255,255,255,0.56); }
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 60px; }
-  .stat-card { border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 32px; background: rgba(255,255,255,0.06); backdrop-filter: blur(3px); transition: transform .2s ease, box-shadow .2s ease; }
+  .stat-card { border: 1px solid rgba(255,255,255,0.14); border-radius: 30px; padding: 28px 30px; background: rgba(255,255,255,0.08); backdrop-filter: blur(3px); transition: transform .2s ease, box-shadow .2s ease; text-align: left; min-height: 250px; }
   .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(0,0,0,0.2); }
-  .stat-num { font-family: var(--font-display); font-size: 56px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+  .stat-label { font-size: 15px; letter-spacing: .12em; font-weight: 700; color: #7FE3BF; margin-bottom: 18px; }
+  .stat-num { font-family: var(--font-display); font-size: clamp(48px, 5.2vw, 70px); font-weight: 800; color: var(--yellow); margin-bottom: 8px; line-height: .95; }
   .stat-num span { color: var(--blue-mid); }
-  .stat-desc { font-size: 15px; color: rgba(255,255,255,0.62); }
+  .stat-desc { font-size: 15px; color: rgba(255,255,255,0.56); line-height: 1.45; }
   .market-quote { margin-top: 60px; padding: 40px; border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); background: rgba(255,255,255,0.06); }
   .market-quote p { font-family: var(--font-display); font-size: 24px; color: white; }
   .market-quote p em { font-style: normal; color: var(--yellow); }
@@ -352,11 +355,18 @@
   .status-pill { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; }
   .s-paid { background: var(--green-light); color: var(--green); } .s-pending { background: var(--orange-light); color: var(--orange); } .s-reimburse { background: var(--blue); color: white; }
 
-  .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 60px; }
-  .step-item { text-align: center; }
-  .step-num-wrap { width: 56px; height: 56px; border-radius: 50%; background: white; border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: var(--shadow-sm); font-family: var(--font-display); font-size: 20px; font-weight: 800; }
-  .step-name { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-  .step-desc { font-size: 13px; color: var(--grey-400); }
+  .steps-row { position: relative; max-width: 980px; margin: 68px auto 0; display: grid; gap: 30px; }
+  .steps-row::before { content:""; position:absolute; left: 50%; top: 10px; bottom: 10px; width: 5px; transform: translateX(-50%); background: rgba(16,24,20,.10); border-radius: 999px; z-index: 0; }
+  .timeline-progress { position:absolute; left:50%; top:10px; width:5px; height:0; transform: translateX(-50%); background: linear-gradient(180deg, #B8FFE0 0%, #53E9A0 34%, #2FD18A 68%, #1DB87E 100%); border-radius:999px; transition: height 1.25s cubic-bezier(.16,1,.3,1); box-shadow: 0 0 24px rgba(60,202,126,.45); z-index: 1; }
+  .step-item { position: relative; text-align: center; background: linear-gradient(180deg, #ffffff 0%, #f8fcfa 100%); border: 1px solid rgba(16,24,20,.1); border-radius: 24px; padding: 34px 32px 24px; min-height: 138px; box-shadow: 0 16px 36px rgba(16,24,20,.1); width: min(760px, 86%); margin: 0 auto; transition: transform .5s ease, box-shadow .5s ease, border-color .5s ease; z-index: 2; }
+  .step-item.left, .step-item.right { margin: 0 auto; }
+  .step-item:hover { transform: translateY(-5px); box-shadow: 0 24px 50px rgba(16,24,20,.16); }
+  .step-num-wrap { position:absolute; left:50%; top:0; transform: translate(-50%, -50%); width: 42px; height: 42px; border-radius: 50%; background: #f6f8f7; border: 2px solid rgba(16,24,20,.2); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 16px; font-weight: 800; color: rgba(16,24,20,.5); transition: all .5s ease; z-index: 3; }
+  .step-item.done .step-num-wrap { background: linear-gradient(135deg, #3cca7e, #1db87e); border-color: #3cca7e; color: #fff; box-shadow: 0 0 0 7px rgba(60,202,126,.22); }
+   .step-item.done { border-color: rgba(60,202,126,.45); box-shadow: 0 26px 56px rgba(29,184,126,.14); }
+  .step-item.current { transform: translateY(-6px) scale(1.01); box-shadow: 0 30px 64px rgba(83,233,160,.28); border-color: rgba(83,233,160,.72); }
+   .step-name { font-size: 18px; font-weight: 800; margin-bottom: 10px; color: #0c1f18; }
+  .step-desc { font-size: 15px; color: #335247; line-height: 1.45; }
 
   .pricing-scroll-section { background: var(--white); min-height: 280vh; padding: 0 40px; }
   .pricing-sticky-wrap { position: sticky; top: 84px; height: calc(100vh - 100px); max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
@@ -416,6 +426,14 @@
   .expense-row.rise-item { transform: translateX(20px); }
 
 
+  .rise-item.visible { animation: blockPulse 4.5s ease-in-out infinite; }
+  @keyframes blockPulse {
+    0%,100% { box-shadow: none; }
+    50% { box-shadow: 0 12px 30px rgba(15,46,34,.08); }
+  }
+  .text-anim { overflow: hidden; }
+  .text-anim .char { display: inline-block; opacity: 0; transform: translateY(16px) scale(.98); animation: letterIn .55s cubic-bezier(.22,.61,.36,1) forwards; animation-delay: calc(var(--i) * 22ms); }
+  @keyframes letterIn { to { opacity: 1; transform: translateY(0) scale(1); } }
   .hub-dashboard { background:#f8fafb; border:8px solid #9ca7b5; border-radius:34px; padding:0; overflow:hidden; width:min(920px,100%); height:430px; margin:0 auto; box-shadow:0 20px 45px rgba(15,46,34,.12); }
   .hub-topnav { display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-bottom:1px solid #dce3df; background:white; }
   .hub-topnav .tabs { display:flex; gap:8px; }
@@ -451,8 +469,8 @@
     --border: rgba(16,24,20,.12); --card: #fff; --bg: #f7fbf9; --fast: cubic-bezier(.16,1,.3,1);
     font-family: var(--font-body); color: var(--text);
   }
-  .explore-carousel .prev-outer { position: relative; height: calc(6 * 100vh); background: #fff; }
-  .explore-carousel .prev-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; grid-template-columns: 320px 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
+  .explore-carousel .prev-outer { position: relative; height: calc(4.8 * 100vh); background: #fff; }
+  .explore-carousel .prev-sticky { position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden; display: grid; grid-template-columns: 320px 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
   .explore-carousel .prev-side {
     border-right: 1px solid var(--border);
     padding: 40px 26px;
@@ -498,12 +516,37 @@
   }
   .explore-carousel .preview-screen { width: 100%; height: 100%; display: grid; place-items: center; color: #456; font-weight: 700; background: linear-gradient(135deg, #fff, #f1faf5); }
   .explore-carousel .preview-screen img { width: 100%; height: 100%; object-fit: cover; display:block; }
+  .explore-carousel .preview-main-img {
+    width: 100%; height: 100%; object-fit: cover; border-radius: 0; border: 0;
+  }
+  .explore-carousel .pslide-frame { transition: transform .45s cubic-bezier(.22,.61,.36,1), box-shadow .45s ease; }
+  .explore-carousel .pslide-frame:hover {
+    transform: translate3d(10px, -10px, 0) scale(1.015);
+    box-shadow: 0 30px 56px rgba(10,18,14,.28), 0 10px 24px rgba(10,18,14,.15);
+  }
   .explore-carousel .preview-fallback { text-align:center; color:#4b5a53; font-weight:700; line-height:1.5; padding: 18px; }
   .explore-carousel .pslide-info .psi-num { font-size: 64px; font-weight: 900; line-height: .9; color: rgba(16,24,20,.12); margin: 0; font-family: var(--font-display); }
   .explore-carousel .psi-label { margin-top: 6px; font-size: 12px; text-transform: uppercase; color: var(--g2); font-weight: 800; letter-spacing: .1em; }
   .explore-carousel .psi-title { margin: 8px 0 10px; font-size: 24px; font-weight: 800; font-family: var(--font-display); }
   .explore-carousel .psi-desc { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14px; }
 
+.business-story { background: #fff; }
+  .business-grid { margin-top: 38px; display:grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap:16px; }
+  .biz-card { background: linear-gradient(180deg,#f7fbf9,#eef7f2); border:1px solid var(--border); border-radius:18px; padding:24px; box-shadow: var(--shadow-sm); }
+  .biz-card h3 { font-family: var(--font-display); font-size: 22px; margin-bottom: 10px; color:#0f2e22; }
+  .biz-card p { color:#3a5a4f; font-size:15px; line-height:1.5; }
+  .replace-stack { background: radial-gradient(circle at 50% -30%, rgba(83,233,160,.2), transparent 55%), #050912; color: #eef4ff; }
+  .replace-stack .section-title { color:#eef4ff; max-width:900px; }
+  .replace-stack .section-desc { color: rgba(228,240,255,.72); max-width:780px; }
+  .replace-visual { margin-top: 36px; position:relative; min-height:360px; border-radius:24px; background: linear-gradient(180deg, rgba(13,20,36,.95), rgba(9,14,28,.95)); border:1px solid rgba(141,170,255,.22); overflow:hidden; display:grid; place-items:center; }
+  .replace-center { width:110px; height:110px; border-radius:24px; background:linear-gradient(145deg,#121a33,#0a0f1e); border:1px solid rgba(141,170,255,.35); display:grid; place-items:center; font-family:var(--font-display); font-size:40px; box-shadow:0 0 34px rgba(108,127,255,.45); z-index:2; }
+  .replace-side { position:absolute; top:50%; transform:translateY(-50%); display:grid; gap:28px; z-index:2; }
+  .replace-side.left { left:40px; } .replace-side.right { right:40px; }
+  .app-node { width:74px; height:74px; border-radius:50%; background:#070b15; border:1px solid rgba(181,198,255,.24); display:grid; place-items:center; color:#8fa2c9; font-size:12px; }
+  .app-node img { width:70%; height:70%; object-fit:contain; }
+  .replace-lines { position:absolute; inset:0; z-index:1; }
+  .replace-lines path { fill:none; stroke:url(#lineGradient); stroke-width:2.6; stroke-dasharray:8 10; opacity:.9; animation: flowLine 6s linear infinite; }
+  @keyframes flowLine { to { stroke-dashoffset: -180; } }
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
@@ -515,8 +558,21 @@
     .split.reverse { direction: ltr; }
     .features-grid { grid-template-columns: 1fr 1fr; }
     .stats-grid { grid-template-columns: 1fr; gap: 16px; }
-    .steps-row { grid-template-columns: 1fr 1fr; }
+    .market-section .section-title { font-size: 42px; }
+    .market-section .section-desc { font-size: 20px; }
+    .stat-card { min-height: auto; padding: 22px; border-radius: 22px; }
+    .stat-label { font-size: 16px; }
+    .stat-num { font-size: 52px; }
+    .stat-desc { font-size: 14px; }
+    .steps-row { max-width: 100%; gap: 16px; }
+    .steps-row::before, .timeline-progress { left: 50%; transform: translateX(-50%); }
+    .step-item { width: min(92%, 560px); margin: 0 auto !important; min-height: 110px; padding: 28px 18px 18px; border-radius: 16px; }
+    .step-num-wrap { left: 50%; transform: translate(-50%, -50%); width: 34px; height: 34px; font-size: 14px; }
     .impact-list { grid-template-columns: 1fr; }
+    .business-grid { grid-template-columns: 1fr; }
+    .replace-side.left { left: 12px; }
+    .replace-side.right { right: 12px; }
+    .app-node { width: 56px; height: 56px; }
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
     .hub-grid { grid-template-columns:1fr; }
@@ -565,40 +621,11 @@
 
 <div class="logos-section"><p class="logos-label">Des équipes de ces entreprises utilisent déjà Hub2gether</p><div class="logos-row"><span class="logo-item" tabindex="0" data-users="1 250 utilisateurs">Capgemini</span><span class="logo-item" tabindex="0" data-users="980 utilisateurs">BNP Paribas</span><span class="logo-item" tabindex="0" data-users="760 utilisateurs">Decathlon</span><span class="logo-item" tabindex="0" data-users="640 utilisateurs">Veolia</span><span class="logo-item" tabindex="0" data-users="420 utilisateurs">LVMH</span><span class="logo-item" tabindex="0" data-users="890 utilisateurs">Société Générale</span></div></div>
 
-<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(245,200,66,0.12);color:var(--yellow)"><div class="tag-dot" style="background:var(--yellow)"></div>Bénéfices concrets</div><h2 class="section-title" style="color:white">Une pratique sportive qui <em>dynamise vos salariés</em> et soude les équipes.</h2><p class="section-desc">Hub2gether aide vos collaborateurs à jouer plus souvent, se retrouver via les classements et les tournois, et créer un vrai sentiment d'appartenance.</p>
-  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num counter" data-target="31" data-prefix="+" data-suffix="%">+0%</div><div class="stat-desc">de participation aux activités sportives internes après lancement.</div></div><div class="stat-card"><div class="stat-num counter" data-target="24" data-prefix="-" data-suffix="%">-0%</div><div class="stat-desc">d'absentéisme dans les équipes qui jouent de façon régulière.</div></div></div>
-  <div class="impact-switch reveal" role="tablist" aria-label="Vue bénéfices">
-    <button class="impact-tab active" data-impact="hr">Direction RH</button>
-    <button class="impact-tab" data-impact="manager">Managers</button>
-    <button class="impact-tab" data-impact="employee">Salariés</button>
-  </div>
-  <div class="impact-panels reveal">
-    <div class="impact-panel active" data-impact-panel="hr">
-      <div class="impact-list">
-        <div class="impact-pill"><span>Vous disposez d’un <b>tableau de bord unique</b> pour suivre animation, engagement et dynamique collective.</span></div>
-        <div class="impact-pill"><span>Les <b>classements inter-équipes</b> rendent visible l’implication de chacun sans complexifier le pilotage.</span></div>
-        <div class="impact-pill"><span>Les <b>tournois récurrents</b> installent un rituel positif qui renforce la culture d’entreprise.</span></div>
-      </div>
-      <p class="benefit-note">Un cadre simple pour animer la vie d’entreprise avec un impact concret sur la motivation et la fidélisation.</p>
-    </div>
-    <div class="impact-panel" data-impact-panel="manager">
-      <div class="impact-list">
-        <div class="impact-pill"><span>Les défis et ligues créent des <b>ponts entre services</b> et fluidifient la collaboration au quotidien.</span></div>
-        <div class="impact-pill"><span>Les managers utilisent le sport comme un <b>levier de cohésion</b>, pas comme une contrainte à organiser.</span></div>
-        <div class="impact-pill"><span>Chaque événement devient un moment fédérateur qui nourrit un <b>esprit d’équipe durable</b>.</span></div>
-      </div>
-      <p class="benefit-note">Moins de silos, plus d’énergie collective, et des équipes qui ont plaisir à avancer ensemble.</p>
-    </div>
-    <div class="impact-panel" data-impact-panel="employee">
-      <div class="impact-list">
-        <div class="impact-pill"><span>Les salariés trouvent facilement des partenaires de jeu et se sentent <b>intégrés plus vite</b>.</span></div>
-        <div class="impact-pill"><span>Le système de classement donne des repères de progression et stimule une <b>motivation saine</b>.</span></div>
-        <div class="impact-pill"><span>Les tournois donnent envie de participer, de revenir et de partager des victoires en équipe.</span></div>
-      </div>
-      <p class="benefit-note">Une expérience qui allie bien-être, dépassement et sentiment d’appartenance à un collectif.</p>
-    </div>
-  </div>
-  <div class="market-quote reveal"><p>Hub2gether transforme le sport en entreprise en un <em>moteur de cohésion</em> qui dynamise les salariés et rapproche les équipes.</p><cite>— Retours clients Hub2gether, programmes actifs</cite></div></div></section>
+<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(127,227,191,0.16);color:#7FE3BF"><div class="tag-dot" style="background:#7FE3BF"></div>LA PLATEFORME SPORT B2B</div><h2 class="section-title" style="color:white">Vos équipes méritent mieux<br>qu'un <em>groupe WhatsApp.</em></h2><p class="section-desc">Matchmaking, tournois, classements inter-entreprises,<br>paiements — tout en un seul endroit.</p>
+  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-label">PARTICIPATION</div><div class="stat-num" style="color:#F5E86C;">+31%</div><div class="stat-desc">d'activité sportive<br>après le lancement<br>de Hub2gether</div></div><div class="stat-card"><div class="stat-label">ABSENTÉISME</div><div class="stat-num" style="color:#7FE3BF;">-24%</div><div class="stat-desc">chez les équipes qui<br>jouent régulièrement</div></div><div class="stat-card"><div class="stat-label">COLLABORATEURS</div><div class="stat-num" style="color:#FFFFFF;">2 400<span style="color:rgba(255,255,255,0.6)">+</span></div><div class="stat-desc">actifs dans 6<br>entreprises du CAC<br>40</div></div></div>
+</div></section>
+
+<section class="business-story" id="business"><div class="section-inner"><div class="section-tag"><div class="tag-dot"></div>Business model</div><h2 class="section-title">Une plateforme unique qui transforme le sport en <em>levier RH mesurable</em>.</h2><p class="section-desc">Hub2gether connecte employés, managers et RH autour d’un parcours unique : participation, engagement, rétention et marque employeur.</p><div class="business-grid reveal"><article class="biz-card"><h3>1. Activation</h3><p>On lance rapidement les usages via matchmaking, ligues et événements.</p></article><article class="biz-card"><h3>2. Engagement</h3><p>Les collaborateurs reviennent grâce à une expérience simple et motivante.</p></article><article class="biz-card"><h3>3. Pilotage</h3><p>Les RH suivent les indicateurs clés dans un dashboard centralisé.</p></article></div></div></section>
 
 <section id="entreprises" class="explore-carousel">
   <div class="prev-outer" id="preview">
@@ -618,23 +645,23 @@
       <div class="prev-slides">
         <div class="prev-track" id="prevTrack">
           <article class="pslide active">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-rh.png" alt="Dashboard RH" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-rh.png</div></div></div>
+            <div class="pslide-frame"><div class="preview-screen"><img class="preview-main-img" src="assets/entreprise-rh.png" alt="Dashboard RH" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-rh.png</div></div></div>
             <div class="pslide-info"><p class="psi-num">01</p><div class="psi-label">Dashboard</div><h3 class="psi-title">Vue globale en temps réel</h3><p class="psi-desc">KPIs RH, engagement des salariés et activité équipe.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-tournois.png" alt="Tournois" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-tournois.png</div></div></div>
+            <div class="pslide-frame"><div class="preview-screen"><img class="preview-main-img" src="assets/entreprise-tournois.png" alt="Tournois" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-tournois.png</div></div></div>
             <div class="pslide-info"><p class="psi-num">02</p><div class="psi-label">Tournois</div><h3 class="psi-title">Compétitions inter-équipes</h3><p class="psi-desc">Brackets, rounds automatiques et finales en interne.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-paiements.png" alt="Paiements" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-paiements.png</div></div></div>
+            <div class="pslide-frame"><div class="preview-screen"><img class="preview-main-img" src="assets/entreprise-paiements.png" alt="Paiements" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-paiements.png</div></div></div>
             <div class="pslide-info"><p class="psi-num">03</p><div class="psi-label">Paiements</div><h3 class="psi-title">Collecte sans friction</h3><p class="psi-desc">Quotes-parts, remboursements et suivi simplifié.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-partenaires.png" alt="Partenaires" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-partenaires.png</div></div></div>
+            <div class="pslide-frame"><div class="preview-screen"><img class="preview-main-img" src="assets/entreprise-partenaires.png" alt="Partenaires" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-partenaires.png</div></div></div>
             <div class="pslide-info"><p class="psi-num">04</p><div class="psi-label">Partenaires</div><h3 class="psi-title">Réseau exclusif de terrains</h3><p class="psi-desc">Tarifs négociés et accès simplifié à vos infrastructures.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-custom.png" alt="Votre capture" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-custom.png</div></div></div>
+            <div class="pslide-frame"><div class="preview-screen"><img class="preview-main-img" src="assets/entreprise-custom.png" alt="Votre capture" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-custom.png</div></div></div>
             <div class="pslide-info"><p class="psi-num">05</p><div class="psi-label">Votre capture</div><h3 class="psi-title">Vos propres screenshots</h3><p class="psi-desc">Remplacez ce visuel par votre meilleur écran produit.</p></div>
           </article>
         </div>
@@ -643,12 +670,10 @@
   </div>
 </section>
 
-<section id="joueurs"><div class="section-inner"><div class="split reveal"><div><div class="section-tag"><div class="tag-dot"></div>Matchmaking</div><h2 class="section-title">Trouvez des partenaires de jeu <em>en 30 secondes.</em></h2><p class="section-desc">Filtrez par sport, niveau, disponibilité ou entreprise.</p></div><div><div class="feat-card"><div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div><div class="feat-card-body"><div class="match-list"><div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · Aujourd'hui 18h30</div></div><div class="player-meta"><div class="player-price">€12.50</div><div class="player-place">UrbanPadel Paris</div></div></div><div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · Demain 12h</div></div><div class="player-meta"><div class="player-price" style="color:var(--green)">Gratuit</div><div class="player-place">HQ Gym</div></div></div></div><button class="join-btn">Rejoindre le match ↗</button></div></div></div></div></div></section>
 
-<section style="background:var(--grey-50)"><div class="section-inner"><div class="split reverse reveal"><div><div class="section-tag"><div class="tag-dot"></div>Profil & Classement</div><h2 class="section-title">Votre profil sportif, <em>vos stats, votre progression.</em></h2><p class="section-desc">Historique de matchs, niveau et classement individuel/entreprise.</p></div><div style="display:flex;flex-direction:column;gap:16px"><div class="profile-card"><div class="profile-top"><div class="profile-pic">SM</div><div><div class="profile-name">Sarah Miller</div><div class="profile-role">Product Designer @ Hub2gether</div><div class="profile-level">Niveau 12 · Saison 3</div></div></div><div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)"><span class="counter" data-target="42">0</span></div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)"><span class="counter" data-target="76" data-suffix="%">0%</span></div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div><div class="profile-chart"><div class="chart-label">Performance curve — 6 derniers mois</div><div class="mini-chart"><svg viewBox="0 0 300 72" preserveAspectRatio="none"><path d="M0,60 C30,55 50,45 80,40 C110,35 120,42 150,32 C180,22 210,28 240,15 C265,5 280,8 300,12" fill="none" stroke="var(--blue)" stroke-width="2"/></svg></div><div class="sport-tags"><span class="sport-tag">🎾 Tennis</span><span class="sport-tag">⚽ Football</span><span class="sport-tag">🏃 Running</span></div></div></div>
-<div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:16px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts">2 480</div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">Moi</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">Hub2gether</div></div></div><div class="lb-pts">2 315</div><div class="lb-matches">124</div></div></div></div></div></div></div></section>
+<section class="replace-stack" id="replace"><div class="section-inner" style="text-align:center"><div class="section-tag" style="margin:0 auto 20px"><div class="tag-dot"></div>Tout-en-un</div><h2 class="section-title" style="margin:0 auto">Hub2gether remplace vos <em>outils dispersés</em> en une seule app.</h2><p class="section-desc" style="margin:20px auto 0">Ajoutez vos PNG logos dans <code>assets/</code> : la scène est prête avec des liaisons animées vers Hub2gether.</p><div class="replace-visual reveal"><div class="replace-center">H2</div><div class="replace-side left"><div class="app-node"><img src="assets/logo-app-1.png" alt="Logo app 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><span style="display:none;">PNG 1</span></div><div class="app-node"><img src="assets/logo-app-2.png" alt="Logo app 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><span style="display:none;">PNG 2</span></div><div class="app-node"><img src="assets/logo-app-3.png" alt="Logo app 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><span style="display:none;">PNG 3</span></div></div><div class="replace-side right"><div class="app-node"><img src="assets/logo-app-4.png" alt="Logo app 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><span style="display:none;">PNG 4</span></div><div class="app-node"><img src="assets/logo-app-5.png" alt="Logo app 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><span style="display:none;">PNG 5</span></div><div class="app-node"><img src="assets/logo-app-6.png" alt="Logo app 6" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><span style="display:none;">PNG 6</span></div></div><svg class="replace-lines" viewBox="0 0 1000 360" preserveAspectRatio="none"><defs><linearGradient id="lineGradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#465BFF"/><stop offset="55%" stop-color="#A8B5FF"/><stop offset="100%" stop-color="#50E89D"/></linearGradient></defs><path d="M80,40 C280,40 360,160 500,180"/><path d="M80,180 C280,180 360,180 500,180"/><path d="M80,320 C280,320 360,200 500,180"/><path d="M920,40 C720,40 640,160 500,180"/><path d="M920,180 C720,180 640,180 500,180"/><path d="M920,320 C720,320 640,200 500,180"/></svg></div></div></section>
 
-<section><div class="section-inner"><div class="split reveal"><div><div class="section-tag" style="background:var(--green-light);color:var(--green)"><div class="tag-dot" style="background:var(--green)"></div>Finance</div><h2 class="section-title">Fini les relances. Les paiements se font <em>automatiquement.</em></h2><p class="section-desc">Chaque joueur paie sa quote-part sans échange d'informations sensibles.</p></div><div><div class="expense-card"><div class="expense-header"><div class="expense-title">Expense Tracker</div><div class="expense-event">Match Padel · 12 Juin</div></div><div class="expense-total"><div class="expense-icon">💳</div><div><div class="expense-amount">€60.00</div><div class="expense-by">Payé par David King</div></div></div><div class="expense-list"><div class="expense-row"><div class="expense-avatar">MS</div><div class="expense-name">Marc S.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-paid">PAYÉ</span></div><div class="expense-row"><div class="expense-avatar">JL</div><div class="expense-name">Julia L.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-pending">EN ATTENTE</span></div><div class="expense-row"><div class="expense-avatar you">Moi</div><div class="expense-name">Vous</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-reimburse">REMBOURSER</span></div></div></div></div></div></div></section>
+<section id="how" style="background:var(--grey-50)"><div class="section-inner" style="text-align:center"><div class="section-tag" style="margin:0 auto 20px"><div class="tag-dot"></div>Comment ça marche</div><h2 class="section-title" style="margin:0 auto">Mise en place en <em>4 étapes validées.</em></h2><p class="section-desc" style="margin:20px auto 0">Au scroll, chaque étape se valide visuellement pour montrer l’avancement de déploiement.</p><div class="steps-row reveal" id="implementationTimeline"><div class="timeline-progress" id="timelineProgress"></div><div class="step-item left"><div class="step-num-wrap">✓</div><div class="step-name">1. L'entreprise s'inscrit</div><div class="step-desc">Création de l'espace et des paramètres RH.</div></div><div class="step-item right"><div class="step-num-wrap">✓</div><div class="step-name">2. Les collaborateurs rejoignent</div><div class="step-desc">Invitation simple par lien ou email.</div></div><div class="step-item left"><div class="step-num-wrap">✓</div><div class="step-name">3. Les premiers matchs démarrent</div><div class="step-desc">Matchmaking, tournois et classements activés.</div></div><div class="step-item right"><div class="step-num-wrap">✓</div><div class="step-name">4. Le pilotage RH est en place</div><div class="step-desc">Suivi de l’engagement et des résultats en continu.</div></div></div></div></section>
 
 <section class="pricing-scroll-section" id="tarifs">
   <div class="pricing-sticky-wrap">
@@ -669,8 +694,6 @@
     </div>
   </div>
 </section>
-
-<section id="how" style="background:var(--grey-50)"><div class="section-inner" style="text-align:center"><div class="section-tag" style="margin:0 auto 20px"><div class="tag-dot"></div>Comment ça marche</div><h2 class="section-title" style="margin:0 auto">Opérationnel en <em>moins d'une heure.</em></h2><p class="section-desc" style="margin:20px auto 0">Pas d'intégration complexe. Vos collaborateurs créent leur compte et commencent à jouer.</p><div class="steps-row reveal"><div class="step-item"><div class="step-num-wrap">1</div><div class="step-name">L'entreprise s'inscrit</div><div class="step-desc">Créez votre espace entreprise.</div></div><div class="step-item"><div class="step-num-wrap">2</div><div class="step-name">Les collaborateurs rejoignent</div><div class="step-desc">Un lien suffit.</div></div><div class="step-item"><div class="step-num-wrap">3</div><div class="step-name">Jouez & compétissez</div><div class="step-desc">Matchs et tournois.</div></div><div class="step-item"><div class="step-num-wrap">4</div><div class="step-name">Suivez les résultats</div><div class="step-desc">ROI et stats en temps réel.</div></div></div></div></section>
 
 <section class="cta-section"><p style="font-size:13px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.15em;margin-bottom:24px">Prêt à lancer le sport dans votre entreprise ?</p><h2 class="cta-title">Rejoignez les entreprises qui <em>gagnent</em> sur tous les terrains.</h2><p class="cta-sub">Démo gratuite, onboarding accompagné, premier tournoi organisé avec vous.</p><div class="cta-buttons"><button class="btn-cta">Demander une démo →</button><button class="btn-cta-outline">Voir les tarifs</button></div></section>
 <footer><div class="footer-inner"><div class="footer-logo"><img class="brand-logo-img footer" src="assets/logo-hub2gether.png" alt="Logo Hub2gether" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"/><span class="brand-mark" aria-hidden="true" style="display:none;">H<span>2</span></span> Hub2gether</div><div class="footer-links"><a href="#">Produit</a><a href="#tarifs">Tarifs</a><a href="#">À propos</a><a href="#">Blog</a><a href="#">Contact</a></div><div class="footer-copy">© 2026 Hub2gether. Tous droits réservés.</div></div></footer>
@@ -709,40 +732,82 @@
   });
 
 
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  function parseRollFormat(text) {
+    const m = text.trim().match(/^([^\d-+]*)([-+]?\d[\d\s.,]*)([^\d]*)$/);
+    if (!m) return null;
+    const prefix = m[1] || '';
+    const raw = m[2] || '';
+    const suffix = m[3] || '';
+    const clean = raw.replace(/\s/g, '').replace(',', '.');
+    const target = Number(clean);
+    if (!Number.isFinite(target)) return null;
+    return { prefix, suffix, target, decimals: clean.includes('.') ? (clean.split('.')[1] || '').length : 0, grouping: /\s/.test(raw) };
+  }
+
+  function formatRollValue(value, decimals, grouping) {
+    const fixed = value.toFixed(decimals);
+    const parts = fixed.split('.');
+    let intPart = parts[0];
+    if (grouping) intPart = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return decimals > 0 ? `${intPart}.${parts[1]}` : intPart;
+  }
+
+  const rollObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       const el = entry.target;
       if (!entry.isIntersecting) {
         el.dataset.done = '0';
+        const resetFormat = parseRollFormat(el.dataset.finalText || el.textContent);
+        if (resetFormat) {
+          const startValue = Number(el.dataset.start || 0);
+          el.textContent = `${resetFormat.prefix}${formatRollValue(startValue, resetFormat.decimals, resetFormat.grouping)}${resetFormat.suffix}`;
+        }
         return;
       }
       if (el.dataset.done === '1') return;
-      const target = Number(el.dataset.target || 0);
-      const prefix = el.dataset.prefix || '';
-      const suffix = el.dataset.suffix || '';
+      const format = parseRollFormat(el.dataset.finalText || el.textContent);
+      if (!format) {
+        el.dataset.done = '1';
+        return;
+      }
       const startValue = Number(el.dataset.start || 0);
       const duration = 1300;
       const start = performance.now();
-      el.classList.add("rolling");
+      el.classList.add('rolling');
       const step = (now) => {
         const p = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - p, 3);
-        const value = Math.round(startValue + (target - startValue) * eased);
-        el.textContent = `${prefix}${value}${suffix}`;
-        if (p < 1) {
-          requestAnimationFrame(step);
-        } else {
-          el.classList.remove("rolling");
-        }
+        const value = startValue + (format.target - startValue) * eased;
+        el.textContent = `${format.prefix}${formatRollValue(value, format.decimals, format.grouping)}${format.suffix}`;
+        if (p < 1) requestAnimationFrame(step);
+        else el.classList.remove('rolling');
       };
       requestAnimationFrame(step);
       el.dataset.done = '1';
     });
   }, { threshold: 0.35 });
 
-  document.querySelectorAll('.counter').forEach(el => {
+  const rollingSelectors = '.counter, .stat-num, .psi-num, .price-value, .pstat-num, .lb-pts, .lb-matches, .expense-amount, .expense-amount-small';
+  document.querySelectorAll(rollingSelectors).forEach((el) => {
+    const plain = el.textContent.trim();
+    if (!plain) return;
+    el.dataset.finalText = plain;
     el.dataset.done = '0';
-    counterObserver.observe(el);
+    rollObserver.observe(el);
+  });
+
+  document.querySelectorAll('.section-tag, .psi-title, .psi-desc, .step-name, .step-desc, .hero-badge').forEach((el) => {
+    if (el.children.length) return;
+    const chars = [...el.textContent];
+    el.classList.add('text-anim');
+    el.textContent = '';
+    chars.forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.style.setProperty('--i', i);
+      span.textContent = ch === ' ' ? ' ' : ch;
+      el.appendChild(span);
+    });
   });
 
 
@@ -758,12 +823,21 @@
     if (!outer || !N) return;
 
     let last = -1;
+    let snapTimer = null;
+    let isSnapping = false;
+
+    function getExploreMetrics() {
+      const stickyOffset = 72;
+      const stickyHeight = window.innerHeight - stickyOffset;
+      const sectionTop = outer.getBoundingClientRect().top + window.scrollY;
+      const scrollable = Math.max(1, outer.offsetHeight - stickyHeight);
+      const p = Math.max(0, Math.min(1, (window.scrollY - (sectionTop - stickyOffset)) / scrollable));
+      return { p, scrollable, sectionTop, stickyOffset };
+    }
 
     function updateExploreCarousel() {
       if (window.innerWidth <= 1100) return;
-      const rect = outer.getBoundingClientRect();
-      const scrollable = outer.offsetHeight - window.innerHeight;
-      const p = Math.max(0, Math.min(1, -rect.top / scrollable));
+      const { p } = getExploreMetrics();
 
       const sw = track.querySelector('.pslide')?.offsetWidth || 0;
       const gap = 28;
@@ -778,17 +852,31 @@
       }
     }
 
-    window.addEventListener('scroll', updateExploreCarousel, { passive: true });
+    function snapToNearestSlide() {
+      if (window.innerWidth <= 1100 || isSnapping) return;
+      const { p, scrollable, sectionTop, stickyOffset } = getExploreMetrics();
+      if (p <= 0 || p >= 1) return;
+      const idx = Math.round(p * (N - 1));
+      const targetTop = sectionTop - stickyOffset + (idx / (N - 1)) * scrollable;
+      isSnapping = true;
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+      setTimeout(() => { isSnapping = false; }, 360);
+    }
+
+    window.addEventListener('scroll', () => {
+      updateExploreCarousel();
+      if (snapTimer) clearTimeout(snapTimer);
+      snapTimer = setTimeout(snapToNearestSlide, 120);
+    }, { passive: true });
     window.addEventListener('resize', updateExploreCarousel);
     updateExploreCarousel();
 
     navBtns.forEach((btn, i) => {
       btn.addEventListener('click', () => {
         if (window.innerWidth <= 1100) return;
-        const top = outer.getBoundingClientRect().top + window.scrollY;
-        const scrollable = outer.offsetHeight - window.innerHeight;
+        const { scrollable, sectionTop, stickyOffset } = getExploreMetrics();
         window.scrollTo({
-          top: top + (i / (N - 1)) * scrollable,
+          top: sectionTop - stickyOffset + (i / (N - 1)) * scrollable,
           behavior: 'smooth'
         });
       });
@@ -858,19 +946,6 @@
   window.addEventListener('scroll', updatePricingScroll, { passive: true });
   window.addEventListener('resize', updatePricingScroll);
 
-  const impactTabs = document.querySelectorAll('.impact-tab');
-  const impactPanels = document.querySelectorAll('.impact-panel');
-  impactTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      impactTabs.forEach((item) => item.classList.remove('active'));
-      tab.classList.add('active');
-      const key = tab.dataset.impact;
-      impactPanels.forEach((panel) => {
-        panel.classList.toggle('active', panel.dataset.impactPanel === key);
-      });
-    });
-  });
-
   const tiltCards = document.querySelectorAll('.stat-card, .impact-pill, .feature-tile');
   tiltCards.forEach((card) => {
     card.addEventListener('mousemove', (e) => {
@@ -883,6 +958,40 @@
       card.style.transform = '';
     });
   });
+
+  const timeline = document.querySelector('#implementationTimeline');
+  const timelineProgress = document.querySelector('#timelineProgress');
+  if (timeline && timelineProgress) {
+    const timelineSteps = timeline.querySelectorAll('.step-item');
+    const updateTimeline = () => {
+      const rowRect = timeline.getBoundingClientRect();
+      const pivot = window.innerHeight * 0.45;
+      let lastDone = -1;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+      timelineSteps.forEach((step, i) => {
+        const stepRect = step.getBoundingClientRect();
+        const center = stepRect.top + stepRect.height / 2;
+        const done = stepRect.top <= pivot;
+        step.classList.toggle('done', done);
+        const dist = Math.abs(center - pivot);
+        if (dist < closestDistance) { closestDistance = dist; closestIndex = i; }
+        if (done) lastDone = i;
+      });
+      timelineSteps.forEach((step, i) => step.classList.toggle('current', i === closestIndex));
+      if (lastDone < 0) {
+        timelineProgress.style.height = '0px';
+      } else {
+        const targetStep = timelineSteps[lastDone];
+        const marker = targetStep.querySelector('.step-num-wrap').getBoundingClientRect();
+        const height = Math.max(0, marker.top + marker.height / 2 - rowRect.top - 10);
+        timelineProgress.style.height = `${height}px`;
+      }
+    };
+    updateTimeline();
+    window.addEventListener('scroll', updateTimeline, { passive: true });
+    window.addEventListener('resize', updateTimeline);
+  }
 
   const demoOpeners = document.querySelectorAll('[data-open-demo]');
 
