@@ -443,13 +443,28 @@
   }
   .explore-carousel .prev-outer { position: relative; height: calc(6 * 100vh); background: #fff; }
   .explore-carousel .prev-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; grid-template-columns: 320px 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
-  .explore-carousel .prev-side { border-right: 1px solid var(--border); padding: 40px 28px; display: flex; flex-direction: column; background: var(--bg); }
-  .explore-carousel .prev-side-title { font-family: var(--font-display); font-size: 32px; line-height: 1.05; font-weight: 800; margin: 0 0 8px; }
+  .explore-carousel .prev-side {
+    border-right: 1px solid var(--border);
+    padding: 40px 26px;
+    display: flex;
+    flex-direction: column;
+    background:
+      radial-gradient(circle at 15% 15%, rgba(110,232,168,.18), transparent 45%),
+      radial-gradient(circle at 100% 0%, rgba(60,202,126,.12), transparent 48%),
+      var(--bg);
+  }
+  .explore-carousel .prev-side-title { font-family: var(--font-display); font-size: 34px; line-height: 1.03; font-weight: 800; margin: 0 0 10px; letter-spacing: -.02em; }
   .explore-carousel .prev-side-hint { font-size: 12px; color: var(--muted); margin: 0 0 28px; }
   .explore-carousel .prev-nav-items { display: flex; flex-direction: column; gap: 8px; margin-bottom: auto; }
-  .explore-carousel .pni { display: flex; align-items: center; gap: 12px; padding: 12px 13px; border: 1px solid #dfe7e3; border-radius: 13px; background: #fff; color: rgba(16,24,20,.7); font-weight: 700; cursor: pointer; transition: all .2s ease; }
-  .explore-carousel .pni:hover { background: rgba(60,202,126,.08); color: var(--text); }
-  .explore-carousel .pni.on { background: rgba(60,202,126,.12); border-color: rgba(60,202,126,.3); color: var(--text); box-shadow: 0 10px 20px rgba(32,110,72,.14); }
+  .explore-carousel .pni {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 14px; border: 1px solid #d8e3de; border-radius: 14px;
+    background: rgba(255,255,255,.86); color: rgba(16,24,20,.72); font-weight: 700;
+    cursor: pointer; transition: all .22s ease;
+    box-shadow: 0 4px 10px rgba(16,24,20,.05);
+  }
+  .explore-carousel .pni:hover { background: rgba(60,202,126,.08); color: var(--text); border-color: rgba(60,202,126,.28); transform: translateY(-1px); }
+  .explore-carousel .pni.on { background: linear-gradient(135deg, rgba(110,232,168,.2), rgba(60,202,126,.1)); border-color: rgba(60,202,126,.38); color: var(--text); box-shadow: 0 12px 24px rgba(32,110,72,.16); }
   .explore-carousel .pni-num { color: var(--g2); font-size: 11px; font-weight: 800; width: 20px; }
   .explore-carousel .prev-prog { height: 4px; border-radius: 999px; background: rgba(16,24,20,.08); margin-top: 20px; overflow: hidden; }
   .explore-carousel .prev-prog-f { height: 100%; width: 0; background: linear-gradient(90deg, var(--g2), var(--g)); transition: width .1s linear; }
@@ -457,7 +472,20 @@
   .explore-carousel .prev-track { display: flex; gap: 28px; width: max-content; will-change: transform; transition: transform .08s linear; }
   .explore-carousel .pslide { width: min(760px, 68vw); display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center; opacity: .2; transform: scale(.92) translateY(20px); transition: opacity .5s var(--fast), transform .55s var(--fast); }
   .explore-carousel .pslide.active { opacity: 1; transform: scale(1) translateY(0); }
-  .explore-carousel .pslide-frame { position: relative; min-height: 380px; border-radius: 22px; border: 1px solid var(--border); background: var(--card); overflow: hidden; box-shadow: 0 24px 60px rgba(16,24,20,.08); display: flex; align-items: center; justify-content: center; }
+  .explore-carousel .pslide-frame {
+    position: relative; min-height: 380px; border-radius: 22px; border: 1px solid var(--border); background: var(--card); overflow: hidden;
+    box-shadow: 0 26px 60px rgba(16,24,20,.14), 0 8px 24px rgba(16,24,20,.08), 0 0 0 1px rgba(255,255,255,.38);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .explore-carousel .pslide-frame::after {
+    content: "";
+    position: absolute;
+    inset: auto 12% -26px;
+    height: 36px;
+    background: radial-gradient(ellipse at center, rgba(16,24,20,.28), rgba(16,24,20,0) 70%);
+    filter: blur(10px);
+    pointer-events: none;
+  }
   .explore-carousel .preview-screen { width: 100%; height: 100%; display: grid; place-items: center; color: #456; font-weight: 700; background: linear-gradient(135deg, #fff, #f1faf5); }
   .explore-carousel .preview-screen img { width: 100%; height: 100%; object-fit: cover; display:block; }
   .explore-carousel .preview-fallback { text-align:center; color:#4b5a53; font-weight:700; line-height:1.5; padding: 18px; }
