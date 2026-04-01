@@ -265,13 +265,13 @@
   .market-section .section-title em { color: var(--yellow); }
   .market-section .section-desc { color: rgba(255,255,255,0.6); }
   .market-section .section-inner { max-width: 1200px; text-align: center; }
-  .market-section .section-title { margin: 0 auto; max-width: 980px; font-size: clamp(52px, 6vw, 80px); }
-  .market-section .section-desc { margin: 24px auto 0; max-width: 900px; font-size: clamp(26px, 3vw, 44px); line-height: 1.35; color: rgba(255,255,255,0.56); }
+  .market-section .section-title { margin: 0 auto; max-width: 900px; font-size: clamp(40px, 4.8vw, 62px); }
+  .market-section .section-desc { margin: 20px auto 0; max-width: 860px; font-size: clamp(18px, 2.1vw, 30px); line-height: 1.45; color: rgba(255,255,255,0.56); }
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 60px; }
-  .stat-card { border: 1px solid rgba(255,255,255,0.14); border-radius: 38px; padding: 36px 44px; background: rgba(255,255,255,0.08); backdrop-filter: blur(3px); transition: transform .2s ease, box-shadow .2s ease; text-align: left; min-height: 320px; }
+  .stat-card { border: 1px solid rgba(255,255,255,0.14); border-radius: 30px; padding: 28px 30px; background: rgba(255,255,255,0.08); backdrop-filter: blur(3px); transition: transform .2s ease, box-shadow .2s ease; text-align: left; min-height: 250px; }
   .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(0,0,0,0.2); }
   .stat-label { font-size: 15px; letter-spacing: .12em; font-weight: 700; color: #7FE3BF; margin-bottom: 18px; }
-  .stat-num { font-family: var(--font-display); font-size: clamp(64px, 7vw, 86px); font-weight: 800; color: var(--yellow); margin-bottom: 10px; line-height: .95; }
+  .stat-num { font-family: var(--font-display); font-size: clamp(48px, 5.2vw, 70px); font-weight: 800; color: var(--yellow); margin-bottom: 8px; line-height: .95; }
   .stat-num span { color: var(--blue-mid); }
   .stat-desc { font-size: 15px; color: rgba(255,255,255,0.56); line-height: 1.45; }
   .market-quote { margin-top: 60px; padding: 40px; border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); background: rgba(255,255,255,0.06); }
@@ -501,6 +501,13 @@
   }
   .explore-carousel .preview-screen { width: 100%; height: 100%; display: grid; place-items: center; color: #456; font-weight: 700; background: linear-gradient(135deg, #fff, #f1faf5); }
   .explore-carousel .preview-screen img { width: 100%; height: 100%; object-fit: cover; display:block; }
+  .explore-carousel .preview-screen.widget { display:block; padding: 16px; overflow:auto; }
+  .explore-carousel .preview-screen.widget .feat-card,
+  .explore-carousel .preview-screen.widget .profile-card,
+  .explore-carousel .preview-screen.widget .expense-card { box-shadow:none; border:1px solid rgba(16,24,20,.12); }
+  .explore-carousel .preview-screen.widget .feat-card-body { padding: 14px; }
+  .explore-carousel .preview-screen.widget .profile-chart { margin-top: 10px; }
+  .explore-carousel .preview-screen.widget .lb-row { padding: 8px 0; }
   .explore-carousel .preview-fallback { text-align:center; color:#4b5a53; font-weight:700; line-height:1.5; padding: 18px; }
   .explore-carousel .pslide-info .psi-num { font-size: 64px; font-weight: 900; line-height: .9; color: rgba(16,24,20,.12); margin: 0; font-family: var(--font-display); }
   .explore-carousel .psi-label { margin-top: 6px; font-size: 12px; text-transform: uppercase; color: var(--g2); font-weight: 800; letter-spacing: .1em; }
@@ -518,10 +525,11 @@
     .split.reverse { direction: ltr; }
     .features-grid { grid-template-columns: 1fr 1fr; }
     .stats-grid { grid-template-columns: 1fr; gap: 16px; }
-    .market-section .section-desc { font-size: 26px; }
-    .stat-card { min-height: auto; padding: 28px; border-radius: 28px; }
+    .market-section .section-title { font-size: 42px; }
+    .market-section .section-desc { font-size: 20px; }
+    .stat-card { min-height: auto; padding: 22px; border-radius: 22px; }
     .stat-label { font-size: 16px; }
-    .stat-num { font-size: 64px; }
+    .stat-num { font-size: 52px; }
     .stat-desc { font-size: 14px; }
     .steps-row { grid-template-columns: 1fr 1fr; }
     .impact-list { grid-template-columns: 1fr; }
@@ -585,47 +593,40 @@
         <p class="prev-side-hint">↓ Scrollez pour naviguer</p>
         <div class="prev-nav-items" id="prevNav">
           <button class="pni on" data-pi="0"><span class="pni-num">01</span><span>Dashboard RH</span></button>
-          <button class="pni" data-pi="1"><span class="pni-num">02</span><span>Tournois</span></button>
-          <button class="pni" data-pi="2"><span class="pni-num">03</span><span>Paiements</span></button>
-          <button class="pni" data-pi="3"><span class="pni-num">04</span><span>Partenaires</span></button>
-          <button class="pni" data-pi="4"><span class="pni-num">05</span><span>Votre capture</span></button>
+          <button class="pni" data-pi="1"><span class="pni-num">02</span><span>Matchmaking</span></button>
+          <button class="pni" data-pi="2"><span class="pni-num">03</span><span>Profil</span></button>
+          <button class="pni" data-pi="3"><span class="pni-num">04</span><span>Paiements</span></button>
+          <button class="pni" data-pi="4"><span class="pni-num">05</span><span>Classements</span></button>
         </div>
         <div class="prev-prog"><div class="prev-prog-f" id="prevProgF"></div></div>
       </aside>
       <div class="prev-slides">
         <div class="prev-track" id="prevTrack">
           <article class="pslide active">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-rh.png" alt="Dashboard RH" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-rh.png</div></div></div>
-            <div class="pslide-info"><p class="psi-num">01</p><div class="psi-label">Dashboard</div><h3 class="psi-title">Vue globale en temps réel</h3><p class="psi-desc">KPIs RH, engagement des salariés et activité équipe.</p></div>
+            <div class="pslide-frame"><div class="preview-screen widget"><div class="hub-wrap" style="width:100%;height:100%;"><div class="hub-head"><div class="hub-company">Hub2gether RH</div><div class="hub-modes"><button class="hub-tab active">KPIs</button><button class="hub-tab">Engagement</button></div></div><div class="hub-grid"><div class="hub-panel"><strong style="font-size:28px;color:#1b4ef0;">+31%</strong><small>Participation</small><div class="hub-bars"><span style="height:35%"></span><span style="height:42%"></span><span style="height:51%"></span><span style="height:64%"></span><span style="height:58%"></span><span style="height:72%"></span></div></div><div class="hub-panel hub-side"><div class="badge"><span>Absentéisme</span><strong style="color:#3cca7e;">-24%</strong></div><div class="badge"><span>Actifs</span><strong>2 400+</strong></div></div></div></div></div></div>
+            <div class="pslide-info"><p class="psi-num">01</p><div class="psi-label">Dashboard RH</div><h3 class="psi-title">Pilotage en temps réel</h3><p class="psi-desc">KPIs engagement et activité entreprise dans un seul écran.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-tournois.png" alt="Tournois" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-tournois.png</div></div></div>
-            <div class="pslide-info"><p class="psi-num">02</p><div class="psi-label">Tournois</div><h3 class="psi-title">Compétitions inter-équipes</h3><p class="psi-desc">Brackets, rounds automatiques et finales en interne.</p></div>
+            <div class="pslide-frame"><div class="preview-screen widget"><div class="feat-card"><div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div><div class="feat-card-body"><div class="match-list"><div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · 18h30</div></div></div><div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · 12h</div></div></div></div><button class="join-btn">Rejoindre le match ↗</button></div></div></div></div>
+            <div class="pslide-info"><p class="psi-num">02</p><div class="psi-label">Matchmaking</div><h3 class="psi-title">Partenaires trouvés en 30s</h3><p class="psi-desc">Des matchs proposés selon le sport, le niveau et la dispo.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-paiements.png" alt="Paiements" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-paiements.png</div></div></div>
-            <div class="pslide-info"><p class="psi-num">03</p><div class="psi-label">Paiements</div><h3 class="psi-title">Collecte sans friction</h3><p class="psi-desc">Quotes-parts, remboursements et suivi simplifié.</p></div>
+            <div class="pslide-frame"><div class="preview-screen widget"><div class="profile-card"><div class="profile-top"><div class="profile-pic">SM</div><div><div class="profile-name">Sarah Miller</div><div class="profile-role">Product Designer</div><div class="profile-level">Niveau 12 · Saison 3</div></div></div><div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)">42</div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)">76%</div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div></div></div></div>
+            <div class="pslide-info"><p class="psi-num">03</p><div class="psi-label">Profil</div><h3 class="psi-title">Progression des joueurs</h3><p class="psi-desc">Profil, stats et classement pour suivre la dynamique sportive.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-partenaires.png" alt="Partenaires" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-partenaires.png</div></div></div>
-            <div class="pslide-info"><p class="psi-num">04</p><div class="psi-label">Partenaires</div><h3 class="psi-title">Réseau exclusif de terrains</h3><p class="psi-desc">Tarifs négociés et accès simplifié à vos infrastructures.</p></div>
+            <div class="pslide-frame"><div class="preview-screen widget"><div class="expense-card"><div class="expense-header"><div class="expense-title">Expense Tracker</div><div class="expense-event">Match Padel · 12 Juin</div></div><div class="expense-total"><div class="expense-icon">💳</div><div><div class="expense-amount">€60.00</div><div class="expense-by">Payé par David King</div></div></div><div class="expense-list"><div class="expense-row"><div class="expense-avatar">MS</div><div class="expense-name">Marc S.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-paid">PAYÉ</span></div><div class="expense-row"><div class="expense-avatar">JL</div><div class="expense-name">Julia L.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-pending">EN ATTENTE</span></div></div></div></div></div>
+            <div class="pslide-info"><p class="psi-num">04</p><div class="psi-label">Paiements</div><h3 class="psi-title">Collecte sans relance</h3><p class="psi-desc">Suivi automatique des quotes-parts et statuts de paiement.</p></div>
           </article>
           <article class="pslide">
-            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-custom.png" alt="Votre capture" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-custom.png</div></div></div>
-            <div class="pslide-info"><p class="psi-num">05</p><div class="psi-label">Votre capture</div><h3 class="psi-title">Vos propres screenshots</h3><p class="psi-desc">Remplacez ce visuel par votre meilleur écran produit.</p></div>
+            <div class="pslide-frame"><div class="preview-screen widget"><div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:14px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts">2 480</div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">SM</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">Hub2gether</div></div></div><div class="lb-pts">2 315</div><div class="lb-matches">124</div></div></div></div></div></div>
+            <div class="pslide-info"><p class="psi-num">05</p><div class="psi-label">Classements</div><h3 class="psi-title">Challenge inter-équipes</h3><p class="psi-desc">Des rankings vivants pour stimuler la participation.</p></div>
           </article>
-        </div>
+        </div></div>
       </div>
     </div>
   </div>
 </section>
-
-<section id="joueurs"><div class="section-inner"><div class="split reveal"><div><div class="section-tag"><div class="tag-dot"></div>Matchmaking</div><h2 class="section-title">Trouvez des partenaires de jeu <em>en 30 secondes.</em></h2><p class="section-desc">Filtrez par sport, niveau, disponibilité ou entreprise.</p></div><div><div class="feat-card"><div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div><div class="feat-card-body"><div class="match-list"><div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · Aujourd'hui 18h30</div></div><div class="player-meta"><div class="player-price">€12.50</div><div class="player-place">UrbanPadel Paris</div></div></div><div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · Demain 12h</div></div><div class="player-meta"><div class="player-price" style="color:var(--green)">Gratuit</div><div class="player-place">HQ Gym</div></div></div></div><button class="join-btn">Rejoindre le match ↗</button></div></div></div></div></div></section>
-
-<section style="background:var(--grey-50)"><div class="section-inner"><div class="split reverse reveal"><div><div class="section-tag"><div class="tag-dot"></div>Profil & Classement</div><h2 class="section-title">Votre profil sportif, <em>vos stats, votre progression.</em></h2><p class="section-desc">Historique de matchs, niveau et classement individuel/entreprise.</p></div><div style="display:flex;flex-direction:column;gap:16px"><div class="profile-card"><div class="profile-top"><div class="profile-pic">SM</div><div><div class="profile-name">Sarah Miller</div><div class="profile-role">Product Designer @ Hub2gether</div><div class="profile-level">Niveau 12 · Saison 3</div></div></div><div class="profile-stats"><div class="pstat"><div class="pstat-num" style="color:var(--blue)"><span class="counter" data-target="42">0</span></div><div class="pstat-label">Matchs</div></div><div class="pstat"><div class="pstat-num" style="color:var(--green)"><span class="counter" data-target="76" data-suffix="%">0%</span></div><div class="pstat-label">Victoires</div></div><div class="pstat"><div class="pstat-num" style="color:var(--orange)">#3</div><div class="pstat-label">Classement</div></div></div><div class="profile-chart"><div class="chart-label">Performance curve — 6 derniers mois</div><div class="mini-chart"><svg viewBox="0 0 300 72" preserveAspectRatio="none"><path d="M0,60 C30,55 50,45 80,40 C110,35 120,42 150,32 C180,22 210,28 240,15 C265,5 280,8 300,12" fill="none" stroke="var(--blue)" stroke-width="2"/></svg></div><div class="sport-tags"><span class="sport-tag">🎾 Tennis</span><span class="sport-tag">⚽ Football</span><span class="sport-tag">🏃 Running</span></div></div></div>
-<div class="feat-card"><div class="feat-card-header"><div class="feat-card-title">Classement global</div><div class="lb-tabs" style="margin:0"><button class="lb-tab active">Joueurs</button><button class="lb-tab">Entreprises</button></div></div><div class="feat-card-body" style="padding:16px"><div class="lb-thead"><span>Rang</span><span>Joueur</span><span>Points</span><span>Matchs</span></div><div class="lb-row"><div class="lb-rank gold">01</div><div class="lb-player"><div class="lb-avatar" style="background:#1E5EFF">TR</div><div><div class="lb-name">Thomas R.</div><div class="lb-company">Google</div></div></div><div class="lb-pts">2 480</div><div class="lb-matches">156</div></div><div class="lb-row you"><div class="lb-rank silver">02</div><div class="lb-player"><div class="lb-avatar" style="background:#8B5CF6">Moi</div><div><div class="lb-name">Sarah M.</div><div class="lb-company">Hub2gether</div></div></div><div class="lb-pts">2 315</div><div class="lb-matches">124</div></div></div></div></div></div></div></section>
-
-<section><div class="section-inner"><div class="split reveal"><div><div class="section-tag" style="background:var(--green-light);color:var(--green)"><div class="tag-dot" style="background:var(--green)"></div>Finance</div><h2 class="section-title">Fini les relances. Les paiements se font <em>automatiquement.</em></h2><p class="section-desc">Chaque joueur paie sa quote-part sans échange d'informations sensibles.</p></div><div><div class="expense-card"><div class="expense-header"><div class="expense-title">Expense Tracker</div><div class="expense-event">Match Padel · 12 Juin</div></div><div class="expense-total"><div class="expense-icon">💳</div><div><div class="expense-amount">€60.00</div><div class="expense-by">Payé par David King</div></div></div><div class="expense-list"><div class="expense-row"><div class="expense-avatar">MS</div><div class="expense-name">Marc S.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-paid">PAYÉ</span></div><div class="expense-row"><div class="expense-avatar">JL</div><div class="expense-name">Julia L.</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-pending">EN ATTENTE</span></div><div class="expense-row"><div class="expense-avatar you">Moi</div><div class="expense-name">Vous</div><div class="expense-amount-small">€15.00</div><span class="status-pill s-reimburse">REMBOURSER</span></div></div></div></div></div></div></section>
 
 <section class="pricing-scroll-section" id="tarifs">
   <div class="pricing-sticky-wrap">
