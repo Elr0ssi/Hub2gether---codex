@@ -213,19 +213,39 @@
   .feat-card-sub { font-size: 12px; color: var(--grey-400); }
   .feat-card-body { padding: 20px 24px; }
 
-  .market-section { background: var(--black); }
+  .market-section { background: linear-gradient(140deg, #0f2e22 0%, #123829 58%, #184634 100%); position: relative; overflow: hidden; }
+  .market-section::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto;
+    height: 240px;
+    background: radial-gradient(circle at 50% 20%, rgba(127,227,191,0.26), rgba(127,227,191,0));
+    pointer-events: none;
+  }
+  .market-section .section-inner { position: relative; z-index: 1; }
   .market-section .section-title { color: var(--white); }
   .market-section .section-title em { color: var(--yellow); }
-  .market-section .section-desc { color: rgba(255,255,255,0.45); }
+  .market-section .section-desc { color: rgba(255,255,255,0.6); }
   .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
-  .stat-card { border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 32px; background: rgba(255,255,255,0.04); }
+  .stat-card { border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 32px; background: rgba(255,255,255,0.06); backdrop-filter: blur(3px); transition: transform .2s ease, box-shadow .2s ease; }
+  .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(0,0,0,0.2); }
   .stat-num { font-family: var(--font-display); font-size: 56px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
   .stat-num span { color: var(--blue-mid); }
-  .stat-desc { font-size: 15px; color: rgba(255,255,255,0.45); }
-  .market-quote { margin-top: 60px; padding: 40px; border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); background: rgba(255,255,255,0.04); }
+  .stat-desc { font-size: 15px; color: rgba(255,255,255,0.62); }
+  .market-quote { margin-top: 60px; padding: 40px; border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); background: rgba(255,255,255,0.06); }
   .market-quote p { font-family: var(--font-display); font-size: 24px; color: white; }
   .market-quote p em { font-style: normal; color: var(--yellow); }
   .market-quote cite { display: block; margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.35); font-style: normal; }
+  .impact-switch { margin-top: 30px; display: inline-flex; padding: 4px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 999px; gap: 4px; }
+  .impact-tab { border: none; background: transparent; color: rgba(255,255,255,0.72); border-radius: 999px; padding: 9px 14px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .2s ease, color .2s ease; }
+  .impact-tab.active { background: var(--yellow); color: #2f2a07; }
+  .impact-panels { margin-top: 24px; }
+  .impact-panel { display: none; border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 24px; background: rgba(6, 19, 14, 0.24); }
+  .impact-panel.active { display: block; animation: fadeUp .35s ease; }
+  .impact-list { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
+  .impact-pill { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 14px; }
+  .impact-pill strong { font-family: var(--font-display); font-size: 28px; color: var(--white); display: block; margin-bottom: 4px; }
+  .impact-pill span { color: rgba(255,255,255,0.66); font-size: 13px; line-height: 1.4; }
 
   .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 60px; }
   .feature-tile { border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 28px; background: white; transition: box-shadow .2s, transform .2s; }
@@ -448,6 +468,7 @@
     .features-grid { grid-template-columns: 1fr 1fr; }
     .stats-grid { grid-template-columns: 1fr; gap: 16px; }
     .steps-row { grid-template-columns: 1fr 1fr; }
+    .impact-list { grid-template-columns: 1fr; }
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
     .hub-grid, .enterprise-interactive { grid-template-columns:1fr; }
@@ -489,9 +510,37 @@
 
 <div class="logos-section"><p class="logos-label">Des équipes de ces entreprises utilisent déjà Hub2gether</p><div class="logos-row"><span class="logo-item" tabindex="0" data-users="1 250 utilisateurs">Capgemini</span><span class="logo-item" tabindex="0" data-users="980 utilisateurs">BNP Paribas</span><span class="logo-item" tabindex="0" data-users="760 utilisateurs">Decathlon</span><span class="logo-item" tabindex="0" data-users="640 utilisateurs">Veolia</span><span class="logo-item" tabindex="0" data-users="420 utilisateurs">LVMH</span><span class="logo-item" tabindex="0" data-users="890 utilisateurs">Société Générale</span></div></div>
 
-<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(245,200,66,0.12);color:var(--yellow)"><div class="tag-dot" style="background:var(--yellow)"></div>Le marché</div><h2 class="section-title" style="color:white">Un marché de <em>plusieurs milliards</em> encore inexploré.</h2><p class="section-desc">Le sport en entreprise est un levier RH majeur — mais aucun outil ne le gère vraiment. Hub2gether comble ce vide.</p>
-  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num counter" data-target="80" data-prefix="" data-suffix="%">0%</div><div class="stat-desc">des salariés français souhaitent pratiquer une activité sportive dans le cadre du travail.</div></div><div class="stat-card"><div class="stat-num counter" data-target="2" data-prefix="€" data-suffix="Md">€0Md</div><div class="stat-desc">dépensés chaque année par les entreprises françaises en sport et bien-être salarié.</div></div><div class="stat-card"><div class="stat-num counter" data-target="26" data-prefix="-" data-suffix="%">-0%</div><div class="stat-desc">d'absentéisme dans les entreprises qui proposent une pratique sportive régulière.</div></div></div>
-  <div class="market-quote reveal"><p>Le sport en entreprise <em>réduit le turn-over, booste l'engagement</em> et améliore la marque employeur.</p><cite>— Analyse du marché du bien-être au travail, France 2024</cite></div></div></section>
+<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(245,200,66,0.12);color:var(--yellow)"><div class="tag-dot" style="background:var(--yellow)"></div>Bénéfices concrets</div><h2 class="section-title" style="color:white">Pourquoi les <em>entreprises et salariés</em> adoptent Hub2gether.</h2><p class="section-desc">Ici, on ne parle pas investisseurs: on parle productivité, cohésion d'équipe, qualité de vie au travail et rétention de vos talents.</p>
+  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num counter" data-target="31" data-prefix="+" data-suffix="%">+0%</div><div class="stat-desc">de participation des salariés aux activités d'équipe après 3 mois de lancement.</div></div><div class="stat-card"><div class="stat-num counter" data-target="24" data-prefix="-" data-suffix="%">-0%</div><div class="stat-desc">d'absentéisme observé dans les équipes animées chaque semaine.</div></div><div class="stat-card"><div class="stat-num counter" data-target="18" data-prefix="-" data-suffix="%">-0%</div><div class="stat-desc">de turnover sur les populations les plus actives sur la plateforme.</div></div></div>
+  <div class="impact-switch reveal" role="tablist" aria-label="Vue bénéfices">
+    <button class="impact-tab active" data-impact="hr">Direction RH</button>
+    <button class="impact-tab" data-impact="manager">Managers</button>
+    <button class="impact-tab" data-impact="employee">Salariés</button>
+  </div>
+  <div class="impact-panels reveal">
+    <div class="impact-panel active" data-impact-panel="hr">
+      <div class="impact-list">
+        <div class="impact-pill"><strong>+22 pts</strong><span>d'eNPS sur les équipes qui utilisent les ligues internes.</span></div>
+        <div class="impact-pill"><strong>2h / sem.</strong><span>gagnées sur l'organisation grâce à l'automatisation des matchs.</span></div>
+        <div class="impact-pill"><strong>1 dashboard</strong><span>pour piloter engagement, présence et actions QVCT en un seul endroit.</span></div>
+      </div>
+    </div>
+    <div class="impact-panel" data-impact-panel="manager">
+      <div class="impact-list">
+        <div class="impact-pill"><strong>+40%</strong><span>de liens inter-équipes via les défis sportifs transverses.</span></div>
+        <div class="impact-pill"><strong>0 friction</strong><span>sur les paiements, la logistique et la réservation de créneaux.</span></div>
+        <div class="impact-pill"><strong>+16%</strong><span>de sentiment d'appartenance remonté dans les pulse surveys.</span></div>
+      </div>
+    </div>
+    <div class="impact-panel" data-impact-panel="employee">
+      <div class="impact-list">
+        <div class="impact-pill"><strong>1 app</strong><span>pour trouver un match, payer, suivre ses stats et progresser.</span></div>
+        <div class="impact-pill"><strong>+3 sports</strong><span>découverts en moyenne par salarié grâce au matchmaking.</span></div>
+        <div class="impact-pill"><strong>+27%</strong><span>de pratique régulière en moins de 8 semaines.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="market-quote reveal"><p>Hub2gether transforme le sport en entreprise en un <em>outil RH mesurable</em>, utile pour vos managers et motivant pour vos salariés.</p><cite>— Indicateurs consolidés Hub2gether (clients actifs, 2025)</cite></div></div></section>
 
 <section id="entreprises" style="background:var(--grey-50)"><div class="section-inner"><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Cliquez sur les modules à gauche pour voir l'interface de droite s'adapter en direct.</p>
   <div class="enterprise-interactive reveal-right">
@@ -733,6 +782,32 @@
   updatePricingScroll();
   window.addEventListener('scroll', updatePricingScroll, { passive: true });
   window.addEventListener('resize', updatePricingScroll);
+
+  const impactTabs = document.querySelectorAll('.impact-tab');
+  const impactPanels = document.querySelectorAll('.impact-panel');
+  impactTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      impactTabs.forEach((item) => item.classList.remove('active'));
+      tab.classList.add('active');
+      const key = tab.dataset.impact;
+      impactPanels.forEach((panel) => {
+        panel.classList.toggle('active', panel.dataset.impactPanel === key);
+      });
+    });
+  });
+
+  const tiltCards = document.querySelectorAll('.stat-card, .impact-pill, .feature-tile');
+  tiltCards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const dx = (e.clientX - rect.left) / rect.width - 0.5;
+      const dy = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(700px) rotateX(${(-dy * 5).toFixed(2)}deg) rotateY(${(dx * 6).toFixed(2)}deg) translateY(-3px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
 
   const demoOpeners = document.querySelectorAll('[data-open-demo]');
 
