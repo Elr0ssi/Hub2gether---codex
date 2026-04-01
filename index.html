@@ -468,7 +468,7 @@
     --border: rgba(16,24,20,.12); --card: #fff; --bg: #f7fbf9; --fast: cubic-bezier(.16,1,.3,1);
     font-family: var(--font-body); color: var(--text);
   }
-  .explore-carousel .prev-outer { position: relative; height: calc(6 * 100vh); background: #fff; }
+  .explore-carousel .prev-outer { position: relative; height: calc(4.8 * 100vh); background: #fff; }
   .explore-carousel .prev-sticky { position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden; display: grid; grid-template-columns: 320px 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
   .explore-carousel .prev-side {
     border-right: 1px solid var(--border);
@@ -728,7 +728,16 @@
   const rollObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const el = entry.target;
-      if (!entry.isIntersecting || el.dataset.done === '1') return;
+      if (!entry.isIntersecting) {
+        el.dataset.done = '0';
+        const resetFormat = parseRollFormat(el.dataset.finalText || el.textContent);
+        if (resetFormat) {
+          const startValue = Number(el.dataset.start || 0);
+          el.textContent = `${resetFormat.prefix}${formatRollValue(startValue, resetFormat.decimals, resetFormat.grouping)}${resetFormat.suffix}`;
+        }
+        return;
+      }
+      if (el.dataset.done === '1') return;
       const format = parseRollFormat(el.dataset.finalText || el.textContent);
       if (!format) {
         el.dataset.done = '1';
