@@ -399,41 +399,20 @@
   .hub-mini-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
   .hub-mini-cards .card { background:#f3f5f4; border-radius:10px; padding:8px; font-size:10px; text-align:left; }
 
-  .enterprise-interactive { margin-top: 46px; display:grid; grid-template-columns: 320px 1fr; gap:22px; align-items:stretch; }
-  .enterprise-menu { background:white; border:1px solid var(--border); border-radius:20px; padding:10px; display:grid; gap:8px; }
+  .enterprise-scroll-section { background: var(--grey-50); min-height: 260vh; padding: 0 40px; }
+  .enterprise-sticky-wrap { position: sticky; top: 84px; height: calc(100vh - 100px); max-width: 1100px; margin: 0 auto; display:grid; grid-template-columns: 320px 1fr; gap:22px; align-items:stretch; }
+  .enterprise-menu { background:white; border:1px solid var(--border); border-radius:20px; padding:10px; display:grid; gap:8px; align-content: start; height: fit-content; box-shadow: var(--shadow-sm); }
   .enterprise-item { border:none; text-align:left; padding:14px; border-radius:12px; background:#f5f7f6; font-family:var(--font-body); cursor:pointer; font-size:14px; color:#4c5b55; }
   .enterprise-item.active { background:var(--blue-light); color:var(--black); font-weight:700; }
-  .enterprise-preview { background:white; border:1px solid var(--border); border-radius:20px; padding:22px; box-shadow:var(--shadow-sm); }
-  
+  .enterprise-carousel-mask { border:1px solid var(--border); border-radius:20px; overflow:hidden; background:white; box-shadow:var(--shadow-md); }
+  .enterprise-track { display:flex; flex-direction:column; gap:16px; padding:16px; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+  .enterprise-preview { background:white; border:1px solid var(--border); border-radius:20px; padding:22px; box-shadow:var(--shadow-sm); min-height: calc(100vh - 160px); display:flex; flex-direction:column; justify-content:space-between; }
   .enterprise-preview h4 { font-family:var(--font-display); font-size:38px; margin-bottom:10px; line-height:1; letter-spacing:-.03em; }
   .enterprise-preview p { margin-bottom:18px; font-size:23px; max-width:840px; }
   .enterprise-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
   .enterprise-metrics div { background:linear-gradient(180deg,#f4faf7,#eef7f3); border-radius:14px; padding:16px; border:1px solid #d5e8df; }
   .enterprise-metrics small { display:block; color:#5d6b79; font-size:14px; margin-bottom:4px; }
   .enterprise-metrics strong { font-size:42px; font-family:var(--font-display); line-height:1; }
-  .enterprise-chart { margin-top:18px; background:#f6faf8; border:1px solid #dbe9e2; border-radius:16px; padding:14px; }
-  .enterprise-chart svg { width:100%; height:120px; }
-  .enterprise-bars { margin-top:12px; display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
-  .enterprise-bars span { display:block; border-radius:8px 8px 4px 4px; background:#cbeedc; height:32px; }
-  .enterprise-bars span:nth-child(3), .enterprise-bars span:nth-child(5) { background:#7FE3BF; }
-
-  .enterprise-preview-content {
-    transition: opacity .22s ease;
-  }
-  .slide-out-up {
-    animation: previewOut .26s ease forwards;
-  }
-  .slide-in-up {
-    animation: previewIn .3s ease forwards;
-  }
-  @keyframes previewOut {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(-18px); }
-  }
-  @keyframes previewIn {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
   .enterprise-visual-wrap {
     margin-top: 18px;
     border: 1px solid #dbe9e2;
@@ -471,8 +450,13 @@
     .impact-list { grid-template-columns: 1fr; }
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
-    .hub-grid, .enterprise-interactive { grid-template-columns:1fr; }
+    .hub-grid { grid-template-columns:1fr; }
     .hub-kpis, .enterprise-metrics { grid-template-columns:1fr; }
+    .enterprise-scroll-section { min-height: auto; padding: 80px 20px; }
+    .enterprise-sticky-wrap { position: relative; top: 0; height: auto; grid-template-columns: 1fr; }
+    .enterprise-carousel-mask { overflow: visible; }
+    .enterprise-track { transform: none !important; padding: 0; gap: 12px; }
+    .enterprise-preview { min-height: auto; }
     .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
     .logos-row { gap: 28px; }
     .pricing-scroll-section { min-height: auto; padding: 80px 20px; }
@@ -542,28 +526,47 @@
   </div>
   <div class="market-quote reveal"><p>Hub2gether transforme le sport en entreprise en un <em>outil RH mesurable</em>, utile pour vos managers et motivant pour vos salariés.</p><cite>— Indicateurs consolidés Hub2gether (clients actifs, 2025)</cite></div></div></section>
 
-<section id="entreprises" style="background:var(--grey-50)"><div class="section-inner"><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Cliquez sur les modules à gauche pour voir l'interface de droite s'adapter en direct.</p>
-  <div class="enterprise-interactive reveal-right">
-    <div class="enterprise-menu">
-      <button class="enterprise-item active" data-title="Tableau de bord RH" data-text="Suivez l'engagement, les taux de participation et les tendances d'activité par équipe." data-m1="73%" data-m1l="Participation" data-m2="42" data-m2l="Matchs" data-m3="+8%" data-m3l="Progression" data-image="assets/entreprise-rh.png">📊 Tableau de bord RH</button>
-      <button class="enterprise-item" data-title="Tournois & compétitions" data-text="Créez vos brackets, automatisez les rounds et animez les finales inter-entreprises." data-m1="16" data-m1l="Tournois" data-m2="248" data-m2l="Joueurs" data-m3="4" data-m3l="Saisons" data-image="assets/entreprise-tournois.png">🏆 Tournois & compétitions</button>
-      <button class="enterprise-item" data-title="Paiements sans friction" data-text="Collecte automatique des quotes-parts, remboursements suivis et subventions RH." data-m1="€12k" data-m1l="Collectés" data-m2="98%" data-m2l="Paiements OK" data-m3="0" data-m3l="Relance manuelle" data-image="assets/entreprise-paiements.png">💳 Paiements sans friction</button>
-      <button class="enterprise-item" data-title="Partenaires exclusifs" data-text="Accédez aux terrains, salles et événements partenaires avec tarifs négociés." data-m1="32" data-m1l="Partenaires" data-m2="-18%" data-m2l="Coût moyen" data-m3="7" data-m3l="Villes" data-image="assets/entreprise-partenaires.png">🤝 Partenaires exclusifs</button>
-    </div>
-    <div class="enterprise-preview">
-      <div class="enterprise-preview-content" id="enterprise-preview-content">
-        <h4 id="enterprise-title">Tableau de bord RH</h4>
-        <p id="enterprise-text">Suivez l'engagement, les taux de participation et les tendances d'activité par équipe.</p>
-        <div class="enterprise-metrics">
-          <div><small id="enterprise-m1l">Participation</small><strong id="enterprise-m1">73%</strong></div>
-          <div><small id="enterprise-m2l">Matchs</small><strong id="enterprise-m2">42</strong></div>
-          <div><small id="enterprise-m3l">Progression</small><strong id="enterprise-m3">+8%</strong></div>
+<section id="entreprises" class="enterprise-scroll-section"><div class="enterprise-sticky-wrap"><div><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Au scroll, la partie droite défile comme un carousel vertical. La colonne gauche reste fixe et se synchronise automatiquement.</p>
+  <div class="enterprise-menu reveal-left">
+    <button class="enterprise-item active" data-enterprise-index="0">📊 Tableau de bord RH</button>
+    <button class="enterprise-item" data-enterprise-index="1">🏆 Tournois & compétitions</button>
+    <button class="enterprise-item" data-enterprise-index="2">💳 Paiements sans friction</button>
+    <button class="enterprise-item" data-enterprise-index="3">🤝 Partenaires exclusifs</button>
+  </div></div>
+  <div class="enterprise-carousel-mask reveal-right">
+    <div class="enterprise-track" id="enterprise-track">
+      <article class="enterprise-preview" data-enterprise-card="0">
+        <div>
+          <h4>Tableau de bord RH</h4>
+          <p>Suivez l'engagement, les taux de participation et les tendances d'activité par équipe.</p>
+          <div class="enterprise-metrics"><div><small>Participation</small><strong>73%</strong></div><div><small>Matchs</small><strong>42</strong></div><div><small>Progression</small><strong>+8%</strong></div></div>
         </div>
-        <div class="enterprise-visual-wrap">
-          <img id="enterprise-image" class="enterprise-visual" src="assets/entreprise-rh.png" alt="Dashboard entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
-          <div class="enterprise-visual-fallback" id="enterprise-visual-fallback"><strong>Ajoutez un visuel PNG</strong><span id="enterprise-image-path">assets/entreprise-rh.png</span></div>
+        <div class="enterprise-visual-wrap"><img class="enterprise-visual" src="assets/entreprise-rh.png" alt="Dashboard RH entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><div class="enterprise-visual-fallback"><strong>Ajoutez ce fichier PNG</strong><span>assets/entreprise-rh.png</span></div></div>
+      </article>
+      <article class="enterprise-preview" data-enterprise-card="1">
+        <div>
+          <h4>Tournois & compétitions</h4>
+          <p>Créez vos brackets, automatisez les rounds et animez les finales inter-entreprises.</p>
+          <div class="enterprise-metrics"><div><small>Tournois</small><strong>16</strong></div><div><small>Joueurs</small><strong>248</strong></div><div><small>Saisons</small><strong>4</strong></div></div>
         </div>
-      </div>
+        <div class="enterprise-visual-wrap"><img class="enterprise-visual" src="assets/entreprise-tournois.png" alt="Vue tournois entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><div class="enterprise-visual-fallback"><strong>Ajoutez ce fichier PNG</strong><span>assets/entreprise-tournois.png</span></div></div>
+      </article>
+      <article class="enterprise-preview" data-enterprise-card="2">
+        <div>
+          <h4>Paiements sans friction</h4>
+          <p>Collecte automatique des quotes-parts, remboursements suivis et subventions RH.</p>
+          <div class="enterprise-metrics"><div><small>Collectés</small><strong>€12k</strong></div><div><small>Paiements OK</small><strong>98%</strong></div><div><small>Relance manuelle</small><strong>0</strong></div></div>
+        </div>
+        <div class="enterprise-visual-wrap"><img class="enterprise-visual" src="assets/entreprise-paiements.png" alt="Vue paiements entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><div class="enterprise-visual-fallback"><strong>Ajoutez ce fichier PNG</strong><span>assets/entreprise-paiements.png</span></div></div>
+      </article>
+      <article class="enterprise-preview" data-enterprise-card="3">
+        <div>
+          <h4>Partenaires exclusifs</h4>
+          <p>Accédez aux terrains, salles et événements partenaires avec tarifs négociés.</p>
+          <div class="enterprise-metrics"><div><small>Partenaires</small><strong>32</strong></div><div><small>Coût moyen</small><strong>-18%</strong></div><div><small>Villes</small><strong>7</strong></div></div>
+        </div>
+        <div class="enterprise-visual-wrap"><img class="enterprise-visual" src="assets/entreprise-partenaires.png" alt="Vue partenaires entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><div class="enterprise-visual-fallback"><strong>Ajoutez ce fichier PNG</strong><span>assets/entreprise-partenaires.png</span></div></div>
+      </article>
     </div>
   </div>
 </div></section>
@@ -672,51 +675,43 @@
   });
 
 
-  const enterpriseItems = document.querySelectorAll('.enterprise-item');
-  const enterpriseBindings = {
-    title: document.getElementById('enterprise-title'),
-    text: document.getElementById('enterprise-text'),
-    m1: document.getElementById('enterprise-m1'),
-    m1l: document.getElementById('enterprise-m1l'),
-    m2: document.getElementById('enterprise-m2'),
-    m2l: document.getElementById('enterprise-m2l'),
-    m3: document.getElementById('enterprise-m3'),
-    m3l: document.getElementById('enterprise-m3l'),
-    image: document.getElementById('enterprise-image'),
-    imagePath: document.getElementById('enterprise-image-path'),
-    preview: document.getElementById('enterprise-preview-content'),
-    imageFallback: document.getElementById('enterprise-visual-fallback')
-  };
+  const enterpriseSection = document.querySelector('.enterprise-scroll-section');
+  const enterpriseStickyWrap = document.querySelector('.enterprise-sticky-wrap');
+  const enterpriseTrack = document.getElementById('enterprise-track');
+  const enterpriseCards = Array.from(document.querySelectorAll('[data-enterprise-card]'));
+  const enterpriseItems = Array.from(document.querySelectorAll('.enterprise-item'));
 
-  enterpriseItems.forEach(item => {
+  function setEnterpriseActive(index) {
+    enterpriseItems.forEach((item, i) => item.classList.toggle('active', i === index));
+  }
+
+  function updateEnterpriseScroll() {
+    if (!enterpriseSection || !enterpriseStickyWrap || !enterpriseTrack) return;
+    if (window.matchMedia('(max-width: 900px)').matches) return;
+
+    const sectionRect = enterpriseSection.getBoundingClientRect();
+    const stickyH = enterpriseStickyWrap.offsetHeight;
+    const total = enterpriseSection.offsetHeight - stickyH;
+    const passed = Math.min(Math.max(-sectionRect.top, 0), total);
+    const progress = total > 0 ? passed / total : 0;
+
+    const mask = document.querySelector('.enterprise-carousel-mask');
+    const maxOffset = enterpriseTrack.scrollHeight - mask.clientHeight;
+    enterpriseTrack.style.transform = `translateY(${-maxOffset * progress}px)`;
+
+    const idx = Math.min(enterpriseCards.length - 1, Math.floor(progress * enterpriseCards.length));
+    setEnterpriseActive(idx);
+  }
+
+  enterpriseItems.forEach((item, idx) => {
     item.addEventListener('click', () => {
-      enterpriseItems.forEach(btn => btn.classList.remove('active'));
-      item.classList.add('active');
-
-      const applyContent = () => {
-        enterpriseBindings.title.textContent = item.dataset.title;
-        enterpriseBindings.text.textContent = item.dataset.text;
-        enterpriseBindings.m1.textContent = item.dataset.m1;
-        enterpriseBindings.m1l.textContent = item.dataset.m1l;
-        enterpriseBindings.m2.textContent = item.dataset.m2;
-        enterpriseBindings.m2l.textContent = item.dataset.m2l;
-        enterpriseBindings.m3.textContent = item.dataset.m3;
-        enterpriseBindings.m3l.textContent = item.dataset.m3l;
-
-        const imageSrc = item.dataset.image || 'assets/entreprise-rh.png';
-        enterpriseBindings.image.style.display = 'block';
-        enterpriseBindings.imageFallback.style.display = 'none';
-        enterpriseBindings.image.src = imageSrc;
-        enterpriseBindings.imagePath.textContent = imageSrc;
-      };
-
-      enterpriseBindings.preview.classList.remove('slide-in-up');
-      enterpriseBindings.preview.classList.add('slide-out-up');
-      setTimeout(() => {
-        applyContent();
-        enterpriseBindings.preview.classList.remove('slide-out-up');
-        enterpriseBindings.preview.classList.add('slide-in-up');
-      }, 230);
+      setEnterpriseActive(idx);
+      if (window.matchMedia('(max-width: 900px)').matches) return;
+      const sectionTop = enterpriseSection.offsetTop;
+      const maxScrollRange = enterpriseSection.offsetHeight - enterpriseStickyWrap.offsetHeight;
+      const targetProgress = idx / Math.max(enterpriseCards.length - 1, 1);
+      const targetY = sectionTop + (maxScrollRange * targetProgress);
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
     });
   });
 
@@ -780,8 +775,11 @@
   }
 
   updatePricingScroll();
+  updateEnterpriseScroll();
   window.addEventListener('scroll', updatePricingScroll, { passive: true });
+  window.addEventListener('scroll', updateEnterpriseScroll, { passive: true });
   window.addEventListener('resize', updatePricingScroll);
+  window.addEventListener('resize', updateEnterpriseScroll);
 
   const impactTabs = document.querySelectorAll('.impact-tab');
   const impactPanels = document.querySelectorAll('.impact-panel');
