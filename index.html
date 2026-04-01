@@ -410,10 +410,27 @@
   .enterprise-scroll-section { background: var(--grey-50); min-height: 220vh; padding: 40px 40px 110px; }
   .enterprise-sticky-wrap { position: sticky; top: 86px; height: calc(100vh - 130px); max-width: 1100px; margin: 0 auto; display:grid; grid-template-columns: 290px 1fr; gap:20px; align-items:start; }
   .enterprise-menu { background:transparent; border:none; padding:0; display:grid; gap:10px; align-content: start; height: fit-content; }
-  .enterprise-item { border:1px solid #dde5e1; text-align:left; padding:11px 12px; border-radius:12px; background:#fff; font-family:var(--font-body); cursor:pointer; font-size:13px; color:#4c5b55; box-shadow: 0 1px 4px rgba(0,0,0,.04); transition: all .2s ease; }
-  .enterprise-item.active { background:var(--blue-light); color:var(--black); font-weight:700; border-color:#b9d9cc; box-shadow: 0 6px 14px rgba(20,70,52,.12); }
-  .enterprise-carousel-mask { border:1px solid var(--border); border-radius:20px; overflow:hidden; background:white; box-shadow:var(--shadow-md); height: 520px; }
-  .enterprise-track { display:flex; flex-direction:column; gap:0; padding:0; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+  .enterprise-item { border:1px solid #d7e0db; text-align:left; padding:15px 16px; border-radius:14px; background:#fff; font-family:var(--font-body); cursor:pointer; font-size:16px; color:#41514b; box-shadow: 0 2px 7px rgba(0,0,0,.05); transition: all .22s ease; }
+  .enterprise-item.active { background:var(--blue-light); color:var(--black); font-weight:700; border-color:#a9d2c2; box-shadow: 0 10px 22px rgba(20,70,52,.14); transform: translateY(-1px); }
+  .enterprise-carousel-mask { border:1px solid var(--border); border-radius:20px; overflow:hidden; background:white; box-shadow:var(--shadow-md); height: 520px; position: relative; }
+  .enterprise-carousel-mask::before,
+  .enterprise-carousel-mask::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 58px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .enterprise-carousel-mask::before { top: 0; background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,0)); }
+  .enterprise-carousel-mask::after { bottom: 0; background: linear-gradient(0deg, rgba(255,255,255,.9), rgba(255,255,255,0)); }
+  .enterprise-track { display:flex; flex-direction:column; gap:0; padding:0; transition: transform .58s cubic-bezier(.22,.72,.2,1); }
+  .enterprise-track.is-switching { animation: trackSwitch .58s ease; }
+  @keyframes trackSwitch {
+    0% { opacity: .75; filter: blur(2px); transform: translateY(12px); }
+    100% { opacity: 1; filter: blur(0); }
+  }
   .enterprise-preview { background:white; border:none; border-radius:0; padding:18px; box-shadow:none; min-height: 520px; height: 520px; display:flex; flex-direction:column; justify-content:space-between; }
   .enterprise-preview h4 { font-family:var(--font-display); font-size:30px; margin-bottom:8px; line-height:1.05; letter-spacing:-.03em; }
   .enterprise-preview p { margin-bottom:14px; font-size:18px; max-width:840px; color: #41514b; }
@@ -442,8 +459,8 @@
     font-weight: 600;
     gap: 6px;
   }
-  .enterprise-intro .section-title { font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; max-width: 520px; }
-  .enterprise-intro .section-desc { font-size: 15px; margin-top: 14px; max-width: 460px; }
+  .enterprise-intro .section-title { font-size: clamp(24px, 2.7vw, 34px); line-height: 1.1; max-width: 520px; margin-top: 4px; }
+  .enterprise-intro .section-desc { font-size: 15px; margin-top: 12px; max-width: 460px; }
 
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
@@ -693,6 +710,7 @@
   const enterpriseTrack = document.getElementById('enterprise-track');
   const enterpriseCards = Array.from(document.querySelectorAll('[data-enterprise-card]'));
   const enterpriseItems = Array.from(document.querySelectorAll('.enterprise-item'));
+  let lastEnterpriseIndex = -1;
 
   function setEnterpriseActive(index) {
     enterpriseItems.forEach((item, i) => item.classList.toggle('active', i === index));
@@ -710,6 +728,12 @@
     const idx = Math.min(enterpriseCards.length - 1, Math.floor(progress * enterpriseCards.length));
     const mask = document.querySelector('.enterprise-carousel-mask');
     const stepHeight = mask.clientHeight;
+    if (idx !== lastEnterpriseIndex) {
+      enterpriseTrack.classList.remove('is-switching');
+      requestAnimationFrame(() => enterpriseTrack.classList.add('is-switching'));
+      setTimeout(() => enterpriseTrack.classList.remove('is-switching'), 590);
+      lastEnterpriseIndex = idx;
+    }
     enterpriseTrack.style.transform = `translateY(${-stepHeight * idx}px)`;
     setEnterpriseActive(idx);
   }
