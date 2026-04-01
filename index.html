@@ -419,6 +419,14 @@
   .expense-row.rise-item { transform: translateX(20px); }
 
 
+  .rise-item.visible { animation: blockPulse 4.5s ease-in-out infinite; }
+  @keyframes blockPulse {
+    0%,100% { box-shadow: none; }
+    50% { box-shadow: 0 12px 30px rgba(15,46,34,.08); }
+  }
+  .text-anim { overflow: hidden; }
+  .text-anim .char { display: inline-block; opacity: 0; transform: translateY(16px) scale(.98); animation: letterIn .55s cubic-bezier(.22,.61,.36,1) forwards; animation-delay: calc(var(--i) * 22ms); }
+  @keyframes letterIn { to { opacity: 1; transform: translateY(0) scale(1); } }
   .hub-dashboard { background:#f8fafb; border:8px solid #9ca7b5; border-radius:34px; padding:0; overflow:hidden; width:min(920px,100%); height:430px; margin:0 auto; box-shadow:0 20px 45px rgba(15,46,34,.12); }
   .hub-topnav { display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-bottom:1px solid #dce3df; background:white; }
   .hub-topnav .tabs { display:flex; gap:8px; }
@@ -693,40 +701,73 @@
   });
 
 
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  function parseRollFormat(text) {
+    const m = text.trim().match(/^([^\d-+]*)([-+]?\d[\d\s.,]*)([^\d]*)$/);
+    if (!m) return null;
+    const prefix = m[1] || '';
+    const raw = m[2] || '';
+    const suffix = m[3] || '';
+    const clean = raw.replace(/\s/g, '').replace(',', '.');
+    const target = Number(clean);
+    if (!Number.isFinite(target)) return null;
+    return { prefix, suffix, target, decimals: clean.includes('.') ? (clean.split('.')[1] || '').length : 0, grouping: /\s/.test(raw) };
+  }
+
+  function formatRollValue(value, decimals, grouping) {
+    const fixed = value.toFixed(decimals);
+    const parts = fixed.split('.');
+    let intPart = parts[0];
+    if (grouping) intPart = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return decimals > 0 ? `${intPart}.${parts[1]}` : intPart;
+  }
+
+  const rollObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       const el = entry.target;
-      if (!entry.isIntersecting) {
-        el.dataset.done = '0';
+      if (!entry.isIntersecting || el.dataset.done === '1') return;
+      const format = parseRollFormat(el.dataset.finalText || el.textContent);
+      if (!format) {
+        el.dataset.done = '1';
         return;
       }
-      if (el.dataset.done === '1') return;
-      const target = Number(el.dataset.target || 0);
-      const prefix = el.dataset.prefix || '';
-      const suffix = el.dataset.suffix || '';
       const startValue = Number(el.dataset.start || 0);
       const duration = 1300;
       const start = performance.now();
-      el.classList.add("rolling");
+      el.classList.add('rolling');
       const step = (now) => {
         const p = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - p, 3);
-        const value = Math.round(startValue + (target - startValue) * eased);
-        el.textContent = `${prefix}${value}${suffix}`;
-        if (p < 1) {
-          requestAnimationFrame(step);
-        } else {
-          el.classList.remove("rolling");
-        }
+        const value = startValue + (format.target - startValue) * eased;
+        el.textContent = `${format.prefix}${formatRollValue(value, format.decimals, format.grouping)}${format.suffix}`;
+        if (p < 1) requestAnimationFrame(step);
+        else el.classList.remove('rolling');
       };
       requestAnimationFrame(step);
       el.dataset.done = '1';
     });
   }, { threshold: 0.35 });
 
-  document.querySelectorAll('.counter').forEach(el => {
+  const rollingSelectors = '.counter, .stat-num, .psi-num, .price-value, .pstat-num, .lb-pts, .lb-matches, .expense-amount, .expense-amount-small';
+  document.querySelectorAll(rollingSelectors).forEach((el) => {
+    const plain = el.textContent.trim();
+    if (!plain) return;
+    el.dataset.finalText = plain;
     el.dataset.done = '0';
-    counterObserver.observe(el);
+    rollObserver.observe(el);
+  });
+
+  document.querySelectorAll('.section-tag, .psi-title, .psi-desc, .step-name, .step-desc, .hero-badge').forEach((el) => {
+    if (el.children.length) return;
+    const chars = [...el.textContent];
+    el.classList.add('text-anim');
+    el.textContent = '';
+    chars.forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.style.setProperty('--i', i);
+      span.textContent = ch === ' ' ? ' ' : ch;
+      el.appendChild(span);
+    });
   });
 
 
