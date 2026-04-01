@@ -252,14 +252,9 @@
   .feat-card-sub { font-size: 12px; color: var(--grey-400); }
   .feat-card-body { padding: 20px 24px; }
 
-  .market-section { background: linear-gradient(140deg, #0f2e22 0%, #123829 58%, #184634 100%); position: relative; overflow: hidden; }
+  .market-section { background: #123829; position: relative; overflow: hidden; }
   .market-section::before {
-    content: "";
-    position: absolute;
-    inset: -20% -10% auto;
-    height: 240px;
-    background: radial-gradient(circle at 50% 20%, rgba(127,227,191,0.26), rgba(127,227,191,0));
-    pointer-events: none;
+    content: none;
   }
   .market-section .section-inner { position: relative; z-index: 1; }
   .market-section .section-title { color: var(--white); }
@@ -268,7 +263,7 @@
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 60px; }
   .stat-card { border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 32px; background: rgba(255,255,255,0.06); backdrop-filter: blur(3px); transition: transform .2s ease, box-shadow .2s ease; }
   .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(0,0,0,0.2); }
-  .stat-num { font-family: var(--font-display); font-size: 56px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+  .stat-num { font-family: var(--font-display); font-size: 56px; font-weight: 800; color: var(--yellow); margin-bottom: 8px; }
   .stat-num span { color: var(--blue-mid); }
   .stat-desc { font-size: 15px; color: rgba(255,255,255,0.62); }
   .market-quote { margin-top: 60px; padding: 40px; border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); background: rgba(255,255,255,0.06); }
@@ -452,7 +447,7 @@
     font-family: var(--font-body); color: var(--text);
   }
   .explore-carousel .prev-outer { position: relative; height: calc(6 * 100vh); background: #fff; }
-  .explore-carousel .prev-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; grid-template-columns: 320px 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
+  .explore-carousel .prev-sticky { position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden; display: grid; grid-template-columns: 320px 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
   .explore-carousel .prev-side {
     border-right: 1px solid var(--border);
     padding: 40px 26px;
@@ -727,12 +722,21 @@
     if (!outer || !N) return;
 
     let last = -1;
+    let snapTimer = null;
+    let isSnapping = false;
+
+    function getExploreMetrics() {
+      const stickyOffset = 72;
+      const stickyHeight = window.innerHeight - stickyOffset;
+      const sectionTop = outer.getBoundingClientRect().top + window.scrollY;
+      const scrollable = Math.max(1, outer.offsetHeight - stickyHeight);
+      const p = Math.max(0, Math.min(1, (window.scrollY - (sectionTop - stickyOffset)) / scrollable));
+      return { p, scrollable, sectionTop, stickyOffset };
+    }
 
     function updateExploreCarousel() {
       if (window.innerWidth <= 1100) return;
-      const rect = outer.getBoundingClientRect();
-      const scrollable = outer.offsetHeight - window.innerHeight;
-      const p = Math.max(0, Math.min(1, -rect.top / scrollable));
+      const { p } = getExploreMetrics();
 
       const sw = track.querySelector('.pslide')?.offsetWidth || 0;
       const gap = 28;
@@ -747,17 +751,31 @@
       }
     }
 
-    window.addEventListener('scroll', updateExploreCarousel, { passive: true });
+    function snapToNearestSlide() {
+      if (window.innerWidth <= 1100 || isSnapping) return;
+      const { p, scrollable, sectionTop, stickyOffset } = getExploreMetrics();
+      if (p <= 0 || p >= 1) return;
+      const idx = Math.round(p * (N - 1));
+      const targetTop = sectionTop - stickyOffset + (idx / (N - 1)) * scrollable;
+      isSnapping = true;
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+      setTimeout(() => { isSnapping = false; }, 360);
+    }
+
+    window.addEventListener('scroll', () => {
+      updateExploreCarousel();
+      if (snapTimer) clearTimeout(snapTimer);
+      snapTimer = setTimeout(snapToNearestSlide, 120);
+    }, { passive: true });
     window.addEventListener('resize', updateExploreCarousel);
     updateExploreCarousel();
 
     navBtns.forEach((btn, i) => {
       btn.addEventListener('click', () => {
         if (window.innerWidth <= 1100) return;
-        const top = outer.getBoundingClientRect().top + window.scrollY;
-        const scrollable = outer.offsetHeight - window.innerHeight;
+        const { scrollable, sectionTop, stickyOffset } = getExploreMetrics();
         window.scrollTo({
-          top: top + (i / (N - 1)) * scrollable,
+          top: sectionTop - stickyOffset + (i / (N - 1)) * scrollable,
           behavior: 'smooth'
         });
       });
