@@ -407,60 +407,35 @@
   .hub-mini-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
   .hub-mini-cards .card { background:#f3f5f4; border-radius:10px; padding:8px; font-size:10px; text-align:left; }
 
-  .enterprise-scroll-section { background: var(--grey-50); min-height: 220vh; padding: 40px 40px 110px; }
-  .enterprise-sticky-wrap { position: sticky; top: 86px; height: calc(100vh - 130px); max-width: 1100px; margin: 0 auto; display:grid; grid-template-columns: 290px 1fr; gap:20px; align-items:start; }
-  .enterprise-menu { background:transparent; border:none; padding:0; display:grid; gap:10px; align-content: start; height: fit-content; }
-  .enterprise-item { border:1px solid #d7e0db; text-align:left; padding:15px 16px; border-radius:14px; background:#fff; font-family:var(--font-body); cursor:pointer; font-size:16px; color:#41514b; box-shadow: 0 2px 7px rgba(0,0,0,.05); transition: all .22s ease; }
-  .enterprise-item.active { background:var(--blue-light); color:var(--black); font-weight:700; border-color:#a9d2c2; box-shadow: 0 10px 22px rgba(20,70,52,.14); transform: translateY(-1px); }
-  .enterprise-carousel-mask { border:1px solid var(--border); border-radius:20px; overflow:hidden; background:white; box-shadow:var(--shadow-md); height: 520px; position: relative; }
-  .enterprise-carousel-mask::before,
-  .enterprise-carousel-mask::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 58px;
-    z-index: 2;
-    pointer-events: none;
+  .explore-carousel {
+    --g: #6ee8a8; --g2: #3cca7e; --text: #101814; --muted: rgba(16,24,20,.62);
+    --border: rgba(16,24,20,.12); --card: #fff; --bg: #f7fbf9; --fast: cubic-bezier(.16,1,.3,1);
+    font-family: var(--font-body); color: var(--text);
   }
-  .enterprise-carousel-mask::before { top: 0; background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,0)); }
-  .enterprise-carousel-mask::after { bottom: 0; background: linear-gradient(0deg, rgba(255,255,255,.9), rgba(255,255,255,0)); }
-  .enterprise-track { display:flex; flex-direction:column; gap:0; padding:0; transition: transform .58s cubic-bezier(.22,.72,.2,1); }
-  .enterprise-track.is-switching { animation: trackSwitch .58s ease; }
-  @keyframes trackSwitch {
-    0% { opacity: .75; filter: blur(2px); transform: translateY(12px); }
-    100% { opacity: 1; filter: blur(0); }
-  }
-  .enterprise-preview { background:white; border:none; border-radius:0; padding:18px; box-shadow:none; min-height: 520px; height: 520px; display:flex; flex-direction:column; justify-content:space-between; }
-  .enterprise-preview h4 { font-family:var(--font-display); font-size:30px; margin-bottom:8px; line-height:1.05; letter-spacing:-.03em; }
-  .enterprise-preview p { margin-bottom:14px; font-size:18px; max-width:840px; color: #41514b; }
-  .enterprise-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
-  .enterprise-metrics div { background:linear-gradient(180deg,#f4faf7,#eef7f3); border-radius:14px; padding:16px; border:1px solid #d5e8df; }
-  .enterprise-metrics small { display:block; color:#5d6b79; font-size:14px; margin-bottom:4px; }
-  .enterprise-metrics strong { font-size:42px; font-family:var(--font-display); line-height:1; }
-  .enterprise-visual-wrap {
-    margin-top: 18px;
-    border: 1px solid #dbe9e2;
-    border-radius: 16px;
-    overflow: hidden;
-    background: #f6faf8;
-  }
-  .enterprise-visual {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .enterprise-visual-fallback {
-    min-height: 180px;
-    display: none;
-    place-content: center;
-    text-align: center;
-    color: #61706b;
-    font-weight: 600;
-    gap: 6px;
-  }
-  .enterprise-intro .section-title { font-size: clamp(24px, 2.7vw, 34px); line-height: 1.1; max-width: 520px; margin-top: 4px; }
-  .enterprise-intro .section-desc { font-size: 15px; margin-top: 12px; max-width: 460px; }
+  .explore-carousel .prev-outer { position: relative; height: calc(6 * 100vh); background: #fff; }
+  .explore-carousel .prev-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; grid-template-columns: 320px 1fr; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
+  .explore-carousel .prev-side { border-right: 1px solid var(--border); padding: 40px 28px; display: flex; flex-direction: column; background: var(--bg); }
+  .explore-carousel .prev-side-title { font-family: var(--font-display); font-size: 32px; line-height: 1.05; font-weight: 800; margin: 0 0 8px; }
+  .explore-carousel .prev-side-hint { font-size: 12px; color: var(--muted); margin: 0 0 28px; }
+  .explore-carousel .prev-nav-items { display: flex; flex-direction: column; gap: 8px; margin-bottom: auto; }
+  .explore-carousel .pni { display: flex; align-items: center; gap: 12px; padding: 12px 13px; border: 1px solid #dfe7e3; border-radius: 13px; background: #fff; color: rgba(16,24,20,.7); font-weight: 700; cursor: pointer; transition: all .2s ease; }
+  .explore-carousel .pni:hover { background: rgba(60,202,126,.08); color: var(--text); }
+  .explore-carousel .pni.on { background: rgba(60,202,126,.12); border-color: rgba(60,202,126,.3); color: var(--text); box-shadow: 0 10px 20px rgba(32,110,72,.14); }
+  .explore-carousel .pni-num { color: var(--g2); font-size: 11px; font-weight: 800; width: 20px; }
+  .explore-carousel .prev-prog { height: 4px; border-radius: 999px; background: rgba(16,24,20,.08); margin-top: 20px; overflow: hidden; }
+  .explore-carousel .prev-prog-f { height: 100%; width: 0; background: linear-gradient(90deg, var(--g2), var(--g)); transition: width .1s linear; }
+  .explore-carousel .prev-slides { overflow: hidden; display: flex; align-items: center; padding: 0 36px; background: #fff; }
+  .explore-carousel .prev-track { display: flex; gap: 28px; width: max-content; will-change: transform; transition: transform .08s linear; }
+  .explore-carousel .pslide { width: min(760px, 68vw); display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center; opacity: .2; transform: scale(.92) translateY(20px); transition: opacity .5s var(--fast), transform .55s var(--fast); }
+  .explore-carousel .pslide.active { opacity: 1; transform: scale(1) translateY(0); }
+  .explore-carousel .pslide-frame { position: relative; min-height: 380px; border-radius: 22px; border: 1px solid var(--border); background: var(--card); overflow: hidden; box-shadow: 0 24px 60px rgba(16,24,20,.08); display: flex; align-items: center; justify-content: center; }
+  .explore-carousel .preview-screen { width: 100%; height: 100%; display: grid; place-items: center; color: #456; font-weight: 700; background: linear-gradient(135deg, #fff, #f1faf5); }
+  .explore-carousel .preview-screen img { width: 100%; height: 100%; object-fit: cover; display:block; }
+  .explore-carousel .preview-fallback { text-align:center; color:#4b5a53; font-weight:700; line-height:1.5; padding: 18px; }
+  .explore-carousel .pslide-info .psi-num { font-size: 64px; font-weight: 900; line-height: .9; color: rgba(16,24,20,.12); margin: 0; font-family: var(--font-display); }
+  .explore-carousel .psi-label { margin-top: 6px; font-size: 12px; text-transform: uppercase; color: var(--g2); font-weight: 800; letter-spacing: .1em; }
+  .explore-carousel .psi-title { margin: 8px 0 10px; font-size: 24px; font-weight: 800; font-family: var(--font-display); }
+  .explore-carousel .psi-desc { margin: 0; color: var(--muted); line-height: 1.6; font-size: 14px; }
 
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
@@ -478,12 +453,13 @@
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
     .hub-grid { grid-template-columns:1fr; }
-    .hub-kpis, .enterprise-metrics { grid-template-columns:1fr; }
-    .enterprise-scroll-section { min-height: auto; padding: 80px 20px; }
-    .enterprise-sticky-wrap { position: relative; top: 0; height: auto; grid-template-columns: 1fr; }
-    .enterprise-carousel-mask { overflow: visible; }
-    .enterprise-track { transform: none !important; padding: 0; gap: 12px; }
-    .enterprise-preview { min-height: auto; height: auto; }
+    .hub-kpis { grid-template-columns:1fr; }
+    .explore-carousel .prev-outer { height: auto; }
+    .explore-carousel .prev-sticky { position: relative; height: auto; display: flex; flex-direction: column; }
+    .explore-carousel .prev-side { border-right: 0; border-bottom: 1px solid var(--border); }
+    .explore-carousel .prev-slides { overflow-x: auto; padding: 22px; }
+    .explore-carousel .prev-track { transform: none !important; }
+    .explore-carousel .pslide { width: min(340px, 85vw); opacity: 1; transform: none; grid-template-columns: 1fr; }
     .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
     .logos-row { gap: 28px; }
     .pricing-scroll-section { min-height: auto; padding: 80px 20px; }
@@ -556,50 +532,48 @@
   </div>
   <div class="market-quote reveal"><p>Hub2gether transforme le sport en entreprise en un <em>moteur de cohésion</em> qui dynamise les salariés et rapproche les équipes.</p><cite>— Retours clients Hub2gether, programmes actifs</cite></div></div></section>
 
-<section id="entreprises" class="enterprise-scroll-section"><div class="enterprise-sticky-wrap"><div class="enterprise-intro"><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Au scroll, la partie droite défile comme un carousel vertical. La colonne gauche reste fixe et se synchronise automatiquement.</p>
-  <div class="enterprise-menu reveal-left">
-    <button class="enterprise-item active" data-enterprise-index="0">📊 Tableau de bord RH</button>
-    <button class="enterprise-item" data-enterprise-index="1">🏆 Tournois & compétitions</button>
-    <button class="enterprise-item" data-enterprise-index="2">💳 Paiements sans friction</button>
-    <button class="enterprise-item" data-enterprise-index="3">🤝 Partenaires exclusifs</button>
-  </div></div>
-  <div class="enterprise-carousel-mask reveal-right">
-    <div class="enterprise-track" id="enterprise-track">
-      <article class="enterprise-preview" data-enterprise-card="0">
-        <div>
-          <h4>Tableau de bord RH</h4>
-          <p>Suivez l'engagement, les taux de participation et les tendances d'activité par équipe.</p>
-          <div class="enterprise-metrics"><div><small>Participation</small><strong>73%</strong></div><div><small>Matchs</small><strong>42</strong></div><div><small>Progression</small><strong>+8%</strong></div></div>
+<section id="entreprises" class="explore-carousel">
+  <div class="prev-outer" id="preview">
+    <div class="prev-sticky">
+      <aside class="prev-side">
+        <div class="prev-side-title">Explorez<br>l'interface</div>
+        <p class="prev-side-hint">↓ Scrollez pour naviguer</p>
+        <div class="prev-nav-items" id="prevNav">
+          <button class="pni on" data-pi="0"><span class="pni-num">01</span><span>Dashboard RH</span></button>
+          <button class="pni" data-pi="1"><span class="pni-num">02</span><span>Tournois</span></button>
+          <button class="pni" data-pi="2"><span class="pni-num">03</span><span>Paiements</span></button>
+          <button class="pni" data-pi="3"><span class="pni-num">04</span><span>Partenaires</span></button>
+          <button class="pni" data-pi="4"><span class="pni-num">05</span><span>Votre capture</span></button>
         </div>
-        <div class="enterprise-visual-wrap"><img class="enterprise-visual" src="assets/entreprise-rh.png" alt="Dashboard RH entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><div class="enterprise-visual-fallback"><strong>Ajoutez ce fichier PNG</strong><span>assets/entreprise-rh.png</span></div></div>
-      </article>
-      <article class="enterprise-preview" data-enterprise-card="1">
-        <div>
-          <h4>Tournois & compétitions</h4>
-          <p>Créez vos brackets, automatisez les rounds et animez les finales inter-entreprises.</p>
-          <div class="enterprise-metrics"><div><small>Tournois</small><strong>16</strong></div><div><small>Joueurs</small><strong>248</strong></div><div><small>Saisons</small><strong>4</strong></div></div>
+        <div class="prev-prog"><div class="prev-prog-f" id="prevProgF"></div></div>
+      </aside>
+      <div class="prev-slides">
+        <div class="prev-track" id="prevTrack">
+          <article class="pslide active">
+            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-rh.png" alt="Dashboard RH" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-rh.png</div></div></div>
+            <div class="pslide-info"><p class="psi-num">01</p><div class="psi-label">Dashboard</div><h3 class="psi-title">Vue globale en temps réel</h3><p class="psi-desc">KPIs RH, engagement des salariés et activité équipe.</p></div>
+          </article>
+          <article class="pslide">
+            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-tournois.png" alt="Tournois" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-tournois.png</div></div></div>
+            <div class="pslide-info"><p class="psi-num">02</p><div class="psi-label">Tournois</div><h3 class="psi-title">Compétitions inter-équipes</h3><p class="psi-desc">Brackets, rounds automatiques et finales en interne.</p></div>
+          </article>
+          <article class="pslide">
+            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-paiements.png" alt="Paiements" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-paiements.png</div></div></div>
+            <div class="pslide-info"><p class="psi-num">03</p><div class="psi-label">Paiements</div><h3 class="psi-title">Collecte sans friction</h3><p class="psi-desc">Quotes-parts, remboursements et suivi simplifié.</p></div>
+          </article>
+          <article class="pslide">
+            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-partenaires.png" alt="Partenaires" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-partenaires.png</div></div></div>
+            <div class="pslide-info"><p class="psi-num">04</p><div class="psi-label">Partenaires</div><h3 class="psi-title">Réseau exclusif de terrains</h3><p class="psi-desc">Tarifs négociés et accès simplifié à vos infrastructures.</p></div>
+          </article>
+          <article class="pslide">
+            <div class="pslide-frame"><div class="preview-screen"><img src="assets/entreprise-custom.png" alt="Votre capture" onerror="this.style.display='none'; this.parentElement.querySelector('.preview-fallback').style.display='block';"/><div class="preview-fallback" style="display:none;">Ajoutez: assets/entreprise-custom.png</div></div></div>
+            <div class="pslide-info"><p class="psi-num">05</p><div class="psi-label">Votre capture</div><h3 class="psi-title">Vos propres screenshots</h3><p class="psi-desc">Remplacez ce visuel par votre meilleur écran produit.</p></div>
+          </article>
         </div>
-        <div class="enterprise-visual-wrap"><img class="enterprise-visual" src="assets/entreprise-tournois.png" alt="Vue tournois entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><div class="enterprise-visual-fallback"><strong>Ajoutez ce fichier PNG</strong><span>assets/entreprise-tournois.png</span></div></div>
-      </article>
-      <article class="enterprise-preview" data-enterprise-card="2">
-        <div>
-          <h4>Paiements sans friction</h4>
-          <p>Collecte automatique des quotes-parts, remboursements suivis et subventions RH.</p>
-          <div class="enterprise-metrics"><div><small>Collectés</small><strong>€12k</strong></div><div><small>Paiements OK</small><strong>98%</strong></div><div><small>Relance manuelle</small><strong>0</strong></div></div>
-        </div>
-        <div class="enterprise-visual-wrap"><img class="enterprise-visual" src="assets/entreprise-paiements.png" alt="Vue paiements entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><div class="enterprise-visual-fallback"><strong>Ajoutez ce fichier PNG</strong><span>assets/entreprise-paiements.png</span></div></div>
-      </article>
-      <article class="enterprise-preview" data-enterprise-card="3">
-        <div>
-          <h4>Partenaires exclusifs</h4>
-          <p>Accédez aux terrains, salles et événements partenaires avec tarifs négociés.</p>
-          <div class="enterprise-metrics"><div><small>Partenaires</small><strong>32</strong></div><div><small>Coût moyen</small><strong>-18%</strong></div><div><small>Villes</small><strong>7</strong></div></div>
-        </div>
-        <div class="enterprise-visual-wrap"><img class="enterprise-visual" src="assets/entreprise-partenaires.png" alt="Vue partenaires entreprise" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/><div class="enterprise-visual-fallback"><strong>Ajoutez ce fichier PNG</strong><span>assets/entreprise-partenaires.png</span></div></div>
-      </article>
+      </div>
     </div>
   </div>
-</div></section>
+</section>
 
 <section id="joueurs"><div class="section-inner"><div class="split reveal"><div><div class="section-tag"><div class="tag-dot"></div>Matchmaking</div><h2 class="section-title">Trouvez des partenaires de jeu <em>en 30 secondes.</em></h2><p class="section-desc">Filtrez par sport, niveau, disponibilité ou entreprise.</p></div><div><div class="feat-card"><div class="feat-card-header"><div><div class="feat-card-title">Matchs disponibles</div><div class="feat-card-sub">Paris · Ce soir</div></div></div><div class="feat-card-body"><div class="match-list"><div class="match-row"><div class="player-avatar" style="background:var(--blue)">JD</div><div class="player-info"><div class="player-name">Padel Doubles</div><div class="player-detail">Jerome D. · Niveau 4 · Aujourd'hui 18h30</div></div><div class="player-meta"><div class="player-price">€12.50</div><div class="player-place">UrbanPadel Paris</div></div></div><div class="match-row"><div class="player-avatar" style="background:var(--orange)">MS</div><div class="player-info"><div class="player-name">Basketball 3v3</div><div class="player-detail">Marc S. · Intermédiaire · Demain 12h</div></div><div class="player-meta"><div class="player-price" style="color:var(--green)">Gratuit</div><div class="player-place">HQ Gym</div></div></div></div><button class="join-btn">Rejoindre le match ↗</button></div></div></div></div></div></section>
 
@@ -646,7 +620,6 @@
     '.logo-item',
     '.expense-row',
     '.feature-tile',
-    '.enterprise-item',
     '.price-card',
     '.hub-panel'
   ];
@@ -705,50 +678,54 @@
   });
 
 
-  const enterpriseSection = document.querySelector('.enterprise-scroll-section');
-  const enterpriseStickyWrap = document.querySelector('.enterprise-sticky-wrap');
-  const enterpriseTrack = document.getElementById('enterprise-track');
-  const enterpriseCards = Array.from(document.querySelectorAll('[data-enterprise-card]'));
-  const enterpriseItems = Array.from(document.querySelectorAll('.enterprise-item'));
-  let lastEnterpriseIndex = -1;
+  (() => {
+    const root = document.querySelector('.explore-carousel');
+    if (!root) return;
+    const outer = root.querySelector('.prev-outer');
+    const track = root.querySelector('#prevTrack');
+    const prog = root.querySelector('#prevProgF');
+    const navBtns = root.querySelectorAll('.pni');
+    const slides = root.querySelectorAll('.pslide');
+    const N = slides.length;
+    if (!outer || !N) return;
 
-  function setEnterpriseActive(index) {
-    enterpriseItems.forEach((item, i) => item.classList.toggle('active', i === index));
-  }
+    let last = -1;
 
-  function updateEnterpriseScroll() {
-    if (!enterpriseSection || !enterpriseStickyWrap || !enterpriseTrack) return;
-    if (window.matchMedia('(max-width: 900px)').matches) return;
+    function updateExploreCarousel() {
+      if (window.innerWidth <= 1100) return;
+      const rect = outer.getBoundingClientRect();
+      const scrollable = outer.offsetHeight - window.innerHeight;
+      const p = Math.max(0, Math.min(1, -rect.top / scrollable));
 
-    const sectionRect = enterpriseSection.getBoundingClientRect();
-    const stickyH = enterpriseStickyWrap.offsetHeight;
-    const total = enterpriseSection.offsetHeight - stickyH;
-    const passed = Math.min(Math.max(-sectionRect.top, 0), total);
-    const progress = total > 0 ? passed / total : 0;
-    const idx = Math.min(enterpriseCards.length - 1, Math.floor(progress * enterpriseCards.length));
-    const mask = document.querySelector('.enterprise-carousel-mask');
-    const stepHeight = mask.clientHeight;
-    if (idx !== lastEnterpriseIndex) {
-      enterpriseTrack.classList.remove('is-switching');
-      requestAnimationFrame(() => enterpriseTrack.classList.add('is-switching'));
-      setTimeout(() => enterpriseTrack.classList.remove('is-switching'), 590);
-      lastEnterpriseIndex = idx;
+      const sw = track.querySelector('.pslide')?.offsetWidth || 0;
+      const gap = 28;
+      track.style.transform = `translateX(-${p * (N - 1) * (sw + gap)}px)`;
+      prog.style.width = `${p * 100}%`;
+
+      const idx = Math.min(Math.round(p * (N - 1)), N - 1);
+      if (idx !== last) {
+        last = idx;
+        slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+        navBtns.forEach((b, i) => b.classList.toggle('on', i === idx));
+      }
     }
-    enterpriseTrack.style.transform = `translateY(${-stepHeight * idx}px)`;
-    setEnterpriseActive(idx);
-  }
 
-  enterpriseItems.forEach((item, idx) => {
-    item.addEventListener('click', () => {
-      setEnterpriseActive(idx);
-      if (window.matchMedia('(max-width: 900px)').matches) return;
-      const sectionTop = enterpriseSection.offsetTop;
-      const maxScrollRange = enterpriseSection.offsetHeight - enterpriseStickyWrap.offsetHeight;
-      const targetProgress = idx / Math.max(enterpriseCards.length - 1, 1);
-      const targetY = sectionTop + (maxScrollRange * targetProgress);
-      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    window.addEventListener('scroll', updateExploreCarousel, { passive: true });
+    window.addEventListener('resize', updateExploreCarousel);
+    updateExploreCarousel();
+
+    navBtns.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        if (window.innerWidth <= 1100) return;
+        const top = outer.getBoundingClientRect().top + window.scrollY;
+        const scrollable = outer.offsetHeight - window.innerHeight;
+        window.scrollTo({
+          top: top + (i / (N - 1)) * scrollable,
+          behavior: 'smooth'
+        });
+      });
     });
-  });
+  })();
 
 
   const hero = document.querySelector('.hero');
@@ -810,11 +787,8 @@
   }
 
   updatePricingScroll();
-  updateEnterpriseScroll();
   window.addEventListener('scroll', updatePricingScroll, { passive: true });
-  window.addEventListener('scroll', updateEnterpriseScroll, { passive: true });
   window.addEventListener('resize', updatePricingScroll);
-  window.addEventListener('resize', updateEnterpriseScroll);
 
   const impactTabs = document.querySelectorAll('.impact-tab');
   const impactPanels = document.querySelectorAll('.impact-panel');
