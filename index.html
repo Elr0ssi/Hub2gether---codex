@@ -103,16 +103,44 @@
 
   .hero-mockup { position: relative; z-index: 1; margin-top: 80px; width: 100%; max-width: 980px; animation: fadeUp .7s .5s ease both; }
   .dashboard-image-wrap {
+    position: relative;
     border: 1px solid rgba(15,46,34,.12);
     border-radius: 26px;
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
+    overflow: visible;
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255,255,255,.32), -20px 0 42px rgba(127,227,191,.22), 0 -20px 46px rgba(30,94,255,.18), 20px 0 42px rgba(255,255,255,.24);
     background: #f3f6f5;
+  }
+  .dashboard-image-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -20px;
+    border-radius: 34px;
+    z-index: -2;
+    background:
+      radial-gradient(circle at 10% 50%, rgba(127,227,191,.42), transparent 38%),
+      radial-gradient(circle at 50% 0%, rgba(30,94,255,.25), transparent 42%),
+      radial-gradient(circle at 92% 50%, rgba(255,255,255,.42), transparent 40%);
+    filter: blur(18px);
+    opacity: .95;
+    pointer-events: none;
+  }
+  .dashboard-image-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 26px;
+    padding: 1.2px;
+    background: linear-gradient(120deg, rgba(127,227,191,.9), rgba(30,94,255,.55), rgba(255,255,255,.9));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
   }
   .dashboard-image {
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 26px;
   }
   .dashboard-fallback {
     min-height: 320px;
@@ -121,6 +149,7 @@
     color: var(--grey-600);
     gap: 6px;
     font-weight: 600;
+    border-radius: 26px;
   }
 
   .mockup-window { background: #f6f7f6; border-radius: var(--radius-xl); border: 0.5px solid rgba(15,46,34,.12); box-shadow: var(--shadow-lg); overflow: hidden; }
