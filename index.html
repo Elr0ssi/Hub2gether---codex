@@ -407,16 +407,16 @@
   .hub-mini-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
   .hub-mini-cards .card { background:#f3f5f4; border-radius:10px; padding:8px; font-size:10px; text-align:left; }
 
-  .enterprise-scroll-section { background: var(--grey-50); min-height: 260vh; padding: 0 40px; }
-  .enterprise-sticky-wrap { position: sticky; top: 84px; height: calc(100vh - 100px); max-width: 1100px; margin: 0 auto; display:grid; grid-template-columns: 320px 1fr; gap:22px; align-items:stretch; }
-  .enterprise-menu { background:white; border:1px solid var(--border); border-radius:20px; padding:10px; display:grid; gap:8px; align-content: start; height: fit-content; box-shadow: var(--shadow-sm); }
-  .enterprise-item { border:none; text-align:left; padding:14px; border-radius:12px; background:#f5f7f6; font-family:var(--font-body); cursor:pointer; font-size:14px; color:#4c5b55; }
-  .enterprise-item.active { background:var(--blue-light); color:var(--black); font-weight:700; }
+  .enterprise-scroll-section { background: var(--grey-50); min-height: 220vh; padding: 40px 40px 110px; }
+  .enterprise-sticky-wrap { position: sticky; top: 86px; height: calc(100vh - 130px); max-width: 1100px; margin: 0 auto; display:grid; grid-template-columns: 290px 1fr; gap:20px; align-items:start; }
+  .enterprise-menu { background:transparent; border:none; padding:0; display:grid; gap:10px; align-content: start; height: fit-content; }
+  .enterprise-item { border:1px solid #dde5e1; text-align:left; padding:11px 12px; border-radius:12px; background:#fff; font-family:var(--font-body); cursor:pointer; font-size:13px; color:#4c5b55; box-shadow: 0 1px 4px rgba(0,0,0,.04); transition: all .2s ease; }
+  .enterprise-item.active { background:var(--blue-light); color:var(--black); font-weight:700; border-color:#b9d9cc; box-shadow: 0 6px 14px rgba(20,70,52,.12); }
   .enterprise-carousel-mask { border:1px solid var(--border); border-radius:20px; overflow:hidden; background:white; box-shadow:var(--shadow-md); }
-  .enterprise-track { display:flex; flex-direction:column; gap:16px; padding:16px; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
-  .enterprise-preview { background:white; border:1px solid var(--border); border-radius:20px; padding:22px; box-shadow:var(--shadow-sm); min-height: calc(100vh - 160px); display:flex; flex-direction:column; justify-content:space-between; }
-  .enterprise-preview h4 { font-family:var(--font-display); font-size:38px; margin-bottom:10px; line-height:1; letter-spacing:-.03em; }
-  .enterprise-preview p { margin-bottom:18px; font-size:23px; max-width:840px; }
+  .enterprise-track { display:flex; flex-direction:column; gap:12px; padding:12px; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+  .enterprise-preview { background:white; border:1px solid var(--border); border-radius:18px; padding:18px; box-shadow:var(--shadow-sm); min-height: 500px; display:flex; flex-direction:column; justify-content:space-between; }
+  .enterprise-preview h4 { font-family:var(--font-display); font-size:30px; margin-bottom:8px; line-height:1.05; letter-spacing:-.03em; }
+  .enterprise-preview p { margin-bottom:14px; font-size:18px; max-width:840px; color: #41514b; }
   .enterprise-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
   .enterprise-metrics div { background:linear-gradient(180deg,#f4faf7,#eef7f3); border-radius:14px; padding:16px; border:1px solid #d5e8df; }
   .enterprise-metrics small { display:block; color:#5d6b79; font-size:14px; margin-bottom:4px; }
@@ -442,6 +442,8 @@
     font-weight: 600;
     gap: 6px;
   }
+  .enterprise-intro .section-title { font-size: clamp(28px, 3.4vw, 44px); line-height: 1.08; max-width: 520px; }
+  .enterprise-intro .section-desc { font-size: 15px; margin-top: 14px; max-width: 460px; }
 
   @media (max-width: 900px) {
     nav { padding: 0 20px; }
@@ -537,7 +539,7 @@
   </div>
   <div class="market-quote reveal"><p>Hub2gether transforme le sport en entreprise en un <em>moteur de cohésion</em> qui dynamise les salariés et rapproche les équipes.</p><cite>— Retours clients Hub2gether, programmes actifs</cite></div></div></section>
 
-<section id="entreprises" class="enterprise-scroll-section"><div class="enterprise-sticky-wrap"><div><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Au scroll, la partie droite défile comme un carousel vertical. La colonne gauche reste fixe et se synchronise automatiquement.</p>
+<section id="entreprises" class="enterprise-scroll-section"><div class="enterprise-sticky-wrap"><div class="enterprise-intro"><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Au scroll, la partie droite défile comme un carousel vertical. La colonne gauche reste fixe et se synchronise automatiquement.</p>
   <div class="enterprise-menu reveal-left">
     <button class="enterprise-item active" data-enterprise-index="0">📊 Tableau de bord RH</button>
     <button class="enterprise-item" data-enterprise-index="1">🏆 Tournois & compétitions</button>
