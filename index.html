@@ -380,7 +380,7 @@
   .hub-mini-cards .card { background:#f3f5f4; border-radius:10px; padding:8px; font-size:10px; text-align:left; }
 
   .enterprise-interactive { margin-top: 46px; display:grid; grid-template-columns: 1fr minmax(420px, 1.25fr); gap:34px; align-items:flex-start; }
-  .enterprise-menu { display:grid; gap:14px; align-self:start; }
+  .enterprise-menu { display:grid; gap:14px; align-self:start; position:sticky; top:96px; }
   .enterprise-item { border:none; text-align:left; padding:16px 18px; border-radius:18px; background:white; font-family:var(--font-body); cursor:pointer; transition: background .34s cubic-bezier(.22,.61,.36,1), box-shadow .34s cubic-bezier(.22,.61,.36,1), transform .34s cubic-bezier(.22,.61,.36,1); }
   .enterprise-item:hover { transform: translateX(4px); }
   .enterprise-item-header { display:flex; align-items:flex-start; gap:14px; }
@@ -433,6 +433,7 @@
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
     .hub-grid, .enterprise-interactive { grid-template-columns:1fr; }
+    .enterprise-menu { position: static; top: auto; }
     .hub-kpis { grid-template-columns:1fr; }
     .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
     .logos-row { gap: 28px; }
@@ -471,9 +472,9 @@
 
 <div class="logos-section"><p class="logos-label">Des équipes de ces entreprises utilisent déjà Hub2gether</p><div class="logos-row"><span class="logo-item" tabindex="0" data-users="1 250 utilisateurs">Capgemini</span><span class="logo-item" tabindex="0" data-users="980 utilisateurs">BNP Paribas</span><span class="logo-item" tabindex="0" data-users="760 utilisateurs">Decathlon</span><span class="logo-item" tabindex="0" data-users="640 utilisateurs">Veolia</span><span class="logo-item" tabindex="0" data-users="420 utilisateurs">LVMH</span><span class="logo-item" tabindex="0" data-users="890 utilisateurs">Société Générale</span></div></div>
 
-<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(245,200,66,0.12);color:var(--yellow)"><div class="tag-dot" style="background:var(--yellow)"></div>Le marché</div><h2 class="section-title" style="color:white">Un marché de <em>plusieurs milliards</em> encore inexploré.</h2><p class="section-desc">Le sport en entreprise est un levier RH majeur — mais aucun outil ne le gère vraiment. Hub2gether comble ce vide.</p>
-  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num counter" data-target="80" data-prefix="" data-suffix="%">0%</div><div class="stat-desc">des salariés français souhaitent pratiquer une activité sportive dans le cadre du travail.</div></div><div class="stat-card"><div class="stat-num counter" data-target="2" data-prefix="€" data-suffix="Md">€0Md</div><div class="stat-desc">dépensés chaque année par les entreprises françaises en sport et bien-être salarié.</div></div><div class="stat-card"><div class="stat-num counter" data-target="26" data-prefix="-" data-suffix="%">-0%</div><div class="stat-desc">d'absentéisme dans les entreprises qui proposent une pratique sportive régulière.</div></div></div>
-  <div class="market-quote reveal"><p>Le sport en entreprise <em>réduit le turn-over, booste l'engagement</em> et améliore la marque employeur.</p><cite>— Analyse du marché du bien-être au travail, France 2024</cite></div></div></section>
+<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(245,200,66,0.12);color:var(--yellow)"><div class="tag-dot" style="background:var(--yellow)"></div>Impact entreprise</div><h2 class="section-title" style="color:white">Des résultats RH <em>mesurables</em> pour vos équipes.</h2><p class="section-desc">Hub2gether devient un levier concret d’engagement, de rétention et de cohésion inter-équipes.</p>
+  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num counter" data-target="31" data-prefix="+" data-suffix="%">+0%</div><div class="stat-desc"><strong>Rétention des salariés</strong><br/>augmentation moyenne observée après 6 mois d’animation sportive continue.</div></div><div class="stat-card"><div class="stat-num counter" data-target="44" data-prefix="+" data-suffix="%">+0%</div><div class="stat-desc"><strong>Compétition positive</strong><br/>de participation supplémentaire aux défis entre équipes et entre entreprises.</div></div><div class="stat-card"><div class="stat-num counter" data-target="28" data-prefix="+" data-suffix="%">+0%</div><div class="stat-desc"><strong>Happiness worker</strong><br/>hausse du score de bien-être déclaré sur les enquêtes internes trimestrielles.</div></div></div>
+  <div class="market-quote reveal"><p><em>Moins de turnover, plus d’engagement et une culture d’équipe renforcée</em> grâce à la pratique sportive structurée.</p><cite>— Indicateurs consolidés Hub2gether, cohortes entreprise 2025</cite></div></div></section>
 
 <section id="entreprises" style="background:var(--grey-50)"><div class="section-inner"><div class="section-tag reveal-left"><div class="tag-dot"></div>Pour les entreprises</div><h2 class="section-title reveal-left">Gérez tout le sport de votre entreprise <em>depuis un seul tableau de bord.</em></h2><p class="section-desc reveal-left">Cliquez sur les modules à gauche pour voir l'interface de droite s'adapter en direct.</p>
   <div class="enterprise-interactive reveal-right">
