@@ -252,20 +252,28 @@
   .feat-card-sub { font-size: 12px; color: var(--grey-400); }
   .feat-card-body { padding: 20px 24px; }
 
-  .market-section { background: #123829; position: relative; overflow: hidden; }
+  .market-section { background: linear-gradient(100deg, #062f24 0%, #053628 55%, #074233 100%); position: relative; overflow: hidden; }
   .market-section::before {
-    content: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% -10%, rgba(127,227,191,0.12), transparent 45%);
+    pointer-events: none;
   }
   .market-section .section-inner { position: relative; z-index: 1; }
   .market-section .section-title { color: var(--white); }
   .market-section .section-title em { color: var(--yellow); }
   .market-section .section-desc { color: rgba(255,255,255,0.6); }
+  .market-section .section-inner { max-width: 1200px; text-align: center; }
+  .market-section .section-title { margin: 0 auto; max-width: 980px; font-size: clamp(52px, 6vw, 80px); }
+  .market-section .section-desc { margin: 24px auto 0; max-width: 900px; font-size: clamp(26px, 3vw, 44px); line-height: 1.35; color: rgba(255,255,255,0.56); }
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 60px; }
-  .stat-card { border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 32px; background: rgba(255,255,255,0.06); backdrop-filter: blur(3px); transition: transform .2s ease, box-shadow .2s ease; }
+  .stat-card { border: 1px solid rgba(255,255,255,0.14); border-radius: 38px; padding: 36px 44px; background: rgba(255,255,255,0.08); backdrop-filter: blur(3px); transition: transform .2s ease, box-shadow .2s ease; text-align: left; min-height: 320px; }
   .stat-card:hover { transform: translateY(-4px); box-shadow: 0 12px 26px rgba(0,0,0,0.2); }
-  .stat-num { font-family: var(--font-display); font-size: 56px; font-weight: 800; color: var(--yellow); margin-bottom: 8px; }
+  .stat-label { font-size: 15px; letter-spacing: .12em; font-weight: 700; color: #7FE3BF; margin-bottom: 18px; }
+  .stat-num { font-family: var(--font-display); font-size: clamp(64px, 7vw, 86px); font-weight: 800; color: var(--yellow); margin-bottom: 10px; line-height: .95; }
   .stat-num span { color: var(--blue-mid); }
-  .stat-desc { font-size: 15px; color: rgba(255,255,255,0.62); }
+  .stat-desc { font-size: 15px; color: rgba(255,255,255,0.56); line-height: 1.45; }
   .market-quote { margin-top: 60px; padding: 40px; border: 0.5px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); background: rgba(255,255,255,0.06); }
   .market-quote p { font-family: var(--font-display); font-size: 24px; color: white; }
   .market-quote p em { font-style: normal; color: var(--yellow); }
@@ -510,6 +518,11 @@
     .split.reverse { direction: ltr; }
     .features-grid { grid-template-columns: 1fr 1fr; }
     .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+    .market-section .section-desc { font-size: 26px; }
+    .stat-card { min-height: auto; padding: 28px; border-radius: 28px; }
+    .stat-label { font-size: 16px; }
+    .stat-num { font-size: 64px; }
+    .stat-desc { font-size: 14px; }
     .steps-row { grid-template-columns: 1fr 1fr; }
     .impact-list { grid-template-columns: 1fr; }
     .mockup-body { grid-template-columns: 1fr; }
@@ -560,8 +573,8 @@
 
 <div class="logos-section"><p class="logos-label">Des équipes de ces entreprises utilisent déjà Hub2gether</p><div class="logos-row"><span class="logo-item" tabindex="0" data-users="1 250 utilisateurs">Capgemini</span><span class="logo-item" tabindex="0" data-users="980 utilisateurs">BNP Paribas</span><span class="logo-item" tabindex="0" data-users="760 utilisateurs">Decathlon</span><span class="logo-item" tabindex="0" data-users="640 utilisateurs">Veolia</span><span class="logo-item" tabindex="0" data-users="420 utilisateurs">LVMH</span><span class="logo-item" tabindex="0" data-users="890 utilisateurs">Société Générale</span></div></div>
 
-<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(245,200,66,0.12);color:var(--yellow)"><div class="tag-dot" style="background:var(--yellow)"></div>Bénéfices concrets</div><h2 class="section-title" style="color:white">Des chiffres clés <em>simples et lisibles</em>.</h2><p class="section-desc">L’essentiel en un coup d’œil.</p>
-  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-num">-40%</div><div class="stat-desc">de temps d’organisation.</div></div><div class="stat-card"><div class="stat-num">100%</div><div class="stat-desc">centralisé sur une seule plateforme.</div></div><div class="stat-card"><div class="stat-num">+30%</div><div class="stat-desc">de cohésion dans les équipes.</div></div></div>
+<section class="market-section" id="market"><div class="section-inner"><div class="section-tag" style="background:rgba(127,227,191,0.16);color:#7FE3BF"><div class="tag-dot" style="background:#7FE3BF"></div>LA PLATEFORME SPORT B2B</div><h2 class="section-title" style="color:white">Vos équipes méritent mieux<br>qu'un <em>groupe WhatsApp.</em></h2><p class="section-desc">Matchmaking, tournois, classements inter-entreprises,<br>paiements — tout en un seul endroit.</p>
+  <div class="stats-grid reveal"><div class="stat-card"><div class="stat-label">PARTICIPATION</div><div class="stat-num" style="color:#F5E86C;">+31%</div><div class="stat-desc">d'activité sportive<br>après le lancement<br>de Hub2gether</div></div><div class="stat-card"><div class="stat-label">ABSENTÉISME</div><div class="stat-num" style="color:#7FE3BF;">-24%</div><div class="stat-desc">chez les équipes qui<br>jouent régulièrement</div></div><div class="stat-card"><div class="stat-label">COLLABORATEURS</div><div class="stat-num" style="color:#FFFFFF;">2 400<span style="color:rgba(255,255,255,0.6)">+</span></div><div class="stat-desc">actifs dans 6<br>entreprises du CAC<br>40</div></div></div>
 </div></section>
 
 <section id="entreprises" class="explore-carousel">
