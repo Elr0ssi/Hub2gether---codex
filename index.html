@@ -355,12 +355,16 @@
   .status-pill { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; }
   .s-paid { background: var(--green-light); color: var(--green); } .s-pending { background: var(--orange-light); color: var(--orange); } .s-reimburse { background: var(--blue); color: white; }
 
-  .steps-row { position: relative; max-width: 840px; margin: 60px auto 0; padding-left: 34px; display: grid; gap: 18px; }
-  .steps-row::before { content:""; position:absolute; left: 16px; top: 10px; bottom: 10px; width: 3px; background: rgba(16,24,20,.12); border-radius: 999px; }
-  .timeline-progress { position:absolute; left:16px; top:10px; width:3px; height:0; background: linear-gradient(180deg, #3cca7e, var(--green)); border-radius:999px; transition: height .35s ease; }
-  .step-item { position: relative; text-align: left; background: white; border: 1px solid var(--border); border-radius: 16px; padding: 16px 18px 16px 54px; box-shadow: var(--shadow-sm); }
-  .step-num-wrap { position:absolute; left:-2px; top:50%; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; background: white; border: 2px solid rgba(16,24,20,.2); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 14px; font-weight: 800; transition: all .3s ease; }
-  .step-item.done .step-num-wrap { background: var(--green); border-color: var(--green); color: #fff; }
+  .steps-row { position: relative; max-width: 980px; margin: 68px auto 0; display: grid; gap: 28px; }
+  .steps-row::before { content:""; position:absolute; left: 50%; top: 10px; bottom: 10px; width: 4px; transform: translateX(-50%); background: rgba(16,24,20,.12); border-radius: 999px; }
+  .timeline-progress { position:absolute; left:50%; top:10px; width:4px; height:0; transform: translateX(-50%); background: linear-gradient(180deg, #9DFFCF 0%, #3CCA7E 42%, #1DB87E 100%); border-radius:999px; transition: height 1.05s cubic-bezier(.22,.61,.36,1); box-shadow: 0 0 18px rgba(60,202,126,.38); }
+  .step-item { position: relative; text-align: left; background: white; border: 1px solid rgba(16,24,20,.12); border-radius: 22px; padding: 26px 28px; min-height: 128px; box-shadow: 0 12px 32px rgba(16,24,20,.08); width: calc(50% - 52px); transition: transform .45s ease, box-shadow .45s ease, border-color .45s ease; }
+  .step-item.left { margin-right: auto; }
+  .step-item.right { margin-left: auto; }
+  .step-item:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(16,24,20,.14); }
+  .step-num-wrap { position:absolute; left:50%; top:50%; transform: translate(-50%, -50%); width: 40px; height: 40px; border-radius: 50%; background: #f6f8f7; border: 2px solid rgba(16,24,20,.2); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 16px; font-weight: 800; color: rgba(16,24,20,.5); transition: all .45s ease; z-index: 2; }
+  .step-item.done .step-num-wrap { background: linear-gradient(135deg, #3cca7e, #1db87e); border-color: #3cca7e; color: #fff; box-shadow: 0 0 0 6px rgba(60,202,126,.18); }
+  .step-item.done { border-color: rgba(60,202,126,.42); box-shadow: 0 20px 42px rgba(29,184,126,.12); }
   .step-name { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
   .step-desc { font-size: 13px; color: var(--grey-400); }
 
@@ -543,7 +547,10 @@
     .stat-label { font-size: 16px; }
     .stat-num { font-size: 52px; }
     .stat-desc { font-size: 14px; }
-    .steps-row { padding-left: 28px; }
+    .steps-row { max-width: 100%; gap: 16px; }
+    .steps-row::before, .timeline-progress { left: 18px; transform: none; }
+    .step-item { width: calc(100% - 34px); margin-left: 34px !important; min-height: 110px; padding: 18px 18px 18px 22px; border-radius: 16px; }
+    .step-num-wrap { left: 18px; transform: translate(-50%, -50%); width: 32px; height: 32px; font-size: 14px; }
     .impact-list { grid-template-columns: 1fr; }
     .mockup-body { grid-template-columns: 1fr; }
     .mockup-sidebar { display: none; }
@@ -660,7 +667,7 @@
   </div>
 </section>
 
-<section id="how" style="background:var(--grey-50)"><div class="section-inner" style="text-align:center"><div class="section-tag" style="margin:0 auto 20px"><div class="tag-dot"></div>Comment ça marche</div><h2 class="section-title" style="margin:0 auto">Mise en place en <em>4 étapes validées.</em></h2><p class="section-desc" style="margin:20px auto 0">Au scroll, chaque étape se valide visuellement pour montrer l’avancement de déploiement.</p><div class="steps-row reveal" id="implementationTimeline"><div class="timeline-progress" id="timelineProgress"></div><div class="step-item"><div class="step-num-wrap">✓</div><div class="step-name">1. L'entreprise s'inscrit</div><div class="step-desc">Création de l'espace et des paramètres RH.</div></div><div class="step-item"><div class="step-num-wrap">✓</div><div class="step-name">2. Les collaborateurs rejoignent</div><div class="step-desc">Invitation simple par lien ou email.</div></div><div class="step-item"><div class="step-num-wrap">✓</div><div class="step-name">3. Les premiers matchs démarrent</div><div class="step-desc">Matchmaking, tournois et classements activés.</div></div><div class="step-item"><div class="step-num-wrap">✓</div><div class="step-name">4. Le pilotage RH est en place</div><div class="step-desc">Suivi de l’engagement et des résultats en continu.</div></div></div></div></section>
+<section id="how" style="background:var(--grey-50)"><div class="section-inner" style="text-align:center"><div class="section-tag" style="margin:0 auto 20px"><div class="tag-dot"></div>Comment ça marche</div><h2 class="section-title" style="margin:0 auto">Mise en place en <em>4 étapes validées.</em></h2><p class="section-desc" style="margin:20px auto 0">Au scroll, chaque étape se valide visuellement pour montrer l’avancement de déploiement.</p><div class="steps-row reveal" id="implementationTimeline"><div class="timeline-progress" id="timelineProgress"></div><div class="step-item left"><div class="step-num-wrap">✓</div><div class="step-name">1. L'entreprise s'inscrit</div><div class="step-desc">Création de l'espace et des paramètres RH.</div></div><div class="step-item right"><div class="step-num-wrap">✓</div><div class="step-name">2. Les collaborateurs rejoignent</div><div class="step-desc">Invitation simple par lien ou email.</div></div><div class="step-item left"><div class="step-num-wrap">✓</div><div class="step-name">3. Les premiers matchs démarrent</div><div class="step-desc">Matchmaking, tournois et classements activés.</div></div><div class="step-item right"><div class="step-num-wrap">✓</div><div class="step-name">4. Le pilotage RH est en place</div><div class="step-desc">Suivi de l’engagement et des résultats en continu.</div></div></div></div></section>
 
 <section class="cta-section"><p style="font-size:13px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.15em;margin-bottom:24px">Prêt à lancer le sport dans votre entreprise ?</p><h2 class="cta-title">Rejoignez les entreprises qui <em>gagnent</em> sur tous les terrains.</h2><p class="cta-sub">Démo gratuite, onboarding accompagné, premier tournoi organisé avec vous.</p><div class="cta-buttons"><button class="btn-cta">Demander une démo →</button><button class="btn-cta-outline">Voir les tarifs</button></div></section>
 <footer><div class="footer-inner"><div class="footer-logo"><img class="brand-logo-img footer" src="assets/logo-hub2gether.png" alt="Logo Hub2gether" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';"/><span class="brand-mark" aria-hidden="true" style="display:none;">H<span>2</span></span> Hub2gether</div><div class="footer-links"><a href="#">Produit</a><a href="#tarifs">Tarifs</a><a href="#">À propos</a><a href="#">Blog</a><a href="#">Contact</a></div><div class="footer-copy">© 2026 Hub2gether. Tous droits réservés.</div></div></footer>
